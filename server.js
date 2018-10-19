@@ -14,8 +14,18 @@ app.use(morgan('common'));
 app.use(express.static('public'));
 
 
-
-
+//EVENTS - GET
+app.get('/events', (req, res) => {
+	Event
+		.find()
+		.then(events => {
+			res.json(events.map(event => event.serialize()));
+		})
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({error: `Internal Server Error`})
+		})
+})
 
 
 
@@ -64,3 +74,6 @@ if (require.main === module) {
 }
 
 module.exports = { runServer, app, closeServer }; 
+
+
+
