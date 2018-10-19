@@ -49,22 +49,102 @@ function generateEventData(){
 	}
 }
 
+//clear database for each test
+function tearDownDb() {
+	console.warn('deleting database');
+	return mongoose.connection.dropDatabase();
+}
 
 
-const eventSchema = mongoose.Schema({
-	name: {type: String, required: true},
-	description: {type: String, required: true},
-	address: {
-		building: String,
-		street: String,
-		city: String,
-		state: String,
-		zipcode: String
-	},
-	date: Date,
-	time: {
-		startTime: Number,
-		endTime: Number
-	},
-	prop: String
+describe('Events API Resource', function() {
+
+	before(function() {
+		return runServer(TEST_DATABASE_URL);
+	})
+
+	beforeEach(function() {
+		return seedEventData();
+	})
+
+	afterEach(function() {
+		return tearDownDb();
+	})
+
+	after(function() {
+		return closeServer();
+	})
+
+	describe('GET endpoint', function() {
+		it('should return all existing events', function() {
+			
+			let res;
+			return chai.request(app)
+				.get('/events')
+				.then(function(_res){
+					res = _res;
+
+					expect(rest).to.have.status(200);
+					console.info(res.body);
+					expect(res.body).to.have.lengthOf.at.least(1);
+					return Event.count();
+				})
+				.then(function(count){
+					expect(res.body).to.have.lengthOf(count);
+				})
+		})
+
+		it('should return events with the right fields', function(){
+			
+			let resEvent;
+			return chai.request(app)
+				.get('events')
+				.then(function(res){
+					expect(res).to.have.status(200);
+					expect(res).to.be.json;
+					expect(res.body).to.have.lengthOf.at.least(1);
+
+					res.body.forEach(function(event){
+						expect(event).to.be.a('object');
+						expect(event).to.include.keys('id', 'name', 'description', 'address', 'date', 'time', 'prop', 'created');
+					})
+					resEvent = res.body[0];
+					return Event.findById(resEvent.id);
+				})
+				.then(function(event){
+					console.info(resEvent);
+					console.info(event);
+					expect(resEvent.name).to.equal(event.title);
+					expect(resEvent.description).to.equal(event.description);
+					expect(resEvent.address).to.equal(event.address);
+					expect(resEvent.date).to.equal(event.date);
+					expect(resEvent.time).to.equal(event.time);
+					expect(resEvent.prop).to.equal(event.prop);
+				})
+		})
+	})
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
