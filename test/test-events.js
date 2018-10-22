@@ -52,7 +52,7 @@ function generateEventData(){
 //clear database for each test
 function tearDownDb() {
 	console.warn('deleting database');
-	return mongoose.connection.dropDatabase();
+	return mongoose.connection.db.dropDatabase();
 }
 
 
@@ -62,11 +62,11 @@ describe('Events API Resource', function() {
 		return runServer(TEST_DATABASE_URL);
 	})
 
-	beforeEach(function() {
+	before(function() {
 		return seedEventData();
 	})
 
-	afterEach(function() {
+	after(function() {
 		return tearDownDb();
 	})
 
