@@ -27,7 +27,16 @@ app.get('/events', (req, res) => {
 		})
 })
 
-
+//EVENTS - GET ONE
+app.get('/events/:id', (req, res) => {
+	Event
+		.findById(req.params.id)
+		.then(event => res.json(event.serialize()))
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({error: `Internal Servor Error`})
+		})
+})
 
 
 
