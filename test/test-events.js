@@ -34,13 +34,13 @@ function generateEventData(){
 		name: faker.lorem.sentence(),
 		description: faker.lorem.paragraph(),
 		address:{
-			building: faker.address.streetAddress(),
-			street: faker.address.streetName(),
+			building: faker.company.companyName(),
+			street: faker.address.streetAddress(),
 			city: faker.address.city(),
 			state: faker.address.state(),
-			zipcode: faker.address.zipcode()
+			zipcode: faker.address.zipCode()
 		},
-		date: 'January 1, 2018',
+		date: faker.date.future(),
 		time: {
 			startTime: 7,
 			endTime: 9
