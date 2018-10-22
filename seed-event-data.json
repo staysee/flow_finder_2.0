@@ -7,7 +7,6 @@
 		"city": "Los Angeles",
 		"state": "CA",
 		"zipcode": "91830"
-
 	},
 	"date": "December 5, 2018",
 	"time": {
@@ -15,7 +14,7 @@
 		"endTime": 5
 	},
 	"prop": "Hoop"
-},
+}
 {
 	"name": "Beginner Staff",
 	"description": "Find your flow with beginner staff lessons. No experience necessary.",
@@ -25,7 +24,6 @@
 		"city": "Los Angeles",
 		"state": "CA",
 		"zipcode": "92634"
-
 	},
 	"date": "December 23, 2018",
 	"time": {
@@ -33,7 +31,7 @@
 		"endTime": 6
 	},
 	"prop": "Staff"
-},
+}
 {
 	"name": "Fire Fans Choreography",
 	"description": "Learn some fan choreography. Open level. Bring your own fans.",
@@ -43,7 +41,6 @@
 		"city": "Los Angeles",
 		"state": "CA",
 		"zipcode": "91030"
-
 	},
 	"date": "January 6, 2019",
 	"time": {

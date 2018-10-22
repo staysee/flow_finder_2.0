@@ -21,7 +21,7 @@ const eventSchema = mongoose.Schema({
 })
 
 eventSchema.virtual('addressString').get(function() {
-	return `${this.address.building} ${this.address.street}`.trim();
+	return `${this.address.building} ${this.address.street} ${this.address.city} ${this.address.state} ${this.address.zipcode}`.trim();
 })
 
 eventSchema.methods.serialize = function() {
