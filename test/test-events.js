@@ -83,7 +83,7 @@ describe('Events API Resource', function() {
 				.then(function(_res){
 					res = _res;
 
-					expect(rest).to.have.status(200);
+					expect(res).to.have.status(200);
 					console.info(res.body);
 					expect(res.body).to.have.lengthOf.at.least(1);
 					return Event.count();
