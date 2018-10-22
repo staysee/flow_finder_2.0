@@ -1,0 +1,54 @@
+{
+	"name": "Hoop Intensive",
+	"description": "Learn how to hoop. Beginners welcome.",
+	"address": {
+		"building": "Hoop Studio",
+		"street": "123 Hula Drive",
+		"city": "Los Angeles",
+		"state": "CA",
+		"zipcode": "91830"
+
+	},
+	"date": "December 5, 2018",
+	"time": {
+		"startTime": 1,
+		"endTime": 5
+	},
+	"prop": "Hoop"
+},
+{
+	"name": "Beginner Staff",
+	"description": "Find your flow with beginner staff lessons. No experience necessary.",
+	"address": {
+		"building": "Garden Park",
+		"street": "1241 Grand Avenue",
+		"city": "Los Angeles",
+		"state": "CA",
+		"zipcode": "92634"
+
+	},
+	"date": "December 23, 2018",
+	"time": {
+		"startTime": 4,
+		"endTime": 6
+	},
+	"prop": "Staff"
+},
+{
+	"name": "Fire Fans Choreography",
+	"description": "Learn some fan choreography. Open level. Bring your own fans.",
+	"address": {
+		"building": "Studio Flow",
+		"street": "19358 Glendale Ave Unit 3",
+		"city": "Los Angeles",
+		"state": "CA",
+		"zipcode": "91030"
+
+	},
+	"date": "January 6, 2019",
+	"time": {
+		"startTime": 10,
+		"endTime": 2
+	},
+	"prop": "Fans"
+}
