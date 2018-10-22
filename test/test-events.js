@@ -122,7 +122,58 @@ describe('Events API Resource', function() {
 				})
 		})
 	})
+
+	describe('POST endpoint', function() {
+		it('should add a new event', function() {
+
+			const newEvent = {
+				name: faker.lorem.sentence(),
+				description: faker.lorem.paragraph(),
+				address:{
+					building: faker.company.companyName(),
+					street: faker.address.streetAddress(),
+					city: faker.address.city(),
+					state: faker.address.state(),
+					zipcode: faker.address.zipCode()
+				},
+				date: faker.date.future(),
+				time: {
+					startTime: 7,
+					endTime: 9
+				},
+				prop: generateProp()
+			}
+
+			return chai.request(app)
+			.post('/events')
+			.send(newEvent)
+			.then(function(res) {
+				expect(res).to.have.status(201);
+				expect(res).to.be.json;
+				expect(res.body).to.be.a('object');
+				expect(res.body).to.include.keys('id', 'name', 'description', 'address', 'date', 'time', 'prop', 'created');
+				expect(res.body.name).to.equal(newEvent.name);
+				expect(res.body.description).to.equal(newEvent.description);
+				expect(res.body.address).to.equal(newEvent.address);
+				expect(res.body.date).to.equal(newEvent.date);
+				expect(res.body.time).to.equal(newEvent.time);
+				expect(res.body.prop).to.equal(newEvent.prop);
+
+				return Event.findById(res.body.id);
+			})
+			.then(function(event){
+				expect(event.name).to.equal(newEvent.name);
+				expect(event.description).to.equal(newEvent.description);
+				expect(event.address).to.equal(newEvent.address);
+				expect(event.date).to.equal(newEvent.date);
+				expect(event.time).to.equal(newEvent.time);
+				expect(event.prop).to.equal(newEvent.prop);
+			})
+		})
+	})
 })
+
+
 
 
 
