@@ -16,7 +16,7 @@ chai.use(chaiHttp);
 
 function seedEventData() {
 	console.info('seeding event data');
-	const eventData = [];
+	const seedData = [];
 
 	for(let i=1; i<=10; i++){
 		seedData.push(generateEventData());
