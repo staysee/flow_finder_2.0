@@ -38,6 +38,34 @@ app.get('/events/:id', (req, res) => {
 		})
 })
 
+//EVENTS - POST
+app.post('/events', (req, res) => {
+	const requiredFields = ['name', 'description', 'address', 'date', 'time', 'prop'];
+	for (let i=0; i<requiredFields.length; i++){
+		const field = requiredFields[i];
+		if (!(field in req.body)){
+      		const message = `Missing \`${field}\` in request body`;
+			console.error(message);
+			return res.status(400).send(message);
+		}
+	}
+
+	Event
+		.create({
+			name: req.body.name,
+			description: req.body.description,
+			address: req.body.address,
+			date: req.body.date,
+			time: req.body.time,
+			prop: req.body.prop
+		})
+		.then(event => res.status(201).json(event.serialize()))
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({error: `Internal Servor Error`})
+		})
+})
+
 
 
 
