@@ -158,9 +158,14 @@ describe('Events API Resource', function() {
 				expect(res.body.id).to.not.be.null;
 				expect(res.body.name).to.equal(newEvent.name);
 				expect(res.body.description).to.equal(newEvent.description);
-				// expect(res.body.address).to.equal(newEvent.address);
+				expect(res.body.address.building).to.equal(newEvent.address.building);
+				expect(res.body.address.street).to.equal(newEvent.address.street);
+				expect(res.body.address.city).to.equal(newEvent.address.city);
+				expect(res.body.address.street).to.equal(newEvent.address.street);
+				expect(res.body.address.zipcode).to.equal(newEvent.address.zipcode);
 				// expect(res.body.date).to.equal(newEvent.date);
-				// expect(res.body.time).to.equal(newEvent.time);
+				expect(res.body.time.startTime).to.equal(newEvent.time.startTime);
+				expect(res.body.time.endTime).to.equal(newEvent.time.endTime);
 				expect(res.body.prop).to.equal(newEvent.prop);
 
 				return Event.findById(res.body.id);
