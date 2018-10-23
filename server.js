@@ -74,10 +74,38 @@ app.post('/events', jsonParser, (req, res) => {
 app.delete('/events/:id', (req, res) => {
 	Event
 		.findByIdAndRemove(req.params.id)
-		.then(event=> res.status(204).end())	//204=No Content; server fulfilled request but doesn't need to return a body
+		.then(event=> res.status(204).end())	//204=No Content; server fulfilled request but no content sent back
 		.catch(err => res.status(500).json({error: `Internal Servor Error`}));
 })
 
+//EVENTS - PUT
+app.put('/events/:id'), jsonParser, (req, res) => {
+	const requiredFields = ['name', 'description', 'address', 'date', 'time', 'prop'];
+	for (let i=0; i<requiredFields.length; i++){
+		const field = requiredFields[i];
+		if(!(field in req.body)) {
+			const message = `Missing \`${field}\` in request body`
+			console.error(message);
+			return res.status(400).send(message);	//400=Bad Request
+		}
+	}
+	if (req.params.id !== req.body.id) {
+		const message = `Request path id ({$req.params.id}) and request body id (${req.body.id}) must match`;
+		console.error(message);
+		return res.status(400).send(message);	//400=Bad Request
+	}
+	console.log(`Updating event \`${req.params.id}\``);
+	Event.update({
+		id: req.params.id,
+		name: req.params.name,
+		description: req.params.description,
+		address: req.params.address,
+		date: req.params.date,
+		time: req.params.time,
+		prop: req.params.prop
+	})
+	res.status(204).end();	//204=Request fulfilled, no content sent back
+}
 
 
 
