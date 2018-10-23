@@ -42,7 +42,7 @@ function generateEventData(){
 		},
 		date: faker.date.future(),
 		time: {
-			startTime: 10,,
+			startTime: 10,
 			endTime: 12
 		},
 		prop: generateProp()
@@ -103,35 +103,35 @@ describe('Events API Resource', function() {
 				})
 		})
 
-		// it('should return events with the right fields', function(){
+		it('should return events with the right fields', function(){
 			
-		// 	let resEvent;
-		// 	return chai.request(app)
-		// 		.get('/events')
-		// 		.then(function(res){
-		// 			expect(res).to.have.status(200);
-		// 			expect(res).to.be.json;
-		// 			expect(res.body).to.have.lengthOf.at.least(1);
+			let resEvent;
+			return chai.request(app)
+				.get('/events')
+				.then(function(res){
+					expect(res).to.have.status(200);
+					expect(res).to.be.json;
+					expect(res.body).to.have.lengthOf.at.least(1);
 
-		// 			res.body.forEach(function(event){
-		// 				console.info(event)
-		// 				expect(event).to.be.a('object');
-		// 				expect(event).to.include.keys('id','name', 'description', 'address', 'date', 'time', 'prop');
-		// 			})
-		// 			resEvent = res.body[0];
-		// 			return Event.findById(resEvent.id);
-		// 		})
-		// 		.then(function(event){
-		// 			console.info(resEvent);
-		// 			console.info(event);
-		// 			expect(resEvent.name).to.equal(event.name);
-		// 			expect(resEvent.description).to.equal(event.description);
-		// 			// expect(resEvent.address).to.equal(event.address);
-		// 			expect(resEvent.date).to.equal(event.date);
-		// 			expect(resEvent.time).to.equal(event.time);
-		// 			expect(resEvent.prop).to.equal(event.prop);
-		// 		})
-		// })
+					res.body.forEach(function(event){
+						console.info(event)
+						expect(event).to.be.a('object');
+						expect(event).to.include.keys('id','name', 'description', 'address', 'date', 'time', 'prop');
+					})
+					resEvent = res.body[0];
+					return Event.findById(resEvent.id);
+				})
+				.then(function(event){
+					console.info(resEvent);
+					console.info(event);
+					expect(resEvent.name).to.equal(event.name);
+					expect(resEvent.description).to.equal(event.description);
+					// expect(resEvent.address).to.equal(event.address);
+					expect(resEvent.date).to.equal(event.date);
+					expect(resEvent.time).to.equal(event.time);
+					expect(resEvent.prop).to.equal(event.prop);
+				})
+		})
 	})
 
 	// describe('POST endpoint', function() {
