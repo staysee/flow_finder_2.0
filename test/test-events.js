@@ -42,8 +42,8 @@ function generateEventData(){
 		},
 		date: faker.date.future(),
 		time: {
-			startTime: "10:00 am",
-			endTime: "12:30 pm"
+			startTime: 10,,
+			endTime: 12
 		},
 		prop: generateProp()
 	}
