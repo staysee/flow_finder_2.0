@@ -43,8 +43,8 @@ app.post('/events', (req, res) => {
 	const requiredFields = ['name', 'description', 'address', 'date', 'time', 'prop'];
 	for (let i=0; i<requiredFields.length; i++){
 		const field = requiredFields[i];
-		if (!(field in req.body)){
-      		const message = `Missing \`${field}\` in request body`;
+		if(!(field in req.body)){
+			const message = `Missing \`${field}\` in request body`;
 			console.error(message);
 			return res.status(400).send(message);
 		}
