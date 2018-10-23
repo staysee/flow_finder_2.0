@@ -12,10 +12,10 @@ const eventSchema = mongoose.Schema({
 		state: String,
 		zipcode: String
 	},
-	date: Date,
+	date: String,
 	time: {
-		startTime: Number,
-		endTime: Number
+		startTime: String,
+		endTime: String
 	},
 	prop: String
 })
@@ -30,6 +30,8 @@ eventSchema.methods.serialize = function() {
 		name: this.name,
 		description: this.description,
 		address: this.addressString,
+		date: this.date,
+		time: this.time,
 		prop: this.prop
 	};
 }
