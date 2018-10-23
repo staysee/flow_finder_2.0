@@ -20,16 +20,18 @@ const eventSchema = mongoose.Schema({
 	prop: String
 })
 
+//derived properties for clients who only need a human-readable string
 eventSchema.virtual('addressString').get(function() {
 	return `${this.address.building} ${this.address.street} ${this.address.city} ${this.address.state} ${this.address.zipcode}`.trim();
 })
 
+//instance of Event model...specifies how events are represented outside of our app via our API
 eventSchema.methods.serialize = function() {
 	return {
 		id: this._id,
 		name: this.name,
 		description: this.description,
-		address: this.addressString,
+		address: this.address,
 		date: this.date,
 		time: this.time,
 		prop: this.prop
