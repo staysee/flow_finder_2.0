@@ -2,6 +2,7 @@
 
 const express = require('express');
 const morgan = require('morgan');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
@@ -12,6 +13,7 @@ const app = express();
 
 app.use(morgan('common'));
 app.use(express.static('public'));
+app.use(express.json());
 
 
 //EVENTS - GET
@@ -43,7 +45,7 @@ app.post('/events', (req, res) => {
 	const requiredFields = ['name', 'description', 'address', 'date', 'time', 'prop'];
 	for (let i=0; i<requiredFields.length; i++){
 		const field = requiredFields[i];
-		if (!(field in req.body)){
+		if(!(field in req.body)){
 			const message = `Missing \`${field}\` in request body`;
 			console.error(message);
 			return res.status(400).send(message);
@@ -65,7 +67,6 @@ app.post('/events', (req, res) => {
 			res.status(500).json({error: `Internal Servor Error`})
 		})
 })
-
 
 
 
