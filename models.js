@@ -14,8 +14,8 @@ const eventSchema = mongoose.Schema({
 	},
 	date: String,
 	time: {
-		startTime: String,
-		endTime: String
+		startTime: Number,
+		endTime: Number
 	},
 	prop: String
 })
