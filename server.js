@@ -19,6 +19,7 @@ app.use(express.static('public'));
 
 //EVENTS - GET
 app.get('/events', (req, res) => {
+
 	Event
 		.find()
 		.then(events => {
@@ -35,7 +36,7 @@ app.get('/events', (req, res) => {
 //EVENTS - GET ONE
 app.get('/events/:id', (req, res) => {
 	Event
-		.findById(req.params.id)
+		.findById(req.params.id)	//looks for single document
 		.then(event => res.json(event.serialize()))
 		.catch(err => {
 			console.error(err);
@@ -81,7 +82,7 @@ app.delete('/events/:id', (req, res) => {
 })
 
 //EVENTS - PUT
-app.put('/events/:id'), jsonParser, (req, res) => {
+app.put('/events/:id'), (req, res) => {
 	//Make sure id in request params and request body is the same
 	if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
 		const message = (`Request path id (${req.params.id}) and request body id ` +

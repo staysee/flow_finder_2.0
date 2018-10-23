@@ -94,12 +94,12 @@ describe('Events API Resource', function() {
 					res = _res;
 
 					expect(res).to.have.status(200);
-					console.info(res.body);
-					expect(res.body).to.have.lengthOf.at.least(1);
+					// console.info(res.body);
+					expect(res.body.events).to.have.lengthOf.at.least(1);
 					return Event.count();
 				})
 				.then(function(count){
-					expect(res.body).to.have.lengthOf(count);
+					expect(res.body.events).to.have.lengthOf(count);
 				})
 		})
 
@@ -109,24 +109,27 @@ describe('Events API Resource', function() {
 			return chai.request(app)
 				.get('/events')
 				.then(function(res){
+					console.info(res)
 					expect(res).to.have.status(200);
 					expect(res).to.be.json;
-					expect(res.body).to.have.lengthOf.at.least(1);
+					expect(res.body.events).to.be.a('array');
+					expect(res.body.events).to.have.lengthOf.at.least(1);
 
-					res.body.forEach(function(event){
-						console.info(event)
+					res.body.events.forEach(function(event){
+						// console.info(event)
 						expect(event).to.be.a('object');
-						// expect(event).to.include.keys('id','name', 'description', 'address', 'date', 'time', 'prop');
+						expect(event).to.include.keys('name', 'description', 'address', 'date', 'time', 'prop');
 					})
-					resEvent = res.body[0];
+					resEvent = res.body.events[0];
 					return Event.findById(resEvent.id);
 				})
 				.then(function(event){
-					console.info(resEvent);
-					console.info(event);
+					// console.info(resEvent);
+					// console.info(event);
+					expect(resEvent.id).to.equal(event.id);
 					expect(resEvent.name).to.equal(event.name);
 					expect(resEvent.description).to.equal(event.description);
-					expect(resEvent.addressString).to.equal(event.address);
+					expect(resEvent.address).to.equal(event.address);
 					expect(resEvent.date).to.equal(event.date);
 					expect(resEvent.time).to.equal(event.time);
 					expect(resEvent.prop).to.equal(event.prop);
