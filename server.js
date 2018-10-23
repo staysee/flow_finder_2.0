@@ -22,7 +22,9 @@ app.get('/events', (req, res) => {
 	Event
 		.find()
 		.then(events => {
-			res.json(events.map(event => event.serialize()));
+			res.json({
+				events: events.map(event => event.serialize())
+			})
 		})
 		.catch(err => {
 			console.error(err);
