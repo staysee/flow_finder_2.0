@@ -79,34 +79,34 @@ app.delete('/events/:id', (req, res) => {
 })
 
 //EVENTS - PUT
-app.put('/events/:id'), jsonParser, (req, res) => {
-	const requiredFields = ['name', 'description', 'address', 'date', 'time', 'prop'];
-	for (let i=0; i<requiredFields.length; i++){
-		const field = requiredFields[i];
-		if(!(field in req.body)) {
-			const message = `Missing \`${field}\` in request body`
-			console.error(message);
-			return res.status(400).send(message);	//400=Bad Request
-		}
-	}
-	if (req.params.id !== req.body.id) {
-		const message = `Request path id ({$req.params.id}) and request body id (${req.body.id}) must match`;
+app.put('/events/:id'), (req, res) => {
+	//Make sure id in request params and request body is the same
+	if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
+		const message = (`Request path id (${req.params.id}) and request body id ` +
+			`${req.body.id}) must match`);
 		console.error(message);
-		return res.status(400).send(message);	//400=Bad Request
+		//return here to break out of the function
+		return res.status(400).json({message: message});	//400=BadRequest
 	}
-	console.log(`Updating event \`${req.params.id}\``);
-	Event.update({
-		id: req.params.id,
-		name: req.params.name,
-		description: req.params.description,
-		address: req.params.address,
-		date: req.params.date,
-		time: req.params.time,
-		prop: req.params.prop
+	//generate object of fields to be updated, other fields left untouched
+	const toUpdate = {};
+	const updateableFields = ['name', 'description', 'address', 'date', 'time', 'prop'];
+	updateableFields.forEach(field => {
+		if (field in req.body){
+			toUpdate[field] = req.body[field];
+		}
 	})
-	res.status(204).end();	//204=Request fulfilled, no content sent back
+
+	Event
+		.findByIdAndUpdate(req.params.id, {$set: toUpdate})	//2 args: id, object describing how doc should be updated
+		.then(event => res.status(204).end())	//204=Request fulfilled but no content sent back
+		.catch(err => res.status(500).json({message: `Internal Servor Error`}))
 }
 
+// catch-all endpoing if client makes request to non-existent endpoint
+app.use('*', (req, res) => {
+	res.status(404).json({message: 'Endpoint Not Found'});
+})
 
 
 
