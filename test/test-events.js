@@ -129,62 +129,57 @@ describe('Events API Resource', function() {
 					expect(resEvent.id).to.equal(event.id);
 					expect(resEvent.name).to.equal(event.name);
 					expect(resEvent.description).to.equal(event.description);
-					expect(resEvent.address).to.equal(event.address);
+					expect(resEvent.address.building).to.equal(event.address.building);
+					expect(resEvent.address.street).to.equal(event.address.street);
+					expect(resEvent.address.city).to.equal(event.address.city);
+					expect(resEvent.address.zipcode).to.equal(event.address.zipcode);
 					expect(resEvent.date).to.equal(event.date);
-					expect(resEvent.time).to.equal(event.time);
+					expect(resEvent.time.startTime).to.equal(event.time.startTime);
+					expect(resEvent.time.endTime).to.equal(event.time.endTime);
 					expect(resEvent.prop).to.equal(event.prop);
 				})
 		})
 	})
 
-	// describe('POST endpoint', function() {
-	// 	it('should add a new event', function() {
+	describe('POST endpoint', function() {
+		it('should add a new event', function() {
 
-	// 		const newEvent = {
-	// 			name: faker.lorem.sentence(),
-	// 			description: faker.lorem.paragraph(),
-	// 			address:{
-	// 				building: faker.company.companyName(),
-	// 				street: faker.address.streetAddress(),
-	// 				city: faker.address.city(),
-	// 				state: faker.address.state(),
-	// 				zipcode: faker.address.zipCode()
-	// 			},
-	// 			date: faker.date.future(),
-	// 			time: {
-	// 				startTime: 7,
-	// 				endTime: 9
-	// 			},
-	// 			prop: generateProp()
-	// 		}
+			const newEvent = generateEventData();
 
-	// 		return chai.request(app)
-	// 		.post('/events')
-	// 		.send(newEvent)
-	// 		.then(function(res) {
-	// 			expect(res).to.have.status(201);
-	// 			expect(res).to.be.json;
-	// 			expect(res.body).to.be.a('object');
-	// 			expect(res.body).to.include.keys('id', 'name', 'description', 'address', 'date', 'time', 'prop', 'created');
-	// 			expect(res.body.name).to.equal(newEvent.name);
-	// 			expect(res.body.description).to.equal(newEvent.description);
-	// 			expect(res.body.address).to.equal(newEvent.address);
-	// 			expect(res.body.date).to.equal(newEvent.date);
-	// 			expect(res.body.time).to.equal(newEvent.time);
-	// 			expect(res.body.prop).to.equal(newEvent.prop);
+			return chai.request(app)
+			.post('/events')
+			.send(newEvent)
+			.then(function(res) {
+				console.info(res);
+				expect(res).to.have.status(201);
+				expect(res).to.be.json;
+				expect(res.body).to.be.a('object');
+				expect(res.body).to.include.keys('id', 'name', 'description', 'address', 'date', 'time', 'prop');
+				expect(res.body.id).to.not.be.null;
+				expect(res.body.name).to.equal(newEvent.name);
+				expect(res.body.description).to.equal(newEvent.description);
+				// expect(res.body.address).to.equal(newEvent.address);
+				// expect(res.body.date).to.equal(newEvent.date);
+				// expect(res.body.time).to.equal(newEvent.time);
+				expect(res.body.prop).to.equal(newEvent.prop);
 
-	// 			return Event.findById(res.body.id);
-	// 		})
-	// 		.then(function(event){
-	// 			expect(event.name).to.equal(newEvent.name);
-	// 			expect(event.description).to.equal(newEvent.description);
-	// 			expect(event.address).to.equal(newEvent.address);
-	// 			expect(event.date).to.equal(newEvent.date);
-	// 			expect(event.time).to.equal(newEvent.time);
-	// 			expect(event.prop).to.equal(newEvent.prop);
-	// 		})
-	// 	})
-	// })
+				return Event.findById(res.body.id);
+			})
+			.then(function(event){
+				expect(event.name).to.equal(newEvent.name);
+				expect(event.description).to.equal(newEvent.description);
+				expect(event.address.building).to.equal(newEvent.address.building);
+				expect(event.address.street).to.equal(newEvent.address.street);
+				expect(event.address.city).to.equal(newEvent.address.city);
+				expect(event.address.state).to.equal(newEvent.address.state);
+				expect(event.address.zipcode).to.equal(newEvent.address.zipcode);
+				// expect(event.date).to.equal(newEvent.date);
+				expect(event.time.startTime).to.equal(newEvent.time.startTime);
+				expect(event.time.endTime).to.equal(newEvent.time.endTime);
+				expect(event.prop).to.equal(newEvent.prop);
+			})
+		})
+	})
 })
 
 
