@@ -9,6 +9,7 @@ mongoose.Promise = global.Promise;
 const { DATABASE_URL, PORT } = require('./config');
 const { Event } = require('./models');
 
+const jsonParser = bodyParser.json();
 const app = express();
 
 app.use(morgan('common'));
@@ -41,7 +42,7 @@ app.get('/events/:id', (req, res) => {
 })
 
 //EVENTS - POST
-app.post('/events', (req, res) => {
+app.post('/events', jsonParser, (req, res) => {
 	const requiredFields = ['name', 'description', 'address', 'date', 'time', 'prop'];
 	for (let i=0; i<requiredFields.length; i++){
 		const field = requiredFields[i];
