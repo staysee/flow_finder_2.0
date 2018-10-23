@@ -14,7 +14,7 @@ const app = express();
 
 app.use(morgan('common'));
 app.use(express.static('public'));
-app.use(express.json());
+// app.use(express.json());
 
 
 //EVENTS - GET
@@ -49,7 +49,7 @@ app.post('/events', jsonParser, (req, res) => {
 		if(!(field in req.body)){
 			const message = `Missing \`${field}\` in request body`;
 			console.error(message);
-			return res.status(400).send(message);
+			return res.status(400).send(message); //400=Bad Request
 		}
 	}
 
@@ -62,11 +62,20 @@ app.post('/events', jsonParser, (req, res) => {
 			time: req.body.time,
 			prop: req.body.prop
 		})
-		.then(event => res.status(201).json(event.serialize()))
+		.then(event => res.status(201).json(event.serialize()))	//201=Created
 		.catch(err => {
 			console.error(err);
 			res.status(500).json({error: `Internal Servor Error`})
 		})
+})
+
+
+//EVENTS - DELETE
+app.delete('/events/:id', (req, res) => {
+	Event
+		.findByIdAndRemove(req.params.id)
+		.then(event=> res.status(204).end())	//204=No Content; server fulfilled request but doesn't need to return a body
+		.catch(err => res.status(500).json({error: `Internal Servor Error`}));
 })
 
 
