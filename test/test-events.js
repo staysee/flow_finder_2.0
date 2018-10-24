@@ -110,7 +110,7 @@ describe('Events API Resource', function() {
 			return chai.request(app)
 				.get('/events')
 				.then(function(res){
-					console.info(res)
+					// console.info(res)
 					expect(res).to.have.status(200);
 					expect(res).to.be.json;
 					expect(res.body.events).to.be.a('array');
@@ -212,7 +212,40 @@ describe('Events API Resource', function() {
 	}) //end DELETE endpoint test
 
 	describe('PUT endpoint', function() {
+		//get existing event from db
+		//make PUT request to update event
+		//prove event returned by request contains data we sent
+		//prove event in db is correctly updated
+		it('should update fields sent over', function() {
+			const updateData = {
+				name: 'Changing Event Name',
+				time: {
+					startTime: 12,
+					endTime: 3
+				}
+			};
 
+			return Event
+				.findOne()
+				.then(event => {
+					updateData.id = event.id;
+				
+					//make request then inspect to make sure it reflects data we sent
+					return chai.request(app)
+						.put(`/events/${event.id}`)
+						.send(updateData)
+				})
+				.then(res => {
+					expect(res).to.have.status(204)
+
+					return Event.findById(updateData.id)
+				})
+				.then(event => {
+					expect(event.name).to.equal(updateData.name);
+					expect(event.time.startTime).to.equal(updateData.time.startTime);
+					expect(event.time.endTime).to.equal(updateData.time.endTime);
+				})
+		})
 	}) //end PUT endpoint test
 
 }) // end Events API Resource test
