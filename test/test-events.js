@@ -211,6 +211,10 @@ describe('Events API Resource', function() {
 		})
 	}) //end DELETE endpoint test
 
+	describe('PUT endpoint', function() {
+
+	}) //end PUT endpoint test
+
 }) // end Events API Resource test
 
 

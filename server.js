@@ -74,7 +74,7 @@ app.post('/events', jsonParser, (req, res) => {
 
 
 //EVENTS - DELETE
-app.delete('/events/:id', (req, res) => {
+app.delete('/events/:id', jsonParser, (req, res) => {
 	Event
 		.findByIdAndRemove(req.params.id)
 		.then(event=> res.status(204).end())	//204=No Content; server fulfilled request but no content sent back
@@ -82,8 +82,9 @@ app.delete('/events/:id', (req, res) => {
 })
 
 //EVENTS - PUT
-app.put('/events/:id'), (req, res) => {
+app.put('/events/:id', jsonParser, (req, res) => {
 	//Make sure id in request params and request body is the same
+	console.log(req.body);
 	if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
 		const message = (`Request path id (${req.params.id}) and request body id ` +
 			`${req.body.id}) must match`);
@@ -104,9 +105,9 @@ app.put('/events/:id'), (req, res) => {
 		.findByIdAndUpdate(req.params.id, {$set: toUpdate})	//2 args: id, object describing how doc should be updated
 		.then(event => res.status(204).end())	//204=Request fulfilled but no content sent back
 		.catch(err => res.status(500).json({message: `Internal Servor Error`}))
-}
+})
 
-// catch-all endpoing if client makes request to non-existent endpoint
+// catch-all endpoint if client makes request to non-existent endpoint
 app.use('*', (req, res) => {
 	res.status(404).json({message: 'Endpoint Not Found'});
 })
