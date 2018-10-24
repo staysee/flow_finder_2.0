@@ -55,6 +55,16 @@ function tearDownDb() {
 	return mongoose.connection.db.dropDatabase();
 }
 
+describe('hit up root url for client', function () {
+	it('should show html and give 200 status code', () => {
+		return chai.request(app)
+				.get('/')
+				.then(res => {
+					expect(res).to.have.status(200);
+					expect(res).to.be.html;
+				})
+	})
+})
 
 describe('Events API Resource', function() {
 
@@ -74,16 +84,7 @@ describe('Events API Resource', function() {
 		return closeServer();
 	})
 
-	describe('hit up root url for client', function () {
-	it('should show html and give 200 status code', () => {
-		return chai.request(app)
-				.get('/')
-				.then(res => {
-					expect(res).to.have.status(200);
-					expect(res).to.be.html;
-				})
-	});
-})
+	
 	describe('GET endpoint', function() {
 		it('should return all existing events', function() {
 			
@@ -139,7 +140,7 @@ describe('Events API Resource', function() {
 					expect(resEvent.prop).to.equal(event.prop);
 				})
 		})
-	})
+	}) //end GET endpoint test
 
 	describe('POST endpoint', function() {
 		it('should add a new event', function() {
@@ -150,7 +151,7 @@ describe('Events API Resource', function() {
 			.post('/events')
 			.send(newEvent)
 			.then(function(res) {
-				console.info(res);
+				// console.info(res);
 				expect(res).to.have.status(201);
 				expect(res).to.be.json;
 				expect(res.body).to.be.a('object');
@@ -184,8 +185,34 @@ describe('Events API Resource', function() {
 				expect(event.prop).to.equal(newEvent.prop);
 			})
 		})
-	})
-})
+	}) //end POST endpoint test
+
+	describe('DELETE endpoint', function() {
+	//get an event
+	//make a delete request for event's id
+	//assert that response has right status code
+	//prove the event with id doesn't exist in db anymore
+		it('should delete a restaurant by id', function() {
+			let event;
+			return Event
+				.findOne()
+				.then(_event => {
+					event = _event;
+					return chai.request(app).delete(`/events/${event.id}`);
+				})
+				.then(res => {
+					expect(res).to.have.status(204);
+					return Event.findById(event.id);
+				})
+				.then(_event => {
+					expect(_event).to.be.null;
+				})
+			
+		})
+	}) //end DELETE endpoint test
+
+}) // end Events API Resource test
+
 
 
 
