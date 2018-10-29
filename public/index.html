@@ -16,7 +16,7 @@
 	<!-- POST new EVENT -->
 	<section role="region" class="event-form">
 		<h2>Create an Event</h2>
-		<form action="#">
+		<form class="js-event-form">
 			<!-- Event Name -->
 			<label for="event-name">Event Name</label>
 			<input type="text" name="event-name" id="event-name" placeholder="Event Name">
@@ -68,8 +68,15 @@
 	</section>
 
 	<!-- DISPLAY EVENTS -->
-	<section role="region" class="event display">
+	<section role="region" class="event-display">
+		<h2>Flow Events</h2>
+		<button class="js-show-button" role="button">Show Event</button>
+		<div class="events-all"></div>
 	</section>
 
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- javaScript -->
+<script type="text/javascript" src="app.js"></script>
 </body>
 </html>
