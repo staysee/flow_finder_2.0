@@ -13,6 +13,8 @@ const { Event } = require('./models');
 const jsonParser = bodyParser.json();
 const app = express();
 
+const eventRouter = require('./eventRouter');
+
 app.use(morgan('common'));
 // app.use(cors());
 app.use(express.static('public'));
@@ -20,6 +22,7 @@ app.use(express.static('public'));
 
 
 
+app.use('/events', eventRouter);
 // catch-all endpoint if client makes request to non-existent endpoint
 app.use('*', (req, res) => {
 	res.status(404).json({message: 'Endpoint Not Found'});
@@ -27,7 +30,7 @@ app.use('*', (req, res) => {
 
 
 
-
+// OPEN/CLOSE SERVER
 let server;
 
 function runServer(databaseUrl, port=PORT) {
@@ -67,7 +70,7 @@ if (require.main === module) {
 	runServer(DATABASE_URL).catch(err => console.error(err));
 }
 
-module.exports = { runServer, app, closeServer }; 
+module.exports = { app, runServer, closeServer }; 
 
 
 
