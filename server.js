@@ -2,7 +2,6 @@
 
 const express = require('express');
 const morgan = require('morgan');
-const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
@@ -16,7 +15,6 @@ const app = express();
 const eventRouter = require('./eventRouter');
 
 app.use(morgan('common'));
-// app.use(cors());
 app.use(express.static('public'));
 // app.use(express.json());
 

@@ -1,5 +1,5 @@
 // const FLOWFINDER_URL = 'https://flow-finder-2.herokuapp.com';
-const FLOWFINDER_URL = 'http://localhost:8080';
+const FLOWFINDER_URL = 'localhost:8080';
 
 
 function getEvents(){
@@ -10,7 +10,7 @@ function getEvents(){
 	})
 	.done(function(response){
 		console.log(response);
-		displayEvents();
+		// displayEvents();
 	})
 
 }
@@ -34,11 +34,12 @@ function displayEvents(){
 
 //CLICK HANDLERS
 function watchShowEvents(){
-	$('.event-display').on('click', '.js-show-button', function(event) {
+	$('.js-show-button').click(function(event) {
 		event.preventDefault();
-		getEvents();
+		alert('hi')
 	})
 
 }
 
 $(watchShowEvents);
+$(getEvents);
