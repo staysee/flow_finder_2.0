@@ -1,6 +1,3 @@
-// const FLOWFINDER_URL = 'https://flow-finder-2.herokuapp.com';
-const FLOWFINDER_URL = 'localhost:8080';
-
 
 function getEvents(){
 	$.ajax({
@@ -10,7 +7,7 @@ function getEvents(){
 	})
 	.done(function(response){
 		console.log(response);
-		// displayEvents();
+		displayEvents();
 	})
 
 }
