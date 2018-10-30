@@ -44,8 +44,19 @@ function createEvent(event){
 
 
 
+// MODAL
+function openModal(){
+	$('#createLink').click(function(event) {
+		event.preventDefault()
+		$('#createModal').removeClass('hidden');
+	})
+}
 
-
+function closeModal(){
+	$('.closeModal').on('click',function(){
+		$('#createModal').addClass('hidden');
+	})
+}
 
 
 
@@ -58,5 +69,7 @@ function watchShowEvents(){
 
 }
 
+$(openModal);
+$(closeModal);
 $(watchShowEvents);
 // $(getEvents);
