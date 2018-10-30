@@ -4,9 +4,68 @@
 	margin: 0;
 }
 
+body {
+	font-family: 'Poppins', sans-serif;
+}
+
+.container {
+	background-image: url('./img/timothy-paul-smith-218074-unsplash.jpg');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	height: 100vh;
+	padding-top:50px;
+}
+
+main {
+	padding-top: 50px;
+}
+
+/*NAV BAR*/
+.navbar {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left:0;
+	font-size: 16px;
+    background: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+
+.main-nav {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 30px;
+}
+
+.main-nav li {
+	text-align: center;
+}
+
+.logo {
+	display: inline-block;
+	font-family: 'Bungee Inline', cursive;
+	font-size: 1.5em;
+	margin-top: 5px;
+    margin-left: 20px;
+}
+
+.nav-links {
+	margin-left: 20px;
+}
+
+.nav-links, .logo {
+	text-decoration: none;
+	color: rgba(255, 255, 255, 0.7);
+}
 h1{
 	/*font-family: 'Poppins', sans-serif;*/
 	/*font-family: 'Baloo Bhaijaan', cursive;*/
 	/*font-family: 'Chelsea Market', cursive;*/
 	font-family: 'Bungee Inline', cursive;
+	font-size: 24px;
 }
