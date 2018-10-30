@@ -7,36 +7,40 @@ function getEvents(){
 	})
 	.done(function(response){
 		console.log(response);
-		displayEvents();
+		displayEvents(response);
 	})
 
 }
 
-function renderEvents(){
+function renderEvents(event){
 	return `
 		<div class="event-item">
-			<div class="event-name"></div>
-			<div class="event-description"></div>
-			<div class="event-address"></div>
-			<div class="event-date"></div>
-			<div class="event-time"></div>
-			<div class="event-prop"></div>
+			<div class="event-name">${event.name}</div>
+			<div class="event-description">${event.description}</div>
+			<div class="event-address">${event.address.building} ${event.address.street} ${event.address.city}, ${event.address.state} ${event.address.zipcode}</div>
+			<div class="event-date"${event.date}></div>
+			<div class="event-time">${event.time.startTime} - ${event.time.endTime}</div>
+			<div class="event-prop">${event.prop}</div>
 		</div>
 	`
 }
 
-function displayEvents(){
+function displayEvents(data){
 	console.log("from displayEvents function")
+	let eachEvent = $.map(data.events, function (event, index){
+		return renderEvents(event)
+	})
+	$('.events-all').html(eachEvent)
 }
 
 //CLICK HANDLERS
 function watchShowEvents(){
 	$('.js-show-button').click(function(event) {
 		event.preventDefault();
-		alert('hi')
+		getEvents();
 	})
 
 }
 
 $(watchShowEvents);
-$(getEvents);
+// $(getEvents);
