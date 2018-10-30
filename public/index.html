@@ -23,7 +23,7 @@
 				<a href="#" class="nav-links">Browse Events</a>
 			</li>
 			<li>
-				<a href="#" class="nav-links">Create Event</a>
+				<a href="#" id="createLink" class="nav-links">Create Event</a>
 			</li>
 		</ul>
 	</nav>
@@ -32,65 +32,70 @@
 	</main>
 
 	<!-- POST new EVENT -->
-	<section role="region" class="event-form">
-		<h2>Create an Event</h2>
-		<form class="js-event-form">
-			<!-- Event Name -->
-			<label for="event-name">Event Name</label>
-			<input type="text" name="event-name" id="event-name" placeholder="Event Name">
-			<!-- Event Description -->
-			<label for="event-description">Description</label>
-			<input type="text" name="event-description" id="event-description" placedholder="Describe your event...">
-			<!-- Event Address -->
-			<fieldset>
-				<legend>Location</legend>
-				<!-- Venue -->
-				<label for="event-venue">Venue</label>
-				<input type="text" name="event-venue" id="event-venue">
-				<!-- Street -->
-				<label for="event-street">Street Address</label>
-				<input type="text" name="event-street" id="event-street">
-				<!-- City -->
-				<label for="event-city">City</label>
-				<input type="text" name="event-city" id="event-city">
-				<!-- State -->
-				<label for="event-state">State</label>
-				<input type="text" name="event-state" id="event-state">
-				<!-- Zipcode -->
-				<label for="event-zipcode">Zip/Postal</label>
-				<input type="text" name="event-zipcode" id="event-zipcode">
-			</fieldset>
+	<div id="createModal" class="modal">
+		<section role="region" class="event-form">
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<h2>Create an Event</h2>
+				<form id="create-event-form" class="js-event-form">
+					<!-- Event Name -->
+					<label for="event-name">Event Name</label>
+					<input type="text" name="event-name" id="event-name" placeholder="Event Name" required>
+					<!-- Event Description -->
+					<label for="event-description">Description</label>
+					<input type="text" name="event-description" id="event-description" placeholder="Describe your event..." required>
+					<!-- Event Address -->
+					<fieldset>
+						<legend>Location</legend>
+						<!-- Venue -->
+						<label for="event-venue">Venue</label>
+						<input type="text" name="event-venue" id="event-venue" placeholder="Venue name">
+						<!-- Street -->
+						<label for="event-street">Street Address</label>
+						<input type="text" name="event-street" id="event-street" placeholder="Street Address" required>
+						<!-- City -->
+						<label for="event-city">City</label>
+						<input type="text" name="event-city" id="event-city" placeholder="City" required>
+						<!-- State -->
+						<label for="event-state">State</label>
+						<input type="text" name="event-state" id="event-state" placeholder="State" required>
+						<!-- Zipcode -->
+						<label for="event-zipcode">Zip/Postal</label>
+						<input type="text" name="event-zipcode" id="event-zipcode" placeholder="Zip/Postal Code" required>
+					</fieldset>
 
-			<!-- Event Date -->
-			<label for="event-date">Date</label>
-			<input type="date" name="event=date">
-			<!-- Event Time -->
-			<fieldset>
-				<legend>Time</legend>
-				<label for="event-start-time">Start</label>
-				<input type="time" name="event-start-time">
-				<label for="event-end-time">End</label>
-				<input type="time" name="event-end-time">
-			</fieldset>
-			<!-- Prop -->
-			<label for="event-prop">Prop</label>
-			<select name="props">
-				<option value="hoop">Hoop</option>
-				<option value="poi">Poi</option>
-				<option value="staff">Staff</option>
-				<option value="ropedart">Rope Dart</option>
-				<option value="aerial">Aerial</option>
-				<option value="other">Other</option>
-			</select>
-		</form>
-	</section>
+					<!-- Event Date -->
+					<label for="event-date">Date</label>
+					<input type="date" name="event=date" required>
+					<!-- Event Time -->
+					<fieldset>
+						<legend>Time</legend>
+						<label for="event-start-time">Start</label>
+						<input type="time" name="event-start-time" required>
+						<label for="event-end-time">End</label>
+						<input type="time" name="event-end-time" required>
+					</fieldset>
+					<!-- Prop -->
+					<label for="event-prop">Prop</label>
+					<select name="props" required>
+						<option value="hoop">Hoop</option>
+						<option value="poi">Poi</option>
+						<option value="staff">Staff</option>
+						<option value="ropedart">Rope Dart</option>
+						<option value="aerial">Aerial</option>
+						<option value="other">Other</option>
+					</select>
+				</form>
+			</div> <!--end modal-content -->
+		</section>
+	</div> <!--end createModal -->
 
 	<!-- DISPLAY EVENTS -->
-	<section role="region" class="event-display">
+<!-- 	<section role="region" class="event-display">
 		<h2>Flow Events</h2>
 		<button class="js-show-button" role="button">Show Event</button>
 		<div class="events-all"></div>
-	</section>
+	</section> -->
 
 </div> <!--end container -->
 

@@ -1,8 +1,9 @@
+const FLOWFINDER_URL = 'https://flow-finder-2.herokuapp.com'
 
 function getEvents(){
 	$.ajax({
 		type: 'GET',
-		url: '/events',
+		url: FLOWFINDER_URL+'/events',
 		dataType: 'json',
 	})
 	.done(function(response){
@@ -32,6 +33,21 @@ function displayEvents(data){
 	})
 	$('.events-all').html(eachEvent)
 }
+
+function createEvent(event){
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 //CLICK HANDLERS
 function watchShowEvents(){
