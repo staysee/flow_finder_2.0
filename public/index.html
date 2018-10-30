@@ -37,7 +37,7 @@
 			<div class="modal-content">
 				<span class="closeModal">&times;</span>
 				<h2>Create an Event</h2>
-				<form id="create-event-form" class="js-event-form">
+				<form action="#" id="create-event-form" class="js-event-form">
 					<!-- Event Name -->
 					<label for="event-name">Event Name</label>
 					<input type="text" name="event-name" id="event-name" placeholder="Event Name" required>
@@ -66,18 +66,18 @@
 
 					<!-- Event Date -->
 					<label for="event-date">Date</label>
-					<input type="date" name="event=date" required>
+					<input id="event-date" type="date" name="event-date" required>
 					<!-- Event Time -->
 					<fieldset>
 						<legend>Time</legend>
-						<label for="event-start-time">Start</label>
-						<input type="time" name="event-start-time" required>
-						<label for="event-end-time">End</label>
-						<input type="time" name="event-end-time" required>
+						<label for="event-starttime">Start</label>
+						<input id="event-starttime" type="time" name="event-starttime" required>
+						<label for="event-endtime">End</label>
+						<input id="event-endtime" type="time" name="event-endtime" required>
 					</fieldset>
 					<!-- Prop -->
 					<label for="event-prop">Prop</label>
-					<select name="props" required>
+					<select id="event-prop" name="props" required>
 						<option value="hoop">Hoop</option>
 						<option value="poi">Poi</option>
 						<option value="staff">Staff</option>
@@ -85,17 +85,19 @@
 						<option value="aerial">Aerial</option>
 						<option value="other">Other</option>
 					</select>
+
+					<button role="button" type="submit">Create My Event!</button>
 				</form>
 			</div> <!--end modal-content -->
 		</section>
 	</div> <!--end createModal -->
 
 	<!-- DISPLAY EVENTS -->
-<!-- 	<section role="region" class="event-display">
+	<section role="region" class="event-display">
 		<h2>Flow Events</h2>
 		<button class="js-show-button" role="button">Show Event</button>
 		<div class="events-all"></div>
-	</section> -->
+	</section>
 
 </div> <!--end container -->
 

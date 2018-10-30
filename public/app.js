@@ -34,9 +34,38 @@ function displayEvents(data){
 	$('.events-all').html(eachEvent)
 }
 
-function createEvent(event){
-
+function handleSubmitEvent(event){
+	$('.js-event-form').submit(function(event) {
+		event.preventDefault();
+		
+		const userInput = {
+			name: $('#event-name').val(),
+			description:$('#event-description').val(),
+			address: {
+				building: $('#event-venue').val(),
+				street: $('#event-street').val(),
+				city: $('#event-name').val(),
+				state: $('#event-state').val(),
+				zipcode: $('#event-zipcode').val()
+			},
+			date: getDate($('#event-date').val()),
+			time: {
+				startTime: $('#event-starttime').val(),
+				endTime: $('#event-endtime').val()
+			},
+			prop: $('#event-prop').val()
+		}
+		console.log(userInput);
+	})
 }
+
+
+function getDate(eventDate) {
+	let date = new Date(eventDate)
+	let fullDate = [date.getMonth()+1, date.getDate(), date.getFullYear()].join('/');
+	return fullDate;
+}
+
 
 
 
@@ -69,6 +98,7 @@ function watchShowEvents(){
 
 }
 
+$(handleSubmitEvent);
 $(openModal);
 $(closeModal);
 $(watchShowEvents);
