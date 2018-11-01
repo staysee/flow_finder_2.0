@@ -6,6 +6,7 @@
 
 body {
 	font-family: 'Poppins', sans-serif;
+    background-color: black;
 }
 
 .container {
@@ -112,3 +113,45 @@ h1{
     text-decoration: none;
     cursor: pointer;
 }
+
+
+
+
+/*SHOW EVENTS*/
+.event-item {
+    background-color: #61738ad4;
+    border: 2px solid #a1a2a5eb;
+    border-radius: 3px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 15px;
+    overflow: hidden;
+}
+
+.event-image {
+    width: 200px;
+    border: 2px solid red;
+    display: inline-block;
+}
+.event-thumbnail {
+    width: 100%;
+    border: 2px solid green;
+
+}
+
+.event-information {
+    float: right;
+    width:80%;
+    border: 2px solid red;
+    display: inline-block;
+}
+
+.event-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+
+
+

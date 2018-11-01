@@ -1,9 +1,7 @@
-const FLOWFINDER_URL = 'https://flow-finder-2.herokuapp.com'
-
 function getEvents(){
 	$.ajax({
 		type: 'GET',
-		url: FLOWFINDER_URL+'/events',
+		url: '/events',
 		dataType: 'json',
 	})
 	.done(function(response){
@@ -16,12 +14,17 @@ function getEvents(){
 function renderEvents(event){
 	return `
 		<div class="event-item">
-			<div class="event-name">${event.name}</div>
-			<div class="event-description">${event.description}</div>
-			<div class="event-address">${event.address.building} ${event.address.street} ${event.address.city}, ${event.address.state} ${event.address.zipcode}</div>
-			<div class="event-date"${event.date}></div>
-			<div class="event-time">${event.time.startTime} - ${event.time.endTime}</div>
-			<div class="event-prop">${event.prop}</div>
+			<div class="event-image">
+				<img class="event-thumbnail" src="./img/gianni-zanato-461187-unsplash.jpg" alt="rose">
+			</div>
+			<div class="event-information">
+				<div class="event-name">${event.name}</div>
+				<div class="event-description">${event.description}</div>
+				<div class="event-address">${event.address.building} ${event.address.street} ${event.address.city}, ${event.address.state} ${event.address.zipcode}</div>
+				<div class="event-date"${event.date}></div>
+				<div class="event-time">${event.time.startTime} - ${event.time.endTime}</div>
+				<div class="event-prop">${event.prop}</div>
+			</div>
 		</div>
 	`
 }
