@@ -130,19 +130,19 @@ h1{
 
 .event-image {
     width: 200px;
-    border: 2px solid red;
+    /*border: 2px solid red;*/
     display: inline-block;
 }
 .event-thumbnail {
     width: 100%;
-    border: 2px solid green;
+    /*border: 2px solid green;*/
 
 }
 
 .event-information {
     float: right;
-    width:80%;
-    border: 2px solid red;
+    width:50%;
+    /*border: 2px solid red;*/
     display: inline-block;
 }
 
@@ -150,7 +150,6 @@ h1{
     font-size: 18px;
     font-weight: bold;
 }
-
 
 
 

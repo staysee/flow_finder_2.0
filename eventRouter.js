@@ -28,7 +28,7 @@ router.get('/:id', (req, res) => {
 		.then(event => res.json(event.serialize()))
 		.catch(err => {
 			console.error(err);
-			res.status(500).json({error: `Internal Servor Error`})
+			res.status(500).json({error: `Internal Server Error`})
 		})
 })
 
@@ -36,6 +36,7 @@ router.get('/:id', (req, res) => {
 //EVENTS - POST
 router.post('/', jsonParser, (req, res) => {
 	const requiredFields = ['name', 'description', 'address', 'date', 'time', 'prop'];
+	console.log(req.body);
 	for (let i=0; i<requiredFields.length; i++){
 		const field = requiredFields[i];
 		if(!(field in req.body)){
@@ -49,15 +50,23 @@ router.post('/', jsonParser, (req, res) => {
 		.create({
 			name: req.body.name,
 			description: req.body.description,
-			address: req.body.address,
+			address: {
+				building: req.body.address.building,
+				street: req.body.address.street,
+				city: req.body.address.city,
+				zipcode: req.body.address.zipcode
+			},
 			date: req.body.date,
-			time: req.body.time,
+			time: {
+				startTime: req.body.time.startTime,
+				endTime: req.body.time.endTime
+			},
 			prop: req.body.prop
 		})
 		.then(event => res.status(201).json(event.serialize()))	//201=Created
 		.catch(err => {
 			console.error(err);
-			res.status(500).json({error: `Internal Servor Error`})
+			res.status(500).json({error: `Internal Server Error`})
 		})
 })
 
@@ -67,7 +76,7 @@ router.delete('/:id', jsonParser, (req, res) => {
 	Event
 		.findByIdAndRemove(req.params.id)
 		.then(event=> res.status(204).end())	//204=No Content; server fulfilled request but no content sent back
-		.catch(err => res.status(500).json({error: `Internal Servor Error`}));
+		.catch(err => res.status(500).json({error: `Internal Server Error`}));
 })
 
 //EVENTS - PUT
@@ -93,7 +102,7 @@ router.put('/:id', jsonParser, (req, res) => {
 	Event
 		.findByIdAndUpdate(req.params.id, {$set: toUpdate})	//2 args: id, object describing how doc should be updated
 		.then(event => res.status(204).end())	//204=Request fulfilled but no content sent back
-		.catch(err => res.status(500).json({message: `Internal Servor Error`}))
+		.catch(err => res.status(500).json({message: `Internal Server Error`}))
 })
 
 

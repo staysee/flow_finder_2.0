@@ -12,21 +12,28 @@ function getEvents(){
 }
 
 function renderEvents(event){
+	console.log(`${event.date}`)
 	return `
 		<div class="event-item">
 			<div class="event-image">
 				<img class="event-thumbnail" src="./img/gianni-zanato-461187-unsplash.jpg" alt="rose">
 			</div>
 			<div class="event-information">
-				<div class="event-name">${event.name}</div>
-				<div class="event-description">${event.description}</div>
-				<div class="event-address">${event.address.building} ${event.address.street} ${event.address.city}, ${event.address.state} ${event.address.zipcode}</div>
-				<div class="event-date"${event.date}></div>
+				<div class="info-left">
+					<div class="event-name">${event.name}</div>
+					<div class="event-description">${event.description}</div>
+					<div class="event-address">${event.address.building} ${event.address.street} ${event.address.city}, ${event.address.state} ${event.address.zipcode}</div>
+				</div>
+				<div class="event-date">${event.date}</div>
 				<div class="event-time">${event.time.startTime} - ${event.time.endTime}</div>
 				<div class="event-prop">${event.prop}</div>
 			</div>
+
+
 		</div>
 	`
+			// <button class="update-button js-update-button">Update</button>
+			// <button class="delete-button js-delete-button">Delete</button>
 }
 
 function displayEvents(data){
@@ -59,6 +66,16 @@ function handleSubmitEvent(event){
 			prop: $('#event-prop').val()
 		}
 		console.log(userInput);
+
+		$.ajax({
+			url: '/events',
+			method: 'POST',
+			data: JSON.stringify(userInput),
+			contentType: 'application/json',
+			success: function(data){
+				$('.events-all').html(data);
+			}
+		})
 	})
 }
 
