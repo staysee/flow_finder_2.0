@@ -1,20 +1,28 @@
+let eventData ;
+
 function getEvents(){
 	$.ajax({
-		type: 'GET',
+		method: 'GET',
 		url: '/events',
 		dataType: 'json',
 	})
 	.done(function(response){
-		console.log(response);
-		displayEvents(response);
+
+		eventData = response.events;
+		console.log(eventData);
+
+		displayEvents(eventData);
+	})
+	.fail(err => {
+		console.error(err)
 	})
 
 }
 
-function renderEvents(event){
-	console.log(`${event.date}`)
+function renderEvents(event, index){
 	return `
 		<div class="event-item">
+			<span class="js-delete-button delete-button data-eventId="${event.id}">&times;</span>
 			<div class="event-image">
 				<img class="event-thumbnail" src="./img/gianni-zanato-461187-unsplash.jpg" alt="rose">
 			</div>
@@ -28,17 +36,14 @@ function renderEvents(event){
 				<div class="event-time">${event.time.startTime} - ${event.time.endTime}</div>
 				<div class="event-prop">${event.prop}</div>
 			</div>
-
-
+			<button class="update-button js-update-button">Update</button>
 		</div>
 	`
-			// <button class="update-button js-update-button">Update</button>
-			// <button class="delete-button js-delete-button">Delete</button>
 }
 
 function displayEvents(data){
 	console.log("from displayEvents function")
-	let eachEvent = $.map(data.events, function (event, index){
+	let eachEvent = $.map(eventData, function (event, index){
 		return renderEvents(event)
 	})
 	$('.events-all').html(eachEvent)
@@ -87,7 +92,28 @@ function getDate(eventDate) {
 }
 
 
+function deleteEvent(event){
+	let id = $(this).attr('eventId');
 
+	$.ajax({
+		method: 'DELETE',
+		url: `/events/${id}`,
+		contentType: 'application/json'
+	})
+	.done(() => {
+		getEvents();
+	})
+	.fail(err => {
+		console.error(err)
+	})
+
+}
+
+function updateEvent(event){
+	$.ajax({
+		method: 'PUT'
+	})
+}
 
 
 
@@ -115,11 +141,28 @@ function watchShowEvents(){
 		event.preventDefault();
 		getEvents();
 	})
+}
 
+function watchDeleteEvents(){
+	$('.events-all').on('click', '.js-delete-button', deleteEvent)
+}
+
+function watchUpdateEvent(){
+	$('.events-all').on('click', '.js-update-button', function(event){
+		event.preventDefault();
+		alert('update')
+	})
 }
 
 $(handleSubmitEvent);
 $(openModal);
 $(closeModal);
 $(watchShowEvents);
+$(watchDeleteEvents);
 // $(getEvents);
+$(watchUpdateEvent);
+
+
+
+
+

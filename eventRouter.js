@@ -54,6 +54,7 @@ router.post('/', jsonParser, (req, res) => {
 				building: req.body.address.building,
 				street: req.body.address.street,
 				city: req.body.address.city,
+				state: req.body.address.state,
 				zipcode: req.body.address.zipcode
 			},
 			date: req.body.date,
