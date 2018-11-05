@@ -22,7 +22,7 @@ function getEvents(){
 function renderEvents(event, index){
 	return `
 		<div class="event-item">
-			<span class="js-delete-button delete-button data-eventId="${event.id}">&times;</span>
+			<span class="js-delete-button delete-button" data-eventId="${event.id}">&times;</span>
 			<div class="event-image">
 				<img class="event-thumbnail" src="./img/gianni-zanato-461187-unsplash.jpg" alt="rose">
 			</div>
@@ -92,12 +92,10 @@ function getDate(eventDate) {
 }
 
 
-function deleteEvent(event){
-	let id = $(this).attr('eventId');
-
+function deleteEvent(eventId){
 	$.ajax({
 		method: 'DELETE',
-		url: `/events/${id}`,
+		url: `/events/${eventId}`,
 		contentType: 'application/json'
 	})
 	.done(() => {
@@ -111,7 +109,17 @@ function deleteEvent(event){
 
 function updateEvent(event){
 	$.ajax({
-		method: 'PUT'
+		method: 'PUT',
+		url: `/events/${id}`,
+		data: JSON.stringify(event),
+		dataType: 'json',
+		contentType: 'application/json',
+	})
+	.done(() => {
+		getEvents();
+	})
+	.fail(err => {
+		console.error(err);
 	})
 }
 
@@ -144,7 +152,10 @@ function watchShowEvents(){
 }
 
 function watchDeleteEvents(){
-	$('.events-all').on('click', '.js-delete-button', deleteEvent)
+	$('.events-all').on('click', '.js-delete-button', function(events){
+		let deleteEventId = $(this).data('eventid');
+		deleteEvent(deleteEventId);
+	})
 }
 
 function watchUpdateEvent(){
