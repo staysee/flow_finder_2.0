@@ -38,7 +38,7 @@
 		<section role="region" class="event-form">
 			<div class="modal-content">
 				<span class="closeModal">&times;</span>
-				<h2>Create an Event</h2>
+				<h2 class="form-heading"></h2>
 				<form action="#" id="create-event-form" class="js-event-form">
 					<!-- Event Name -->
 					<label for="event-name">Event Name</label>
@@ -46,8 +46,18 @@
 					<!-- Event Description -->
 					<label for="event-description">Description</label>
 					<input type="text" name="event-description" id="event-description" placeholder="Describe your event..." required>
+					<!-- Prop -->
+					<label for="event-prop">Prop</label>
+					<select id="event-prop" name="props" required>
+						<option value="Hoop">Hoop</option>
+						<option value="Poi">Poi</option>
+						<option value="Staff">Staff</option>
+						<option value="Ropedart">Rope Dart</option>
+						<option value="Aerial">Aerial</option>
+						<option value="Other">Other</option>
+					</select>
 					<!-- Event Address -->
-					<fieldset>
+					<fieldset class="form-location">
 						<legend>Location</legend>
 						<!-- Venue -->
 						<label for="event-venue">Venue</label>
@@ -66,27 +76,23 @@
 						<input type="text" name="event-zipcode" id="event-zipcode" placeholder="Zip/Postal Code" required>
 					</fieldset>
 
-					<!-- Event Date -->
-					<label for="event-date">Date</label>
-					<input id="event-date" type="date" name="event-date" required>
-					<!-- Event Time -->
-					<fieldset>
-						<legend>Time</legend>
-						<label for="event-starttime">Start</label>
-						<input id="event-starttime" type="time" name="event-starttime" required>
-						<label for="event-endtime">End</label>
-						<input id="event-endtime" type="time" name="event-endtime" required>
+					<fieldset class="form-datetime">
+					<legend>Date & Time</legend>
+						<i class="far fa-calendar-alt"></i>
+						<!-- Event Date -->
+						<div class="date">
+							<label for="event-date">Date</label>
+							<input id="event-date" type="date" name="event-date" required>
+						</div>
+						<!-- Event Time -->
+							<i class="far fa-clock"></i>
+						<div class="time">
+							<label for="event-starttime">Start</label>
+							<input id="event-starttime" type="time" name="event-starttime" required>
+							<label for="event-endtime">End</label>
+							<input id="event-endtime" type="time" name="event-endtime" required>
+						</div>
 					</fieldset>
-					<!-- Prop -->
-					<label for="event-prop">Prop</label>
-					<select id="event-prop" name="props" required>
-						<option value="Hoop">Hoop</option>
-						<option value="Poi">Poi</option>
-						<option value="Staff">Staff</option>
-						<option value="Ropedart">Rope Dart</option>
-						<option value="Aerial">Aerial</option>
-						<option value="Other">Other</option>
-					</select>
 
 					<button role="button" id="new-event-button" type="submit">Save Event</button>
 				</form>
@@ -96,8 +102,7 @@
 
 	<!-- DISPLAY EVENTS -->
 	<section role="region" class="event-display">
-		<h2>Flow Events</h2>
-		<button class="js-show-button" role="button">Show Event</button>
+		<button class="js-show-button show-events-button" role="button">Flow Events</button>
 		<div class="events-all"></div>
 	</section>
 

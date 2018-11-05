@@ -176,13 +176,16 @@ function updateEvent(eventId){
 function openModal(){
 	$('#createLink').click(function(event) {
 		event.preventDefault()
+		$('.form-heading').html('Create an Event')
 		$('#createModal').removeClass('hidden');
+
 	})
 }
 
 function closeModal(){
 	$('.closeModal').on('click',function(){
 		$('#createModal').addClass('hidden');
+		$('.form-heading').html('');
 	})
 }
 
@@ -207,6 +210,7 @@ function watchUpdateEvent(){
 	$('.events-all').on('click', '.js-fa-edit', function(event){
 		let updateEventId = $(this).data('eventid');
 		console.log(updateEventId);
+		$('.form-heading').html('Update Event');
 		$('#createModal').removeClass('hidden');
 
 		// updateEvent(updateEventId);

@@ -84,7 +84,7 @@ h1{
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
 }
 
 .hidden {
@@ -162,6 +162,82 @@ h1{
     font-weight: bold;
 }
 
+
+/*FORM*/
+input, textarea, select, button {
+  width : 100%;
+  height: 25px;
+  margin: 0;
+  padding: 5px;
+
+}
+
+button {
+    font-family: 'Poppins', sans-serif;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+.form-heading {
+    text-align: center;
+}
+
+legend {
+    text-align: center;
+    padding: 5px;
+}
+
+fieldset {
+    width: 48%;
+    padding: 5px;
+}
+
+#event-state {
+    width: 20%;
+    margin-right: 5px; 
+}
+
+#event-zipcode {
+    width: 40%;
+}
+
+.form-location {
+    float: left;
+}
+
+.form-datetime {
+    float: right;
+}
+
+.fa-calendar-alt, .fa-clock {
+    float: right;
+    font-size: 18px;
+    color: gray;
+}
+
+.date, .time {
+    clear: right;
+}
+
+#event-endtime {
+    /*margin-bottom: 20px;*/
+}
+
+#new-event-button {
+    margin-top: 15px; 
+    background-color: #76bf96;
+    border-color: #76bf96
+}
+
+#new-event-button:hover {
+    background-color: #1BA64B;
+}
 
 
 
