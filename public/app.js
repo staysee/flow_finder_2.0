@@ -170,8 +170,6 @@ function updateEvent(eventId){
 	})
 }
 
-
-
 // MODAL
 function openModal(){
 	$('#createLink').click(function(event) {
@@ -208,9 +206,17 @@ function watchDeleteEvents(){
 
 function watchUpdateEvent(){
 	$('.events-all').on('click', '.js-fa-edit', function(event){
-		let updateEventId = $(this).data('eventid');
+		let updateEventId = $(this).closest('event-item').data('eventid');
 		console.log(updateEventId);
 		$('.form-heading').html('Update Event');
+
+		//prefill form
+		let name = $(this).closest('.event-item').find('.event-name')[0].innerText;
+		let description = $(this).closest('.event-item').find('.event-description')[0].innerText;
+
+		$('#event-name').val(name);
+		$('#event-description').val(description);
+
 		$('#createModal').removeClass('hidden');
 
 		// updateEvent(updateEventId);
