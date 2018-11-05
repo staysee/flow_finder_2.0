@@ -107,6 +107,15 @@ h1{
     font-weight: bold;
 }
 
+.fa-edit {
+    color: #aaa;
+    float: right;
+    font-size: 20px;
+    margin: 9px;
+}
+
+.fa-edit:hover,
+.fa-edit:focus,
 .closeModal:hover,
 .closeModal:focus,
 .delete-button:hover,

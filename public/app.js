@@ -1,5 +1,27 @@
 let eventData ;
 
+function renderEvents(event, index){
+	return `
+		<div class="event-item">
+			<i class="far fa-edit js-fa-edit"></i>
+			<span class="js-delete-button delete-button" data-eventId="${event.id}">&times;</span>
+			<div class="event-image">
+				<img class="event-thumbnail" src="./img/gianni-zanato-461187-unsplash.jpg" alt="rose">
+			</div>
+			<div class="event-information">
+				<div class="info-left">
+					<div class="event-name">${event.name}</div>
+					<div class="event-description">${event.description}</div>
+					<div class="event-address">${event.address.building} ${event.address.street} ${event.address.city}, ${event.address.state} ${event.address.zipcode}</div>
+				</div>
+				<div class="event-date">${event.date}</div>
+				<div class="event-time">${event.time.startTime} - ${event.time.endTime}</div>
+				<div class="event-prop">${event.prop}</div>
+			</div>
+		</div>
+	`
+}
+
 function getEvents(){
 	$.ajax({
 		method: 'GET',
@@ -16,29 +38,6 @@ function getEvents(){
 	.fail(err => {
 		console.error(err)
 	})
-
-}
-
-function renderEvents(event, index){
-	return `
-		<div class="event-item">
-			<span class="js-delete-button delete-button" data-eventId="${event.id}">&times;</span>
-			<div class="event-image">
-				<img class="event-thumbnail" src="./img/gianni-zanato-461187-unsplash.jpg" alt="rose">
-			</div>
-			<div class="event-information">
-				<div class="info-left">
-					<div class="event-name">${event.name}</div>
-					<div class="event-description">${event.description}</div>
-					<div class="event-address">${event.address.building} ${event.address.street} ${event.address.city}, ${event.address.state} ${event.address.zipcode}</div>
-				</div>
-				<div class="event-date">${event.date}</div>
-				<div class="event-time">${event.time.startTime} - ${event.time.endTime}</div>
-				<div class="event-prop">${event.prop}</div>
-			</div>
-			<button class="update-button js-update-button">Update</button>
-		</div>
-	`
 }
 
 function displayEvents(data){
@@ -49,11 +48,13 @@ function displayEvents(data){
 	$('.events-all').html(eachEvent)
 }
 
-function handleSubmitEvent(event){
+
+//current working for POST
+function handleSubmitEvent(){
 	$('.js-event-form').submit(function(event) {
 		event.preventDefault();
 		
-		const userInput = {
+		const newEventData = {
 			name: $('#event-name').val(),
 			description:$('#event-description').val(),
 			address: {
@@ -70,15 +71,16 @@ function handleSubmitEvent(event){
 			},
 			prop: $('#event-prop').val()
 		}
-		console.log(userInput);
+		console.log(newEventData);
 
 		$.ajax({
 			url: '/events',
 			method: 'POST',
-			data: JSON.stringify(userInput),
+			data: JSON.stringify(newEventData),
 			contentType: 'application/json',
 			success: function(data){
 				$('.events-all').html(data);
+				$('#createModal').addClass('hidden');
 			}
 		})
 	})
@@ -107,10 +109,55 @@ function deleteEvent(eventId){
 
 }
 
-function updateEvent(event){
+//WORKING ON THIS TO COMBINE POST AND PUT
+function saveEvent(event){
+	$('.js-event-form').submit(function(event) {
+		event.preventDefault();
+		
+		const newEventData = {
+			name: $('#event-name').val(),
+			description:$('#event-description').val(),
+			address: {
+				building: $('#event-venue').val(),
+				street: $('#event-street').val(),
+				city: $('#event-name').val(),
+				state: $('#event-state').val(),
+				zipcode: $('#event-zipcode').val()
+			},
+			date: getDate($('#event-date').val()),
+			time: {
+				startTime: $('#event-starttime').val(),
+				endTime: $('#event-endtime').val()
+			},
+			prop: $('#event-prop').val()
+		}
+		console.log(newEventData);
+	})
+
+	postEvent();
+}
+
+//WORKING ON THIS TO COMBINE POST AND PUT
+function postEvent(event){
+	$.ajax({
+			url: '/events',
+			method: 'POST',
+			data: JSON.stringify(newEventData),
+			contentType: 'application/json',
+	})
+	.done((data) => {
+		getEvents();
+	})
+	.fail(err => {
+		console.error(err)
+	})
+}
+
+//WORKING ON THIS TO COMBINE POST AND PUT
+function updateEvent(eventId){
 	$.ajax({
 		method: 'PUT',
-		url: `/events/${id}`,
+		url: `/events/${eventId}`,
 		data: JSON.stringify(event),
 		dataType: 'json',
 		contentType: 'application/json',
@@ -122,8 +169,6 @@ function updateEvent(event){
 		console.error(err);
 	})
 }
-
-
 
 
 
@@ -159,9 +204,13 @@ function watchDeleteEvents(){
 }
 
 function watchUpdateEvent(){
-	$('.events-all').on('click', '.js-update-button', function(event){
-		event.preventDefault();
-		alert('update')
+	$('.events-all').on('click', '.js-fa-edit', function(event){
+		let updateEventId = $(this).data('eventid');
+		console.log(updateEventId);
+		$('#createModal').removeClass('hidden');
+
+		// updateEvent(updateEventId);
+
 	})
 }
 
