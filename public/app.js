@@ -83,6 +83,8 @@ function handleSubmitEvent(){
 				$('#createModal').addClass('hidden');
 			}
 		})
+
+		clearEventForm();
 	})
 }
 
@@ -184,7 +186,22 @@ function closeModal(){
 	$('.closeModal').on('click',function(){
 		$('#createModal').addClass('hidden');
 		$('.form-heading').html('');
+		clearEventForm();
 	})
+}
+
+function clearEventForm(){
+	$('#event-name').val(""),
+	$('#event-description').val("")
+	$('#event-venue').val("")
+	$('#event-street').val("")
+	$('#event-name').val("")
+	$('#event-state').val("")
+	$('#event-zipcode').val("")
+	$('#event-date').val("")
+	$('#event-starttime').val("")
+	$('#event-endtime').val("")
+	$('#event-prop').val("")
 }
 
 
