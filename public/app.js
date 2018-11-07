@@ -87,9 +87,9 @@ function deleteEvent(eventId){
 //--------------------------//
 function renderEvents(event, index){
 	return `
-		<div class="event-item">
-			<i class="far fa-edit js-fa-edit" data-eventid-2="${event.id}"></i>
-			<span class="js-delete-button delete-button" data-eventid="${event.id}">&times;</span>
+		<div class="event-item" data-eventid="${event.id}">
+			<i class="far fa-edit js-fa-edit"></i>
+			<span class="js-delete-button delete-button">&times;</span>
 			<div class="event-image">
 				<img class="event-thumbnail" src="./img/gianni-zanato-461187-unsplash.jpg" alt="rose">
 			</div>
@@ -243,17 +243,17 @@ function handleBrowseEvents(){
 	})
 }
 
-function watchDeleteEvents(){
+function handleDeleteEvents(){
 	$('.events-all').on('click', '.js-delete-button', function(events){
-		let deleteEventId = $(this).data('eventid');
-		// console.log(deleteEventId)
-		deleteEvent(deleteEventId);
+		let deleteEventId = $(this).closest('.event-item').data('eventid');
+		console.log(deleteEventId)
+		// deleteEvent(deleteEventId);
 	})
 }
 
-function watchUpdateEvent(){
+function handleUpdateEvent(){
 	$('.events-all').on('click', '.js-fa-edit', function(event){
-		let updateEventId = $(this).data('eventid-2');
+		let updateEventId = $(this).closest('.event-item').data('eventid');
 		console.log(updateEventId);
 		$('.form-heading').html('Update Event');
 
@@ -276,9 +276,9 @@ $(handleSubmitEvent);
 $(openModal);
 $(closeModal);
 $(handleBrowseEvents);
-$(watchDeleteEvents);
+$(handleDeleteEvents);
 // $(getEvents);
-$(watchUpdateEvent);
+$(handleUpdateEvent);
 
 
 
