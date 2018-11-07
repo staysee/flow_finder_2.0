@@ -60,7 +60,8 @@ function getEventToUpdate(eventId){
 	})
 	.done(function(res){
 		console.log(res);
-
+		let id = res.id
+		console.log(id);
 		$('#event-name').val(res.name);
 		$('#event-description').val(res.description);
 		$('#event-venue').val(res.address.building);
@@ -264,7 +265,7 @@ function handleDeleteEvents(){
 	$('.events-all').on('click', '.js-delete-button', function(events){
 		let deleteEventId = $(this).closest('.event-item').data('eventid');
 		console.log(deleteEventId)
-		// deleteEvent(deleteEventId);
+		deleteEvent(deleteEventId);
 	})
 }
 

@@ -229,13 +229,13 @@ fieldset {
     /*margin-bottom: 20px;*/
 }
 
-#new-event-button {
+#save-event-button {
     margin-top: 15px; 
     background-color: #76bf96;
     border-color: #76bf96
 }
 
-#new-event-button:hover {
+#save-event-button:hover {
     background-color: #1BA64B;
 }
 
