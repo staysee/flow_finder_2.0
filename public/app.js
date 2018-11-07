@@ -1,5 +1,90 @@
 let eventData ;
 
+//--------------------------//
+//		AJAX CALLS			//
+//--------------------------//
+function getEvents(){
+	$.ajax({
+		method: 'GET',
+		url: '/events',
+		dataType: 'json',
+	})
+	.done(function(response){
+		eventData = response.events;
+		console.log(eventData);
+
+		displayEvents(eventData);
+	})
+	.fail(err => {
+		console.error(err)
+	})
+}
+
+function getOneEvent(eventId){
+	$.ajax({
+		method: 'GET',
+		url: `/events/${eventId}`,
+		dataType: 'json'
+	})
+	.done(function(response){
+		console.log(response);
+	})
+	.fail(err => {
+		console.error(err);
+	})
+}
+
+//WORKING ON THIS TO COMBINE POST AND PUT
+function postEvent(event){
+	$.ajax({
+			url: '/events',
+			method: 'POST',
+			data: JSON.stringify(newEventData),
+			contentType: 'application/json',
+	})
+	.done((data) => {
+		getEvents();
+	})
+	.fail(err => {
+		console.error(err)
+	})
+}
+
+//WORKING ON THIS TO COMBINE POST AND PUT
+function updateEvent(eventId){
+	$.ajax({
+		method: 'PUT',
+		url: `/events/${eventId}`,
+		data: JSON.stringify(event),
+		dataType: 'json',
+		contentType: 'application/json',
+	})
+	.done(() => {
+		getEvents();
+	})
+	.fail(err => {
+		console.error(err);
+	})
+}
+
+function deleteEvent(eventId){
+	$.ajax({
+		method: 'DELETE',
+		url: `/events/${eventId}`,
+		contentType: 'application/json'
+	})
+	.done(() => {
+		getEvents();
+	})
+	.fail(err => {
+		console.error(err)
+	})
+
+}
+
+//--------------------------//
+//		APP FUNCTIONS		//
+//--------------------------//
 function renderEvents(event, index){
 	return `
 		<div class="event-item">
@@ -22,24 +107,6 @@ function renderEvents(event, index){
 	`
 }
 
-function getEvents(){
-	$.ajax({
-		method: 'GET',
-		url: '/events',
-		dataType: 'json',
-	})
-	.done(function(response){
-
-		eventData = response.events;
-		console.log(eventData);
-
-		displayEvents(eventData);
-	})
-	.fail(err => {
-		console.error(err)
-	})
-}
-
 function displayEvents(data){
 	console.log("from displayEvents function")
 	let eachEvent = $.map(eventData, function (event, index){
@@ -47,6 +114,8 @@ function displayEvents(data){
 	})
 	$('.events-all').html(eachEvent)
 }
+
+
 
 
 //current working for POST
@@ -96,20 +165,7 @@ function getDate(eventDate) {
 }
 
 
-function deleteEvent(eventId){
-	$.ajax({
-		method: 'DELETE',
-		url: `/events/${eventId}`,
-		contentType: 'application/json'
-	})
-	.done(() => {
-		getEvents();
-	})
-	.fail(err => {
-		console.error(err)
-	})
 
-}
 
 //WORKING ON THIS TO COMBINE POST AND PUT
 function saveEvent(event){
@@ -139,40 +195,11 @@ function saveEvent(event){
 	postEvent();
 }
 
-//WORKING ON THIS TO COMBINE POST AND PUT
-function postEvent(event){
-	$.ajax({
-			url: '/events',
-			method: 'POST',
-			data: JSON.stringify(newEventData),
-			contentType: 'application/json',
-	})
-	.done((data) => {
-		getEvents();
-	})
-	.fail(err => {
-		console.error(err)
-	})
-}
 
-//WORKING ON THIS TO COMBINE POST AND PUT
-function updateEvent(eventId){
-	$.ajax({
-		method: 'PUT',
-		url: `/events/${eventId}`,
-		data: JSON.stringify(event),
-		dataType: 'json',
-		contentType: 'application/json',
-	})
-	.done(() => {
-		getEvents();
-	})
-	.fail(err => {
-		console.error(err);
-	})
-}
 
-// MODAL
+//--------------------------//
+//		EVENT FORM MODAL	//
+//--------------------------//
 function openModal(){
 	$('#createLink').click(function(event) {
 		event.preventDefault()
@@ -206,7 +233,9 @@ function clearEventForm(){
 
 
 
-//CLICK HANDLERS
+//--------------------------//
+//		EVENT HANDLERS		//
+//--------------------------//
 function handleBrowseEvents(){
 	$('.js-show-button').click(function(event) {
 		event.preventDefault();
