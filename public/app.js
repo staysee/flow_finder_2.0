@@ -9,8 +9,8 @@ function getEvents(){
 		url: '/events',
 		dataType: 'json',
 	})
-	.done(function(response){
-		eventData = response.events;
+	.done(function(res){
+		eventData = res.events;
 		console.log(eventData);
 
 		displayEvents(eventData);
@@ -26,8 +26,8 @@ function getOneEvent(eventId){
 		url: `/events/${eventId}`,
 		dataType: 'json'
 	})
-	.done(function(response){
-		console.log(response);
+	.done(function(res){
+		console.log(res);
 	})
 	.fail(err => {
 		console.error(err);
@@ -35,22 +35,52 @@ function getOneEvent(eventId){
 }
 
 //WORKING ON THIS TO COMBINE POST AND PUT
-function postEvent(event){
+function postEvent(newEventData){
 	$.ajax({
 			url: '/events',
 			method: 'POST',
 			data: JSON.stringify(newEventData),
 			contentType: 'application/json',
 	})
-	.done((data) => {
-		getEvents();
+	.done((res) => {
+		displayEvents(res);
+		$('#createModal').addClass('hidden');
 	})
 	.fail(err => {
 		console.error(err)
 	})
 }
 
-//WORKING ON THIS TO COMBINE POST AND PUT
+
+function getEventToUpdate(eventId){
+	$.ajax({
+		method: 'GET',
+		url: `/events/${eventId}`,
+		dataType: 'json'
+	})
+	.done(function(res){
+		console.log(res);
+
+		$('#event-name').val(res.name);
+		$('#event-description').val(res.description);
+		$('#event-venue').val(res.address.building);
+		$('#event-street').val(res.address.street);
+		$('#event-city').val(res.address.city);
+		$('#event-state').val(res.address.state);
+		$('#event-zipcode').val(res.address.zipcode);
+		$('#event-date').val(res.date);
+		$('#event-starttime').val(res.time.startTime);
+		$('#event-endtime').val(res.time.endTime);
+		$('#event-prop').val(res.prop);
+
+		$('.form-heading').html('Update Event');
+		$('#createModal').removeClass('hidden');
+	})
+	.fail(err => {
+		console.error(err);
+	})
+}
+
 function updateEvent(eventId){
 	$.ajax({
 		method: 'PUT',
@@ -117,47 +147,6 @@ function displayEvents(data){
 
 
 
-
-//current working for POST
-function handleSubmitEvent(){
-	$('.js-event-form').submit(function(event) {
-		event.preventDefault();
-		
-		const newEventData = {
-			name: $('#event-name').val(),
-			description:$('#event-description').val(),
-			address: {
-				building: $('#event-venue').val(),
-				street: $('#event-street').val(),
-				city: $('#event-city').val(),
-				state: $('#event-state').val(),
-				zipcode: $('#event-zipcode').val()
-			},
-			date: getDate($('#event-date').val()),
-			time: {
-				startTime: $('#event-starttime').val(),
-				endTime: $('#event-endtime').val()
-			},
-			prop: $('#event-prop').val()
-		}
-		console.log(newEventData);
-
-		$.ajax({
-			url: '/events',
-			method: 'POST',
-			data: JSON.stringify(newEventData),
-			contentType: 'application/json',
-			success: function(data){
-				$('.events-all').html(data);
-				$('#createModal').addClass('hidden');
-			}
-		})
-
-		clearEventForm();
-	})
-}
-
-
 function getDate(eventDate) {
 	let date = new Date(eventDate)
 	let fullDate = [date.getMonth()+1, date.getDate(), date.getFullYear()].join('/');
@@ -203,7 +192,7 @@ function saveEvent(event){
 function openModal(){
 	$('#createLink').click(function(event) {
 		event.preventDefault()
-		$('.form-heading').html('Create an Event')
+		$('.form-heading').html('Create an Event');
 		$('#createModal').removeClass('hidden');
 
 	})
@@ -236,10 +225,38 @@ function clearEventForm(){
 //--------------------------//
 //		EVENT HANDLERS		//
 //--------------------------//
-function handleBrowseEvents(){
+function handleShowAllEvents(){
 	$('.js-show-button').click(function(event) {
 		event.preventDefault();
 		getEvents();
+	})
+}
+
+function watchSubmitEvent(){
+	$('.js-event-form').submit(function(event) {
+		event.preventDefault();
+		
+		const newEventData = {
+			name: $('#event-name').val(),
+			description:$('#event-description').val(),
+			address: {
+				building: $('#event-venue').val(),
+				street: $('#event-street').val(),
+				city: $('#event-city').val(),
+				state: $('#event-state').val(),
+				zipcode: $('#event-zipcode').val()
+			},
+			date: getDate($('#event-date').val()),
+			time: {
+				startTime: $('#event-starttime').val(),
+				endTime: $('#event-endtime').val()
+			},
+			prop: $('#event-prop').val()
+		}
+		console.log(newEventData);
+
+		postEvent(newEventData);
+		clearEventForm();
 	})
 }
 
@@ -255,29 +272,18 @@ function handleUpdateEvent(){
 	$('.events-all').on('click', '.js-fa-edit', function(event){
 		let updateEventId = $(this).closest('.event-item').data('eventid');
 		console.log(updateEventId);
-		$('.form-heading').html('Update Event');
 
-		//prefill form
-		let name = $(this).closest('.event-item').find('.event-name')[0].innerText;
-		let description = $(this).closest('.event-item').find('.event-description')[0].innerText;
-
-		$('#event-name').val(name);
-		$('#event-description').val(description);
-
-		$('#createModal').removeClass('hidden');
-
-		// updateEvent(updateEventId);
-
+		getEventToUpdate(updateEventId);
 	})
 }
 
 
-$(handleSubmitEvent);
+// $(getEvents);
 $(openModal);
 $(closeModal);
-$(handleBrowseEvents);
+$(handleShowAllEvents);
+$(watchSubmitEvent);
 $(handleDeleteEvents);
-// $(getEvents);
 $(handleUpdateEvent);
 
 
