@@ -60,7 +60,7 @@ function handleSubmitEvent(){
 			address: {
 				building: $('#event-venue').val(),
 				street: $('#event-street').val(),
-				city: $('#event-name').val(),
+				city: $('#event-city').val(),
 				state: $('#event-state').val(),
 				zipcode: $('#event-zipcode').val()
 			},
@@ -122,7 +122,7 @@ function saveEvent(event){
 			address: {
 				building: $('#event-venue').val(),
 				street: $('#event-street').val(),
-				city: $('#event-name').val(),
+				city: $('#event-city').val(),
 				state: $('#event-state').val(),
 				zipcode: $('#event-zipcode').val()
 			},
@@ -195,7 +195,7 @@ function clearEventForm(){
 	$('#event-description').val("")
 	$('#event-venue').val("")
 	$('#event-street').val("")
-	$('#event-name').val("")
+	$('#event-city').val("")
 	$('#event-state').val("")
 	$('#event-zipcode').val("")
 	$('#event-date').val("")
@@ -207,7 +207,7 @@ function clearEventForm(){
 
 
 //CLICK HANDLERS
-function watchShowEvents(){
+function handleBrowseEvents(){
 	$('.js-show-button').click(function(event) {
 		event.preventDefault();
 		getEvents();
@@ -241,14 +241,14 @@ function watchUpdateEvent(){
 	})
 }
 
+
 $(handleSubmitEvent);
 $(openModal);
 $(closeModal);
-$(watchShowEvents);
+$(handleBrowseEvents);
 $(watchDeleteEvents);
 // $(getEvents);
 $(watchUpdateEvent);
-
 
 
 
