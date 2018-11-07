@@ -3,8 +3,8 @@ let eventData ;
 function renderEvents(event, index){
 	return `
 		<div class="event-item">
-			<i class="far fa-edit js-fa-edit"></i>
-			<span class="js-delete-button delete-button" data-eventId="${event.id}">&times;</span>
+			<i class="far fa-edit js-fa-edit" data-eventid-2="${event.id}"></i>
+			<span class="js-delete-button delete-button" data-eventid="${event.id}">&times;</span>
 			<div class="event-image">
 				<img class="event-thumbnail" src="./img/gianni-zanato-461187-unsplash.jpg" alt="rose">
 			</div>
@@ -217,13 +217,14 @@ function handleBrowseEvents(){
 function watchDeleteEvents(){
 	$('.events-all').on('click', '.js-delete-button', function(events){
 		let deleteEventId = $(this).data('eventid');
+		// console.log(deleteEventId)
 		deleteEvent(deleteEventId);
 	})
 }
 
 function watchUpdateEvent(){
 	$('.events-all').on('click', '.js-fa-edit', function(event){
-		let updateEventId = $(this).closest('event-item').data('eventid');
+		let updateEventId = $(this).data('eventid-2');
 		console.log(updateEventId);
 		$('.form-heading').html('Update Event');
 
