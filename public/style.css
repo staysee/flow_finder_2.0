@@ -9,7 +9,7 @@ body {
     background-color: black;
 }
 
-.container {
+#container {
 	background-image: url('./img/timothy-paul-smith-218074-unsplash.jpg');
 	background-size: 100%;
 	background-repeat: no-repeat;

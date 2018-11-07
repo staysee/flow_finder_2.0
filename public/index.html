@@ -14,98 +14,98 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 <body>
-	<div class="container">
-	<nav role="navigation" class="navbar">
-		<a href="#" class="logo">Flow Finder</a>
-		<ul class="main-nav" id="js-menu">
-			<li>
-				<a href="#" class="nav-links">Home</a>
-			</li>
-			<li>
-				<a href="#" id="browseLink" class="nav-links">Browse Events</a>
-			</li>
-			<li>
-				<a href="#" id="createLink" class="nav-links">Create Event</a>
-			</li>
-		</ul>
-	</nav>
+	<div id="container">
 
-	<main>
-	</main>
+		<header role="banner">
+			<nav role="navigation" class="navbar">
+				<a href="#" class="logo">Flow Finder</a>
+				<ul class="main-nav" id="js-menu">
+					<li>
+						<a href="#" class="nav-links">Home</a>
+					</li>
+					<li>
+						<a href="#" id="browseLink" class="nav-links">Browse Events</a>
+					</li>
+					<li>
+						<a href="#" id="createLink" class="nav-links">Create Event</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
 
-	<!-- POST new EVENT -->
-	<div id="createModal" class="modal hidden">
-		<section role="region" class="event-form">
-			<div class="modal-content">
-				<span class="closeModal">&times;</span>
-				<h2 class="form-heading"></h2>
-				<form action="#" id="create-event-form" class="js-event-form">
-					<!-- Event Name -->
-					<label for="event-name">Event Name</label>
-					<input type="text" name="event-name" id="event-name" placeholder="Event Name" required>
-					<!-- Event Description -->
-					<label for="event-description">Description</label>
-					<input type="text" name="event-description" id="event-description" placeholder="Describe your event..." required>
-					<!-- Prop -->
-					<label for="event-prop">Prop</label>
-					<select id="event-prop" name="props" required>
-						<option value="Hoop">Hoop</option>
-						<option value="Poi">Poi</option>
-						<option value="Staff">Staff</option>
-						<option value="Ropedart">Rope Dart</option>
-						<option value="Aerial">Aerial</option>
-						<option value="Other">Other</option>
-					</select>
-					<!-- Event Address -->
-					<fieldset class="form-location">
-						<legend>Location</legend>
-						<!-- Venue -->
-						<label for="event-venue">Venue</label>
-						<input type="text" name="event-venue" id="event-venue" placeholder="Venue name">
-						<!-- Street -->
-						<label for="event-street">Street Address</label>
-						<input type="text" name="event-street" id="event-street" placeholder="Street Address" required>
-						<!-- City -->
-						<label for="event-city">City</label>
-						<input type="text" name="event-city" id="event-city" placeholder="City" required>
-						<!-- State -->
-						<label for="event-state">State</label>
-						<input type="text" name="event-state" id="event-state" placeholder="State" required>
-						<!-- Zipcode -->
-						<label for="event-zipcode">Zip/Postal</label>
-						<input type="text" name="event-zipcode" id="event-zipcode" placeholder="Zip/Postal Code" required>
-					</fieldset>
+		<main role="main">
+			<section id="createModal" class="modal hidden" role="region">
+				<div class="modal-content">
+					<span class="closeModal">&times;</span>
+					<h2 class="form-heading"></h2>
+					<form id="create-event-form" class="js-event-form">
+						<!-- Event Name -->
+						<label for="event-name">Event Name</label>
+						<input type="text" name="event-name" id="event-name" placeholder="Event Name" required>
+						<!-- Event Description -->
+						<label for="event-description">Description</label>
+						<input type="text" name="event-description" id="event-description" placeholder="Describe your event..." required>
+						<!-- Prop -->
+						<label for="event-prop">Prop</label>
+						<select id="event-prop" name="props" required>
+							<option value="Hoop">Hoop</option>
+							<option value="Poi">Poi</option>
+							<option value="Staff">Staff</option>
+							<option value="Ropedart">Rope Dart</option>
+							<option value="Aerial">Aerial</option>
+							<option value="Other">Other</option>
+						</select>
+						<!-- Event Address -->
+						<fieldset class="form-location">
+							<legend>Location</legend>
+							<!-- Venue -->
+							<label for="event-venue">Venue</label>
+							<input type="text" name="event-venue" id="event-venue" placeholder="Venue name">
+							<!-- Street -->
+							<label for="event-street">Street Address</label>
+							<input type="text" name="event-street" id="event-street" placeholder="Street Address" required>
+							<!-- City -->
+							<label for="event-city">City</label>
+							<input type="text" name="event-city" id="event-city" placeholder="City" required>
+							<!-- State -->
+							<label for="event-state">State</label>
+							<input type="text" name="event-state" id="event-state" placeholder="State" required>
+							<!-- Zipcode -->
+							<label for="event-zipcode">Zip/Postal</label>
+							<input type="text" name="event-zipcode" id="event-zipcode" placeholder="Zip/Postal Code" required>
+						</fieldset>
 
-					<fieldset class="form-datetime">
-					<legend>Date & Time</legend>
-						<i class="far fa-calendar-alt"></i>
-						<!-- Event Date -->
-						<div class="date">
-							<label for="event-date">Date</label>
-							<input id="event-date" type="date" name="event-date" required>
-						</div>
-						<!-- Event Time -->
-							<i class="far fa-clock"></i>
-						<div class="time">
-							<label for="event-starttime">Start</label>
-							<input id="event-starttime" type="time" name="event-starttime" required>
-							<label for="event-endtime">End</label>
-							<input id="event-endtime" type="time" name="event-endtime" required>
-						</div>
-					</fieldset>
+						<fieldset class="form-datetime">
+						<legend>Date & Time</legend>
+							<i class="far fa-calendar-alt"></i>
+							<!-- Event Date -->
+							<div class="date">
+								<label for="event-date">Date</label>
+								<input id="event-date" type="date" name="event-date" required>
+							</div>
+							<!-- Event Time -->
+								<i class="far fa-clock"></i>
+							<div class="time">
+								<label for="event-starttime">Start</label>
+								<input id="event-starttime" type="time" name="event-starttime" required>
+								<label for="event-endtime">End</label>
+								<input id="event-endtime" type="time" name="event-endtime" required>
+							</div>
+						</fieldset>
+						<button role="button" id="save-event-button" type="submit">Save Event</button>
+					</form>
+				</div> <!--end modal-content -->
+			</section> 
 
-					<button role="button" id="save-event-button" type="submit">Save Event</button>
-				</form>
-			</div> <!--end modal-content -->
-		</section>
-	</div> <!--end createModal -->
 
-	<!-- DISPLAY EVENTS -->
-	<section role="region" class="event-display">
-		<button class="js-show-button show-events-button" role="button">Flow Events</button>
-		<div class="events-all"></div>
-	</section>
+			<!-- DISPLAY EVENTS -->
+			<section role="region" class="event-display">
+				<button class="js-show-button show-events-button" role="button">Flow Events</button>
+				<div class="events-all"></div>
+			</section>
 
+
+	</main> <!-- end main -->
 </div> <!--end container -->
 
 <!-- jQuery -->

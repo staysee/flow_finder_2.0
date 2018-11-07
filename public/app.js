@@ -237,7 +237,7 @@ function watchSubmitEvent(){
 	$('.js-event-form').submit(function(event) {
 		event.preventDefault();
 		
-		const newEventData = {
+		const EventData = {
 			name: $('#event-name').val(),
 			description:$('#event-description').val(),
 			address: {
@@ -254,10 +254,11 @@ function watchSubmitEvent(){
 			},
 			prop: $('#event-prop').val()
 		}
-		console.log(newEventData);
+		console.log(EventData);
+		
 
-		postEvent(newEventData);
-		clearEventForm();
+		postEvent(EventData);
+		// clearEventForm();
 	})
 }
 
@@ -277,6 +278,9 @@ function handleUpdateEvent(){
 		getEventToUpdate(updateEventId);
 	})
 }
+
+// LINKS
+
 
 
 // $(getEvents);
