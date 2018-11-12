@@ -25,7 +25,7 @@ function seedEventData() {
 }
 
 function generateProp() {
-	const props = ['Hoop', 'Staff', 'Poi', 'Rope Dart'];
+	const props = ['Hoop', 'Staff', 'Poi', 'Rope Dart', 'Aerial', 'Other'];
 	return props[Math.floor(Math.random() * props.length)];
 }
 
@@ -42,8 +42,8 @@ function generateEventData(){
 		},
 		date: faker.date.future(),
 		time: {
-			startTime: 10,
-			endTime: 12
+			startTime: '10',
+			endTime: '12'
 		},
 		prop: generateProp()
 	}
@@ -220,8 +220,8 @@ describe('Events API Resource', function() {
 			const updateData = {
 				name: 'Changing Event Name',
 				time: {
-					startTime: 12,
-					endTime: 3
+					startTime: '12',
+					endTime: '15'
 				}
 			};
 

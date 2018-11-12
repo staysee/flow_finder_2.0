@@ -1,10 +1,127 @@
-let eventData ;
+let eventData;
+let eventID;
 
+//--------------------------//
+//		AJAX CALLS			//
+//--------------------------//
+function getEvents(){
+	$.ajax({
+		method: 'GET',
+		url: '/events',
+		dataType: 'json',
+	})
+	.done(function(res){
+		eventData = res.events;
+		console.log(eventData);
+
+		displayEvents(eventData);
+	})
+	.fail(err => {
+		console.error(err)
+	})
+}
+
+function getOneEvent(eventId){
+	$.ajax({
+		method: 'GET',
+		url: `/events/${eventId}`,
+		dataType: 'json'
+	})
+	.done(function(res){
+		console.log(res);
+	})
+	.fail(err => {
+		console.error(err);
+	})
+}
+
+//WORKING ON THIS TO COMBINE POST AND PUT
+function postEvent(newEventData){
+	$.ajax({
+			url: '/events',
+			method: 'POST',
+			data: JSON.stringify(newEventData),
+			contentType: 'application/json',
+	})
+	.done((res) => {
+		displayEvents(res);
+		$('#createModal').addClass('hidden');
+	})
+	.fail(err => {
+		console.error(err)
+	})
+}
+
+
+function getEventToUpdate(eventId){
+	$.ajax({
+		method: 'GET',
+		url: `/events/${eventId}`,
+		dataType: 'json'
+	})
+	.done(function(res){
+		console.log(res);
+		eventID = res.id
+		console.log(eventID);
+		$('#edit-name').val(res.name);
+		$('#edit-description').val(res.description);
+		$('#edit-venue').val(res.address.building);
+		$('#edit-street').val(res.address.street);
+		$('#edit-city').val(res.address.city);
+		$('#edit-state').val(res.address.state);
+		$('#edit-zipcode').val(res.address.zipcode);
+		$('#edit-date').val(res.date);
+		$('#edit-starttime').val(res.time.startTime);
+		$('#edit-endtime').val(res.time.endTime);
+		$('#edit-prop').val(res.prop);
+
+		$('.form-heading').html('Update Event');
+		$('#editModal').removeClass('hidden');
+	})
+	.fail(err => {
+		console.error(err);
+	})
+}
+
+function updateEvent(eventId, event){
+	$.ajax({
+		method: 'PUT',
+		url: `/events/${eventId}`,
+		data: JSON.stringify(event),
+		dataType: 'json',
+		contentType: 'application/json',
+	})
+	.done(() => {
+		console.log('The Event was Updated');
+	})
+	.fail(err => {
+		console.error(err);
+	})
+}
+
+function deleteEvent(eventId){
+	$.ajax({
+		method: 'DELETE',
+		url: `/events/${eventId}`,
+		contentType: 'application/json'
+	})
+	.done(() => {
+		getEvents();
+	})
+	.fail(err => {
+		console.error(err)
+	})
+
+}
+
+//--------------------------//
+//		APP FUNCTIONS		//
+//--------------------------//
 function renderEvents(event, index){
 	return `
-		<div class="event-item">
+		<div class="event-item" data-eventid="${event.id}">
 			<i class="far fa-edit js-fa-edit"></i>
-			<span class="js-delete-button delete-button" data-eventId="${event.id}">&times;</span>
+			<span class="js-delete-button delete-button">&times;</span>
 			<div class="event-image">
 				<img class="event-thumbnail" src="./img/gianni-zanato-461187-unsplash.jpg" alt="rose">
 			</div>
@@ -22,24 +139,6 @@ function renderEvents(event, index){
 	`
 }
 
-function getEvents(){
-	$.ajax({
-		method: 'GET',
-		url: '/events',
-		dataType: 'json',
-	})
-	.done(function(response){
-
-		eventData = response.events;
-		console.log(eventData);
-
-		displayEvents(eventData);
-	})
-	.fail(err => {
-		console.error(err)
-	})
-}
-
 function displayEvents(data){
 	console.log("from displayEvents function")
 	let eachEvent = $.map(eventData, function (event, index){
@@ -49,43 +148,6 @@ function displayEvents(data){
 }
 
 
-//current working for POST
-function handleSubmitEvent(){
-	$('.js-event-form').submit(function(event) {
-		event.preventDefault();
-		
-		const newEventData = {
-			name: $('#event-name').val(),
-			description:$('#event-description').val(),
-			address: {
-				building: $('#event-venue').val(),
-				street: $('#event-street').val(),
-				city: $('#event-name').val(),
-				state: $('#event-state').val(),
-				zipcode: $('#event-zipcode').val()
-			},
-			date: getDate($('#event-date').val()),
-			time: {
-				startTime: $('#event-starttime').val(),
-				endTime: $('#event-endtime').val()
-			},
-			prop: $('#event-prop').val()
-		}
-		console.log(newEventData);
-
-		$.ajax({
-			url: '/events',
-			method: 'POST',
-			data: JSON.stringify(newEventData),
-			contentType: 'application/json',
-			success: function(data){
-				$('.events-all').html(data);
-				$('#createModal').addClass('hidden');
-			}
-		})
-	})
-}
-
 
 function getDate(eventDate) {
 	let date = new Date(eventDate)
@@ -94,20 +156,7 @@ function getDate(eventDate) {
 }
 
 
-function deleteEvent(eventId){
-	$.ajax({
-		method: 'DELETE',
-		url: `/events/${eventId}`,
-		contentType: 'application/json'
-	})
-	.done(() => {
-		getEvents();
-	})
-	.fail(err => {
-		console.error(err)
-	})
 
-}
 
 //WORKING ON THIS TO COMBINE POST AND PUT
 function saveEvent(event){
@@ -120,7 +169,7 @@ function saveEvent(event){
 			address: {
 				building: $('#event-venue').val(),
 				street: $('#event-street').val(),
-				city: $('#event-name').val(),
+				city: $('#event-city').val(),
 				state: $('#event-state').val(),
 				zipcode: $('#event-zipcode').val()
 			},
@@ -137,44 +186,15 @@ function saveEvent(event){
 	postEvent();
 }
 
-//WORKING ON THIS TO COMBINE POST AND PUT
-function postEvent(event){
-	$.ajax({
-			url: '/events',
-			method: 'POST',
-			data: JSON.stringify(newEventData),
-			contentType: 'application/json',
-	})
-	.done((data) => {
-		getEvents();
-	})
-	.fail(err => {
-		console.error(err)
-	})
-}
 
-//WORKING ON THIS TO COMBINE POST AND PUT
-function updateEvent(eventId){
-	$.ajax({
-		method: 'PUT',
-		url: `/events/${eventId}`,
-		data: JSON.stringify(event),
-		dataType: 'json',
-		contentType: 'application/json',
-	})
-	.done(() => {
-		getEvents();
-	})
-	.fail(err => {
-		console.error(err);
-	})
-}
 
-// MODAL
+//--------------------------//
+//		EVENT FORM MODAL	//
+//--------------------------//
 function openModal(){
 	$('#createLink').click(function(event) {
 		event.preventDefault()
-		$('.form-heading').html('Create an Event')
+		$('.form-heading').html('Create an Event');
 		$('#createModal').removeClass('hidden');
 
 	})
@@ -183,55 +203,126 @@ function openModal(){
 function closeModal(){
 	$('.closeModal').on('click',function(){
 		$('#createModal').addClass('hidden');
+		$('#editModal').addClass('hidden');
 		$('.form-heading').html('');
+		clearEventForm();
 	})
+}
+
+function clearEventForm(){
+	$('#event-name').val(""),
+	$('#event-description').val("")
+	$('#event-venue').val("")
+	$('#event-street').val("")
+	$('#event-city').val("")
+	$('#event-state').val("")
+	$('#event-zipcode').val("")
+	$('#event-date').val("")
+	$('#event-starttime').val("")
+	$('#event-endtime').val("")
+	$('#event-prop').val("")
 }
 
 
 
-//CLICK HANDLERS
-function watchShowEvents(){
+//--------------------------//
+//		EVENT HANDLERS		//
+//--------------------------//
+function handleShowAllEvents(){
 	$('.js-show-button').click(function(event) {
 		event.preventDefault();
 		getEvents();
 	})
 }
 
-function watchDeleteEvents(){
+function watchSubmitEvent(){
+	$('#create-event-form').submit(function(event) {
+		event.preventDefault();
+		
+		const EventData = {
+			name: $('#event-name').val(),
+			description:$('#event-description').val(),
+			address: {
+				building: $('#event-venue').val(),
+				street: $('#event-street').val(),
+				city: $('#event-city').val(),
+				state: $('#event-state').val(),
+				zipcode: $('#event-zipcode').val()
+			},
+			date: getDate($('#event-date').val()),
+			time: {
+				startTime: $('#event-starttime').val(),
+				endTime: $('#event-endtime').val()
+			},
+			prop: $('#event-prop').val()
+		}
+		console.log(EventData);
+		
+
+		postEvent(EventData);
+		// clearEventForm();
+	})
+}
+
+function watchSubmitEditedEvent(){
+	$('#edit-event-form').submit(function(event) {
+		event.preventDefault();
+		
+		const updatedData = {
+			id: `${eventID}`,
+			name: $('#edit-name').val(),
+			description:$('#edit-description').val(),
+			address: {
+				building: $('#edit-venue').val(),
+				street: $('#edit-street').val(),
+				city: $('#edit-city').val(),
+				state: $('#edit-state').val(),
+				zipcode: $('#edit-zipcode').val()
+			},
+			date: getDate($('#edit-date').val()),
+			time: {
+				startTime: $('#edit-starttime').val(),
+				endTime: $('#edit-endtime').val()
+			},
+			prop: $('#edit-prop').val()
+		}
+		console.log('Send Updated Event data');
+		
+		updateEvent(eventID, updatedData);
+
+		// clearEventForm();
+	})
+}
+
+function handleDeleteEvents(){
 	$('.events-all').on('click', '.js-delete-button', function(events){
-		let deleteEventId = $(this).data('eventid');
+		let deleteEventId = $(this).closest('.event-item').data('eventid');
+		console.log(`Deleting Event: ${deleteEventId}`)
 		deleteEvent(deleteEventId);
 	})
 }
 
-function watchUpdateEvent(){
+function handleUpdateEvent(){
 	$('.events-all').on('click', '.js-fa-edit', function(event){
-		let updateEventId = $(this).closest('event-item').data('eventid');
-		console.log(updateEventId);
-		$('.form-heading').html('Update Event');
+		let updateEventId = $(this).closest('.event-item').data('eventid');
+		console.log(`Updating Event: ${updateEventId}`);
 
-		//prefill form
-		let name = $(this).closest('.event-item').find('.event-name')[0].innerText;
-		let description = $(this).closest('.event-item').find('.event-description')[0].innerText;
-
-		$('#event-name').val(name);
-		$('#event-description').val(description);
-
-		$('#createModal').removeClass('hidden');
-
-		// updateEvent(updateEventId);
-
+		getEventToUpdate(updateEventId);
 	})
 }
 
-$(handleSubmitEvent);
+// LINKS
+
+
+
+// $(getEvents);
 $(openModal);
 $(closeModal);
-$(watchShowEvents);
-$(watchDeleteEvents);
-// $(getEvents);
-$(watchUpdateEvent);
-
+$(handleShowAllEvents);
+$(watchSubmitEvent);
+$(watchSubmitEditedEvent);
+$(handleDeleteEvents);
+$(handleUpdateEvent);
 
 
 
