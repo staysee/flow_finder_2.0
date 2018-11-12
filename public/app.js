@@ -1,4 +1,5 @@
-let eventData ;
+let eventData;
+let eventID;
 
 //--------------------------//
 //		AJAX CALLS			//
@@ -60,29 +61,29 @@ function getEventToUpdate(eventId){
 	})
 	.done(function(res){
 		console.log(res);
-		let id = res.id
-		console.log(id);
-		$('#event-name').val(res.name);
-		$('#event-description').val(res.description);
-		$('#event-venue').val(res.address.building);
-		$('#event-street').val(res.address.street);
-		$('#event-city').val(res.address.city);
-		$('#event-state').val(res.address.state);
-		$('#event-zipcode').val(res.address.zipcode);
-		$('#event-date').val(res.date);
-		$('#event-starttime').val(res.time.startTime);
-		$('#event-endtime').val(res.time.endTime);
-		$('#event-prop').val(res.prop);
+		eventID = res.id
+		console.log(eventID);
+		$('#edit-name').val(res.name);
+		$('#edit-description').val(res.description);
+		$('#edit-venue').val(res.address.building);
+		$('#edit-street').val(res.address.street);
+		$('#edit-city').val(res.address.city);
+		$('#edit-state').val(res.address.state);
+		$('#edit-zipcode').val(res.address.zipcode);
+		$('#edit-date').val(res.date);
+		$('#edit-starttime').val(res.time.startTime);
+		$('#edit-endtime').val(res.time.endTime);
+		$('#edit-prop').val(res.prop);
 
 		$('.form-heading').html('Update Event');
-		$('#createModal').removeClass('hidden');
+		$('#editModal').removeClass('hidden');
 	})
 	.fail(err => {
 		console.error(err);
 	})
 }
 
-function updateEvent(eventId){
+function updateEvent(eventId, event){
 	$.ajax({
 		method: 'PUT',
 		url: `/events/${eventId}`,
@@ -91,7 +92,7 @@ function updateEvent(eventId){
 		contentType: 'application/json',
 	})
 	.done(() => {
-		getEvents();
+		console.log('The Event was Updated');
 	})
 	.fail(err => {
 		console.error(err);
@@ -202,6 +203,7 @@ function openModal(){
 function closeModal(){
 	$('.closeModal').on('click',function(){
 		$('#createModal').addClass('hidden');
+		$('#editModal').addClass('hidden');
 		$('.form-heading').html('');
 		clearEventForm();
 	})
@@ -234,7 +236,7 @@ function handleShowAllEvents(){
 }
 
 function watchSubmitEvent(){
-	$('.js-event-form').submit(function(event) {
+	$('#create-event-form').submit(function(event) {
 		event.preventDefault();
 		
 		const EventData = {
@@ -262,10 +264,40 @@ function watchSubmitEvent(){
 	})
 }
 
+function watchSubmitEditedEvent(){
+	$('#edit-event-form').submit(function(event) {
+		event.preventDefault();
+		
+		const updatedData = {
+			id: `${eventID}`,
+			name: $('#edit-name').val(),
+			description:$('#edit-description').val(),
+			address: {
+				building: $('#edit-venue').val(),
+				street: $('#edit-street').val(),
+				city: $('#edit-city').val(),
+				state: $('#edit-state').val(),
+				zipcode: $('#edit-zipcode').val()
+			},
+			date: getDate($('#edit-date').val()),
+			time: {
+				startTime: $('#edit-starttime').val(),
+				endTime: $('#edit-endtime').val()
+			},
+			prop: $('#edit-prop').val()
+		}
+		console.log('Send Updated Event data');
+		
+		updateEvent(eventID, updatedData);
+
+		// clearEventForm();
+	})
+}
+
 function handleDeleteEvents(){
 	$('.events-all').on('click', '.js-delete-button', function(events){
 		let deleteEventId = $(this).closest('.event-item').data('eventid');
-		console.log(deleteEventId)
+		console.log(`Deleting Event: ${deleteEventId}`)
 		deleteEvent(deleteEventId);
 	})
 }
@@ -273,7 +305,7 @@ function handleDeleteEvents(){
 function handleUpdateEvent(){
 	$('.events-all').on('click', '.js-fa-edit', function(event){
 		let updateEventId = $(this).closest('.event-item').data('eventid');
-		console.log(updateEventId);
+		console.log(`Updating Event: ${updateEventId}`);
 
 		getEventToUpdate(updateEventId);
 	})
@@ -288,6 +320,7 @@ $(openModal);
 $(closeModal);
 $(handleShowAllEvents);
 $(watchSubmitEvent);
+$(watchSubmitEditedEvent);
 $(handleDeleteEvents);
 $(handleUpdateEvent);
 
