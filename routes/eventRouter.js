@@ -4,7 +4,7 @@ const router = express.Router()
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
-const { Event } = require('./models');
+const { Event } = require('../models/events');
 
 
 //send JSON representation of all events on GET requests to root

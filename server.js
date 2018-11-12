@@ -7,19 +7,21 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const { DATABASE_URL, PORT } = require('./config');
-const { Event } = require('./models');
+const { Event } = require('./models/events');
+const { User } = require('./models/users');
 
 const jsonParser = bodyParser.json();
 const app = express();
 
-const eventRouter = require('./eventRouter');
+const eventRouter = require('./routes/eventRouter');
+const userRouter = require('./routes/userRouter');
 
 app.use(morgan('common'));
 app.use(express.static('public'));
 // app.use(express.json());
 
 
-
+app.use('/users', userRouter);
 app.use('/events', eventRouter);
 // catch-all endpoint if client makes request to non-existent endpoint
 app.use('*', (req, res) => {
