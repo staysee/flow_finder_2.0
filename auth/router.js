@@ -1,5 +1,5 @@
 'use strict'
-const exprss = require('express');
+const express = require('express');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
@@ -16,7 +16,10 @@ const createAuthToken = function(user){
 }
 
 const localAuth = passport.authenticate('local', {session: false});
+
 router.use(bodyParser.json());
+
+
 //the user provides a username and password to login
 router.post('/login', localAuth, (req, res) => {
 	const authToken = createAuthToken(req.user.serialize());
@@ -31,4 +34,4 @@ router.post('/refresh', jwtAuth, (req, res) => {
 	res.json({authToken})
 })
 
-module.exports = {router}
+module.exports = router;
