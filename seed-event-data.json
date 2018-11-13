@@ -10,8 +10,8 @@
 	},
 	"date": "December 5, 2018",
 	"time": {
-		"startTime": 1,
-		"endTime": 5
+		"startTime": "13",
+		"endTime": "17"
 	},
 	"prop": "Hoop"
 }
@@ -27,8 +27,8 @@
 	},
 	"date": "December 23, 2018",
 	"time": {
-		"startTime": 4,
-		"endTime": 6
+		"startTime": "16:30",
+		"endTime": "18:30"
 	},
 	"prop": "Staff"
 }
@@ -44,8 +44,8 @@
 	},
 	"date": "January 6, 2019",
 	"time": {
-		"startTime": 10,
-		"endTime": 2
+		"startTime": "15",
+		"endTime": "17:30"
 	},
 	"prop": "Fans"
 }
