@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../config');
 const router = express.Router();
 
+//creates our JWTs including info about the user in the payload
 const createAuthToken = function(user){
 	return jwt.sign({user}, config.JWT_SECRET, {
 		subject: user.username,
@@ -15,21 +16,21 @@ const createAuthToken = function(user){
 	})
 }
 
+//the user provides a username and password to login
 const localAuth = passport.authenticate('local', {session: false});
 
 router.use(bodyParser.json());
 
-
-//the user provides a username and password to login
 router.post('/login', localAuth, (req, res) => {
 	const authToken = createAuthToken(req.user.serialize());
 
 	res.json({authToken});
 });
 
-const jwtAuth = passport.authenticate('jwt', {session: false});
 
 //the user exchanges a valid JWT for a new one with a later expiration
+const jwtAuth = passport.authenticate('jwt', {session: false});
+
 router.post('/refresh', jwtAuth, (req, res) => {
 	const authToken = createAuthToken(req.user);
 	res.json({authToken})

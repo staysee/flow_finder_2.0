@@ -26,14 +26,14 @@ app.use(morgan('common'));
 app.use(express.static('public'));
 // app.use(express.json());
 
-passport.use(localStrategy);
-passport.use(jwtStrategy);
+passport.use(localStrategy);	//register our local auth strategy	
+passport.use(jwtStrategy);		//register our JWT strategy
 
 app.use('/api/users', userRouter);
 app.use('/api/events', eventRouter);
 app.use('/api/auth', authRouter);
 
-const jwtAuth = passport.authenticate('jwt', { session: false });
+const jwtAuth = passport.authenticate('jwt', { session: false }); 	//stop Passport from adding session cookies
 
 //protected endpoint that needs a valid JWT to access it
 app.get('/api/protected', jwtAuth, (req, res) => {

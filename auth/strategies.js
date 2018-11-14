@@ -7,6 +7,8 @@ const {Strategy: JwtStrategy, ExtractJwt} = require('passport-jwt');
 const { User } = require('../models/users');
 const { JWT_SECRET } = require('../config');
 
+
+//Strategy1: allow user to supply username and password to authenticate with an endpoint
 const localStrategy = new LocalStrategy((username, password, callback) => {
 
 	let user;
@@ -41,8 +43,9 @@ const localStrategy = new LocalStrategy((username, password, callback) => {
 		})
 })
 
-const jwtStrategy = new JwtStrategy(
-	{
+
+//Strategy2: allow user to authenticate using JWTs
+const jwtStrategy = new JwtStrategy({
 		secretOrKey: JWT_SECRET,
 		//look for the JWT as a Bearer auth header
 		jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('Bearer'),
