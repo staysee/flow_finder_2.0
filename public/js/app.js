@@ -123,7 +123,7 @@ function renderEvents(event, index){
 			<i class="far fa-edit js-fa-edit"></i>
 			<span class="js-delete-button delete-button">&times;</span>
 			<div class="event-image">
-				<img class="event-thumbnail" src="./img/gianni-zanato-461187-unsplash.jpg" alt="rose">
+				<img class="event-thumbnail" src="../img/gianni-zanato-461187-unsplash.jpg" alt="rose">
 			</div>
 			<div class="event-information">
 				<div class="info-left">

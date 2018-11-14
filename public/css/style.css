@@ -10,7 +10,7 @@ body {
 }
 
 #container {
-	background-image: url('./img/timothy-paul-smith-218074-unsplash.jpg');
+	background-image: url('../img/timothy-paul-smith-218074-unsplash.jpg');
 	background-size: 100%;
 	background-repeat: no-repeat;
 	height: 100vh;
