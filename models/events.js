@@ -17,7 +17,8 @@ const eventSchema = mongoose.Schema({
 		startTime: String,
 		endTime: String
 	},
-	prop: String
+	prop: String,
+	user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 })
 
 //derived properties for clients who only need a human-readable string
@@ -34,7 +35,8 @@ eventSchema.methods.serialize = function() {
 		address: this.address,
 		date: this.date,
 		time: this.time,
-		prop: this.prop
+		prop: this.prop,
+		user: this.user
 	};
 }
 

@@ -18,8 +18,7 @@ const UserSchema = mongoose.Schema({
 		required: true
 	},
 	firstName: {type: String, default: ''},
-	lastName: {type: String, default: ''},
-	events: [{type: mongoose.Schema.Types.ObjectId, ref: 'Event'}]
+	lastName: {type: String, default: ''}
 });
 
 //return user item but not password
@@ -28,7 +27,6 @@ UserSchema.methods.serialize = function() {
 		username: this.username || '',
 		firstName: this.firstName || '',
 		lastName: this.lastName || '',
-		events: this.events
 	}
 }
 
