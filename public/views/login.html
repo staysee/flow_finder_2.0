@@ -6,9 +6,41 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
+	<!-- cSS -->
+	<link rel="stylesheet" type="text/css" href="../css/login.css">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Bungee+Inline|Chelsea+Market|Poppins" rel="stylesheet">
 </head>
 <body>
 
+	<header role="banner">
+		<h1>Log In</h1>
+	</header>
+
+	<main role="main">
+		<!-- LOGIN -->
+		<section class="login-content">
+			<form class="login-form" name="login-form">
+				<h2>Welcome back,</h2>
+				<label for="username" class="input-label">
+					<input type="text" id="username" name="username" placeholder="Username" aria-label="Username">
+				</label>
+
+				<label for="password" class="input-label">
+					<input type="password" id="password" name="password" placeholder="Password" aria-label="Password">
+				</label>
+
+				<p class="forgot-pass">Forgot password?</p>
+				<button type="button" class="submit" role="button">Log In</button>
+			</form>
+		</section>
+
+		<!-- SIGNUP -->
+		<section class="signup-content">
+			<h2>New here?</h2>
+			<p>Sign up and discover flow events in your area!</p>
+
+		</section>
+	</main>
 </body>
 </html>
