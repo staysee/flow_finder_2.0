@@ -7,7 +7,7 @@ let eventID;
 function getEvents(){
 	$.ajax({
 		method: 'GET',
-		url: '/events',
+		url: '/api/events',
 		dataType: 'json',
 	})
 	.done(function(res){
@@ -24,7 +24,7 @@ function getEvents(){
 function getOneEvent(eventId){
 	$.ajax({
 		method: 'GET',
-		url: `/events/${eventId}`,
+		url: `/api/events/${eventId}`,
 		dataType: 'json'
 	})
 	.done(function(res){
@@ -38,7 +38,7 @@ function getOneEvent(eventId){
 //WORKING ON THIS TO COMBINE POST AND PUT
 function postEvent(newEventData){
 	$.ajax({
-			url: '/events',
+			url: '/api/events',
 			method: 'POST',
 			data: JSON.stringify(newEventData),
 			contentType: 'application/json',
@@ -56,7 +56,7 @@ function postEvent(newEventData){
 function getEventToUpdate(eventId){
 	$.ajax({
 		method: 'GET',
-		url: `/events/${eventId}`,
+		url: `/api/events/${eventId}`,
 		dataType: 'json'
 	})
 	.done(function(res){
@@ -86,7 +86,7 @@ function getEventToUpdate(eventId){
 function updateEvent(eventId, event){
 	$.ajax({
 		method: 'PUT',
-		url: `/events/${eventId}`,
+		url: `/api/events/${eventId}`,
 		data: JSON.stringify(event),
 		dataType: 'json',
 		contentType: 'application/json',
@@ -102,7 +102,7 @@ function updateEvent(eventId, event){
 function deleteEvent(eventId){
 	$.ajax({
 		method: 'DELETE',
-		url: `/events/${eventId}`,
+		url: `/api/events/${eventId}`,
 		contentType: 'application/json'
 	})
 	.done(() => {
@@ -312,6 +312,12 @@ function handleUpdateEvent(){
 }
 
 // LINKS
+function handleAccount(){
+	$('#accountLink').click(function(event) {
+		event.preventDefault()
+		window.location.replace("/views/login.html")
+	})
+}
 
 
 
@@ -323,6 +329,7 @@ $(watchSubmitEvent);
 $(watchSubmitEditedEvent);
 $(handleDeleteEvents);
 $(handleUpdateEvent);
+$(handleAccount);
 
 
 
