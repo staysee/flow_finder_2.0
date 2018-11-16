@@ -13,34 +13,60 @@
 </head>
 <body>
 
-	<header role="banner">
-		<h1>Log In</h1>
-	</header>
-
 	<main role="main">
-		<!-- LOGIN -->
-		<section class="login-content">
-			<form class="login-form" name="login-form">
+
+		<!-- SIGN IN -->
+		<section id="signin" class="cont">
+		 	<form class="sign-in">
 				<h2>Welcome back,</h2>
-				<label for="username" class="input-label">
-					<input type="text" id="username" name="username" placeholder="Username" aria-label="Username">
-				</label>
 
-				<label for="password" class="input-label">
-					<input type="password" id="password" name="password" placeholder="Password" aria-label="Password">
+				<label for="username">Username
+					<input type="text" id="username" name="username"/>
 				</label>
-
+		    
+				<label>Password
+					<input type="password" id="password" name="password"/>
+				</label>
+				
+		    	<button type="button" class="submit" role="button">Sign In</button>
 				<p class="forgot-pass">Forgot password?</p>
-				<button type="button" class="submit" role="button">Log In</button>
-			</form>
+				<p class="create-account">New here? Create an account</p>
+		    </form> 
 		</section>
 
-		<!-- SIGNUP -->
-		<section class="signup-content">
-			<h2>New here?</h2>
-			<p>Sign up and discover flow events in your area!</p>
+		<!-- SIGN UP -->
+		<section id="signup" class="sub-cont hidden">
+		    
+		    <form class="sign-up">
+				<h2>Find Your Flow,</h2>
 
+				<label for="firstname">First Name
+					<input type="text" id="firstname" name="firstname"/>
+				</label>
+		      
+				<label for="lastname">Last Name
+					<input type="text" id="lastname" name="lastname"/>
+				</label>
+
+				<label for="new-username">Username
+					<input type="text" id="new-username" name="new-username"/>
+				</label>
+
+				<label>Password
+					<input type="password" id="new-password" name="new-password"/>
+				</label>
+
+				<button type="button" class="submit" role="button">Sign Up</button>
+				<p class="have-account">I've got an account</p>
+
+		    </form>
+		    
 		</section>
 	</main>
+
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- javaScript -->
+<script type="text/javascript" src="../js/login.js"></script>
 </body>
 </html>

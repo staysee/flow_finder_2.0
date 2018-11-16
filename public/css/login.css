@@ -1,3 +1,101 @@
 * {
 	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
+
+body {
+	font-family: 'Poppins', sans-serif;
+	background: #42584f;
+}
+
+input, button {
+	border: none;
+	outline: none;
+	background: none;
+	font-family: 'Poppins', sans-serif;
+}
+
+button {
+	display: block;
+	margin: 0 auto;
+	width: 260px;
+	height: 36px;
+	border-radius: 30px;
+	color: #fff;
+	font-size: 15px;
+	cursor: pointer;
+	background-color: red;
+}
+
+.hidden {
+	display: none;
+}
+
+#signin, #signup {
+	width: 640px;
+	height: 500px;
+	margin: 0 auto;
+	background-color: rgba(256, 256, 256, 0.3);
+	margin-top: 20px;
+	border-radius: 10px;
+}
+
+/*FORM STYLE*/
+form {
+	position: relative;
+	width: 640px;
+	height: 100%;
+	padding: 50px 30px 0;
+	/*border: 2px solid red;*/
+
+}
+
+h2 {
+	font-size: 26px;
+	text-align: center;
+}
+
+label {
+	display: block;
+	width: 260px;
+	margin: 25px auto;
+	text-align: center;
+	font-size: 12px;
+	color: #cfcfcf; /*light grey*/
+	text-transform: uppercase;
+}
+
+input {
+	display: block;
+	width: 100%;
+	font-size: 16px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+	text-align: center;
+}
+
+.forgot-pass, .create-account, .have-account {
+	text-align: center;
+	font-size: 12px;
+	color: #cfcfcf; /*light grey*/
+	cursor: pointer;
+}
+
+.forgot-pass:hover, .create-account:hover, .have-account:hover {
+	color: #d4af7a; /*gold*/
+}
+
+
+.submit {
+	background-color: #d4af7a; /*gold*/
+	text-transform: uppercase;
+	margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+
+
+
+
+
+
