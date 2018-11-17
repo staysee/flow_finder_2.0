@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 
 const expect = chai.expect;
 
-const { Event } = require('../models');
+const { Event } = require('../models/events');
 const { app, runServer, closeServer } = require('../server.js');
 const { TEST_DATABASE_URL } = require('../config');
 
@@ -90,7 +90,7 @@ describe('Events API Resource', function() {
 			
 			let res;
 			return chai.request(app)
-				.get('/events')
+				.get('/api/events')
 				.then(function(_res){
 					res = _res;
 
@@ -108,7 +108,7 @@ describe('Events API Resource', function() {
 			
 			let resEvent;
 			return chai.request(app)
-				.get('/events')
+				.get('/api/events')
 				.then(function(res){
 					// console.info(res)
 					expect(res).to.have.status(200);
@@ -148,7 +148,7 @@ describe('Events API Resource', function() {
 			const newEvent = generateEventData();
 
 			return chai.request(app)
-			.post('/events')
+			.post('/api/events')
 			.send(newEvent)
 			.then(function(res) {
 				// console.info(res);
@@ -198,7 +198,7 @@ describe('Events API Resource', function() {
 				.findOne()
 				.then(_event => {
 					event = _event;
-					return chai.request(app).delete(`/events/${event.id}`);
+					return chai.request(app).delete(`/api/events/${event.id}`);
 				})
 				.then(res => {
 					expect(res).to.have.status(204);
@@ -232,7 +232,7 @@ describe('Events API Resource', function() {
 				
 					//make request then inspect to make sure it reflects data we sent
 					return chai.request(app)
-						.put(`/events/${event.id}`)
+						.put(`/api/events/${event.id}`)
 						.send(updateData)
 				})
 				.then(res => {

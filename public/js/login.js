@@ -17,6 +17,7 @@ function authenticateUser() {
 	.done(data => {
 		console.log(data);
 		//what do i do with the authToken?
+		localStorage.setItem('jwt', data.authToken);
 	})
 	.fail(err => {
 		console.error(err);

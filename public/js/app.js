@@ -57,7 +57,10 @@ function getEventToUpdate(eventId){
 	$.ajax({
 		method: 'GET',
 		url: `/api/events/${eventId}`,
-		dataType: 'json'
+		dataType: 'json',
+		headers:{
+			"Authorization": `Bearer ${localStorage.getItem('jwt')}`
+		}
 	})
 	.done(function(res){
 		console.log(res);
@@ -103,7 +106,10 @@ function deleteEvent(eventId){
 	$.ajax({
 		method: 'DELETE',
 		url: `/api/events/${eventId}`,
-		contentType: 'application/json'
+		contentType: 'application/json',
+		headers:{
+			"Authorization": `Bearer ${localStorage.getItem('jwt')}`
+		}
 	})
 	.done(() => {
 		getEvents();

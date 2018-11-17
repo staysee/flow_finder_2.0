@@ -24,7 +24,6 @@ const app = express();
 
 app.use(morgan('common'));
 app.use(express.static('public'));
-// app.use(express.json());
 
 passport.use(localStrategy);	//register our local auth strategy	
 passport.use(jwtStrategy);		//register our JWT strategy
