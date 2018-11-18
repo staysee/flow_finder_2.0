@@ -17,7 +17,7 @@ function authenticateUser() {
 	.done(data => {
 		console.log(data);
 		//what do i do with the authToken?
-		localStorage.setItem('jwt', data.authToken);
+		localStorage.setItem('token', data.authToken);
 	})
 	.fail(err => {
 		console.error(err);
@@ -28,7 +28,6 @@ function authenticateUser() {
 function submitLogin(){
 	$('.signin-form').on('submit',function(event){
 		event.preventDefault();
-		// alert('test');
 		authenticateUser();
 	})
 }

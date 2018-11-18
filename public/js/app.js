@@ -59,7 +59,7 @@ function getEventToUpdate(eventId){
 		url: `/api/events/${eventId}`,
 		dataType: 'json',
 		headers:{
-			"Authorization": `Bearer ${localStorage.getItem('jwt')}`
+			"Authorization": `Bearer ${localStorage.getItem('token')}`
 		}
 	})
 	.done(function(res){
@@ -108,7 +108,7 @@ function deleteEvent(eventId){
 		url: `/api/events/${eventId}`,
 		contentType: 'application/json',
 		headers:{
-			"Authorization": `Bearer ${localStorage.getItem('jwt')}`
+			"Authorization": `Bearer ${localStorage.getItem('token')}`
 		}
 	})
 	.done(() => {
@@ -126,20 +126,33 @@ function deleteEvent(eventId){
 function renderEvents(event, index){
 	return `
 		<div class="event-item" data-eventid="${event.id}">
-			<i class="far fa-edit js-fa-edit"></i>
-			<span class="js-delete-button delete-button">&times;</span>
-			<div class="event-image">
-				<img class="event-thumbnail" src="../img/gianni-zanato-461187-unsplash.jpg" alt="rose">
+			<div class="user-options">
+				<i class="far fa-edit js-fa-edit"></i>
+				<span class="js-delete-button delete-button">&times;</span>
 			</div>
-			<div class="event-information">
-				<div class="info-left">
-					<div class="event-name">${event.name}</div>
-					<div class="event-description">${event.description}</div>
-					<div class="event-address">${event.address.building} ${event.address.street} ${event.address.city}, ${event.address.state} ${event.address.zipcode}</div>
+
+			<div class="content">
+				<div class="event-image">
+					<img class="event-thumbnail" src="../img/gianni-zanato-461187-unsplash.jpg" alt="rose">
 				</div>
-				<div class="event-date">${event.date}</div>
-				<div class="event-time">${event.time.startTime} - ${event.time.endTime}</div>
-				<div class="event-prop">${event.prop}</div>
+				<div class="event-information">
+
+					<div class="info-left column">
+						<div class="event-name">${event.name}</div>
+						<div class="event-description">${event.description}</div>
+						<div class="event-address">${event.address.building}<br>${event.address.street}<br>${event.address.city}, ${event.address.state} ${event.address.zipcode}</div>
+					</div>
+
+					<div class="info-middle column">
+						<div class="event-date">${event.date}</div>
+						<div class="event-time">${event.time.startTime} - ${event.time.endTime}</div>
+					</div>
+
+					<div class="info-right column">
+						<div class="event-prop">${event.prop}</div>
+					</div>
+
+				</div>
 			</div>
 		</div>
 	`
@@ -327,10 +340,10 @@ function handleAccount(){
 
 
 
-// $(getEvents);
+$(getEvents);
 $(openModal);
 $(closeModal);
-$(handleShowAllEvents);
+// $(handleShowAllEvents);
 $(watchSubmitEvent);
 $(watchSubmitEditedEvent);
 $(handleDeleteEvents);

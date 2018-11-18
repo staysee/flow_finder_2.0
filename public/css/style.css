@@ -102,14 +102,16 @@ h1{
 
 .closeModal, .delete-button {
     color: #aaa;
-    float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
+.user-options{
+    float: right;
+    border: 2px solid blue;
+}
 .fa-edit {
     color: #aaa;
-    float: right;
     font-size: 20px;
     margin: 9px;
 }
@@ -129,32 +131,65 @@ h1{
 
 
 /*SHOW EVENTS*/
+.events-all {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+}
 .event-item {
-    background-color: #61738ad4;
+    background-color: #85888cd4;
     border: 2px solid #a1a2a5eb;
     border-radius: 3px;
-    width: 90%;
     margin: 0 auto;
     padding: 15px;
     overflow: hidden;
 }
 
+.content {
+    border: 2px solid white;
+    clear: right;
+    overflow: hidden;
+}
 .event-image {
-    width: 200px;
-    /*border: 2px solid red;*/
-    display: inline-block;
+    display:inline;
 }
+
 .event-thumbnail {
-    width: 100%;
-    /*border: 2px solid green;*/
+    width: 20%;
+    border: 2px solid green;
 
 }
 
+.event-address {
+    font-style: italic;
+    margin-top: 20px;
+}
+
+.column {
+    float: left;
+    padding: 10px;
+}
+
+.info-left {
+    width: 60%;
+}
+
+.info-middle {
+    width: 25%;
+    margin-top: 25px;
+}
+
+.info-right {
+    width: 15%;
+    margin-top:25px;
+}
 .event-information {
-    float: right;
-    width:50%;
-    /*border: 2px solid red;*/
+    border: 2px solid red;
     display: inline-block;
+    width: 80%;
+    float: right;
 }
 
 .event-name {
@@ -238,6 +273,67 @@ fieldset {
 #save-event-button:hover {
     background-color: #1BA64B;
 }
+
+
+
+
+/*MEDIA QUERIES*/
+/*small devices (phones, 600px and down)*/
+@media only screen and (max-width: 600px){
+    body {
+        font-size: 11px;
+    }
+    .nav-links {
+        font-size: 12px;
+    }
+    .logo {
+        font-size: 15px;
+    }
+    .event-thumbnail {
+        width: 20%;
+    }
+    .event-name {
+        font-size: 14px;
+    }
+    .event-information {
+        margin-left: 0;
+        width: 80%;
+    }
+
+}
+
+@media only screen and (max-width: 768px){
+    /*.event-item {
+        flex: 0 1 calc(50%-1em);
+    }*/
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
