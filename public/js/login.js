@@ -15,39 +15,73 @@ function authenticateUser() {
 		contentType: 'application/json'
 	})
 	.done(data => {
-		console.log(data);
-		//what do i do with the authToken?
-		localStorage.setItem('token', data.authToken);
+		console.log(user);
+		const authTokenStr = data.authToken;
+		localStorage.setItem('token', authTokenStr);
+		$('#login').addClass('hidden');
 	})
 	.fail(err => {
 		console.error(err);
+		$('.login-message').html('Invalid username or password');
 	})
 }
 
 
+function createUser(){
+	const newUser = {
+		username: $('#new-username').val(),
+		password: $('#new-password').val(),
+		firstName: $('#firstname').val(),
+		lastName: $('#lastname').val()
+	}
+
+	$.ajax({
+		method: 'POST',
+		url: '/api/users',
+		data: JSON.stringify(newUser),
+		dataType: 'JSON',
+		contentType: 'application/json'
+	})
+	.done(data => {
+		console.log(data);
+	})
+	.fail(err => {
+		console.error(err)
+	})
+}
+
+
+
+function registerUser(){
+	$('.register-form').on('submit',function(event){
+		event.preventDefault();
+		createUser();
+	})
+}
+
 function submitLogin(){
-	$('.signin-form').on('submit',function(event){
+	$('.login-form').on('submit',function(event){
 		event.preventDefault();
 		authenticateUser();
 	})
 }
 
 
-function getSignUp() {
-	$('#signin').on('click', '.create-account', function() {
-		$('#signin').addClass('hidden');
-		$('#signup').removeClass('hidden');
+function getRegister() {
+	$('#login').on('click', '.create-account', function() {
+		$('#login').addClass('hidden');
+		$('#register').removeClass('hidden');
 	})
 }
 
-function getSignIn() {
-	$('#signup').on('click', '.have-account', function() {
-		$('#signup').addClass('hidden');
-		$('#signin').removeClass('hidden');
+function getLogIn() {
+	$('#register').on('click', '.have-account', function() {
+		$('#register').addClass('hidden');
+		$('#login').removeClass('hidden');
 	})
 }
 
-
+$(registerUser);
 $(submitLogin);
-$(getSignUp);
-$(getSignIn);
+$(getRegister);
+$(getLogIn);

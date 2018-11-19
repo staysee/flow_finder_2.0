@@ -1,0 +1,66 @@
+/*SHOW EVENTS*/
+.events-all {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+}
+.event-item {
+    background-color: #85888cd4;
+    border: 2px solid #a1a2a5eb;
+    border-radius: 3px;
+    margin: 0 auto;
+    padding: 15px;
+    overflow: hidden;
+}
+
+.content {
+    border: 2px solid white;
+    clear: right;
+    overflow: hidden;
+}
+.event-image {
+    display:inline;
+}
+
+.event-thumbnail {
+    width: 20%;
+    border: 2px solid green;
+
+}
+
+.event-address {
+    font-style: italic;
+    margin-top: 20px;
+}
+
+.column {
+    float: left;
+    padding: 10px;
+}
+
+.info-left {
+    width: 60%;
+}
+
+.info-middle {
+    width: 25%;
+    margin-top: 25px;
+}
+
+.info-right {
+    width: 15%;
+    margin-top:25px;
+}
+.event-information {
+    border: 2px solid red;
+    display: inline-block;
+    width: 80%;
+    float: right;
+}
+
+.event-name {
+    font-size: 18px;
+    font-weight: bold;
+}

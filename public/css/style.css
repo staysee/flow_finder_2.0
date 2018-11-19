@@ -9,28 +9,30 @@ body {
     background-color: black;
 }
 
+
+main {
+    padding-top: 50px;
+}
+
+h1 {
+    font-family: 'Bungee Inline', cursive;
+    font-size: 24px;
+}
+
+.hidden {
+    display: none;
+}
+
+
 #container {
 	background-image: url('../img/timothy-paul-smith-218074-unsplash.jpg');
-	background-size: 100%;
+	background-size: cover;
 	background-repeat: no-repeat;
 	height: 100vh;
 	padding-top:50px;
 }
 
-main {
-	padding-top: 50px;
-}
-
-h1{
-	/*font-family: 'Poppins', sans-serif;*/
-	/*font-family: 'Baloo Bhaijaan', cursive;*/
-	/*font-family: 'Chelsea Market', cursive;*/
-	font-family: 'Bungee Inline', cursive;
-	font-size: 24px;
-}
-
-
-/*NAV BAR*/
+/*NAVIGATION BAR*/
 .navbar {
 	position: fixed;
 	top: 0;
@@ -74,7 +76,7 @@ h1{
 }
 
 
-/*CREATE EVENT MODAL*/
+/*EVENT CREATE & UPDATE MODAL*/
 .modal {
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -87,10 +89,6 @@ h1{
     background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
 }
 
-.hidden {
-	display: none;
-}
-
 .modal-content {
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
@@ -98,6 +96,10 @@ h1{
     border: 1px solid #888;
     border-radius: 15px;
     width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.closeModal {
+    float: right;
 }
 
 .closeModal, .delete-button {
@@ -127,78 +129,7 @@ h1{
     cursor: pointer;
 }
 
-
-
-
-/*SHOW EVENTS*/
-.events-all {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 90%;
-    margin: 0 auto;
-}
-.event-item {
-    background-color: #85888cd4;
-    border: 2px solid #a1a2a5eb;
-    border-radius: 3px;
-    margin: 0 auto;
-    padding: 15px;
-    overflow: hidden;
-}
-
-.content {
-    border: 2px solid white;
-    clear: right;
-    overflow: hidden;
-}
-.event-image {
-    display:inline;
-}
-
-.event-thumbnail {
-    width: 20%;
-    border: 2px solid green;
-
-}
-
-.event-address {
-    font-style: italic;
-    margin-top: 20px;
-}
-
-.column {
-    float: left;
-    padding: 10px;
-}
-
-.info-left {
-    width: 60%;
-}
-
-.info-middle {
-    width: 25%;
-    margin-top: 25px;
-}
-
-.info-right {
-    width: 15%;
-    margin-top:25px;
-}
-.event-information {
-    border: 2px solid red;
-    display: inline-block;
-    width: 80%;
-    float: right;
-}
-
-.event-name {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-
-/*FORM*/
+/*EVENT FORM*/
 input, textarea, select, button {
   width : 100%;
   height: 25px;
@@ -207,7 +138,7 @@ input, textarea, select, button {
 
 }
 
-button {
+input, button {
     font-family: 'Poppins', sans-serif;
 }
 
@@ -273,6 +204,7 @@ fieldset {
 #save-event-button:hover {
     background-color: #1BA64B;
 }
+
 
 
 

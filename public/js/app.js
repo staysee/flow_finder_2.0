@@ -340,7 +340,7 @@ function handleAccount(){
 
 
 
-$(getEvents);
+// $(getEvents);
 $(openModal);
 $(closeModal);
 // $(handleShowAllEvents);

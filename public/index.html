@@ -8,6 +8,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="../css/login.css">
+	<link rel="stylesheet" type="text/css" href="../css/events.css">
+
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Bungee+Inline|Chelsea+Market|Poppins" rel="stylesheet">
 	<!-- Font Awesome -->
@@ -20,27 +23,73 @@
 			<nav role="navigation" class="navbar">
 				<a href="#" class="logo">Flow Finder</a>
 				<ul class="main-nav" id="js-menu">
-					<li><a href="#" class="nav-links">Home</a></li>
-					<li><a href="#" id="browseLink" class="nav-links">Browse Events</a></li>
+					<!-- <li><a href="#" class="nav-links">Home</a></li> -->
+					<!-- <li><a href="#" id="browseLink" class="nav-links">Browse Events</a></li> -->
 					<li><a href="#" id="createLink" class="nav-links">Create Event</a></li>
-					<li><a href="#" id="accountLink" class="nav-links">Account</a></li>
+					<li><a href="#" id="accountLink" class="nav-links hidden">Account</a></li>
 				</ul>
 			</nav>
 		</header>
 
 		<main role="main">
+			<!-- LOGIN FORM -->
+			<section id="login" class="cont">
+			 	<form class="login-form">
+					<h2>Welcome back,</h2>
+
+					<label for="username">Username
+						<input type="text" id="username" name="username"/>
+					</label>
+			    
+					<label>Password
+						<input type="password" id="password" name="password"/>
+					</label>
+					<p class="message">ERROR: Invalid username or password</p>
+			    	<button type="submit" class="submit" role="button">Sign In</button>
+					<p class="forgot-pass">Forgot password?</p>
+					<p class="create-account">New here? Create an account</p>
+			    </form>
+			</section>
+			<!-- REGISTER FORM -->
+			<section id="register" class="sub-cont hidden">
+			    <form class="register-form">
+					<h2>Find Your Flow,</h2>
+
+					<label for="firstname">First Name
+						<input type="text" id="firstname" name="firstname"/>
+					</label>
+			      
+					<label for="lastname">Last Name
+						<input type="text" id="lastname" name="lastname"/>
+					</label>
+
+					<label for="new-username">Username
+						<input type="text" id="new-username" name="new-username"/>
+					</label>
+
+					<label>Password
+						<input type="password" id="new-password" name="new-password"/>
+					</label>
+
+					<button type="submit" class="submit" role="button">Sign Up</button>
+					<p class="have-account">I've got an account</p>
+			    </form>
+			</section>
+
+			<!-- CREATE EVENT MODAL -->
 			<section id="createModal" class="modal hidden" role="region">
 				<div class="modal-content">
 					<span class="closeModal">&times;</span>
+
 					<h2 class="form-heading"></h2>
 					<form id="create-event-form" class="js-event-form">
-						<!-- Event Name -->
+		
 						<label for="event-name">Event Name</label>
 						<input type="text" name="event-name" id="event-name" placeholder="Event Name" required>
-						<!-- Event Description -->
+
 						<label for="event-description">Description</label>
 						<input type="text" name="event-description" id="event-description" placeholder="Describe your event..." required>
-						<!-- Prop -->
+
 						<label for="event-prop">Prop</label>
 						<select id="event-prop" name="props" required>
 							<option value="Hoop">Hoop</option>
@@ -53,32 +102,32 @@
 						<!-- Event Address -->
 						<fieldset class="form-location">
 							<legend>Location</legend>
-							<!-- Venue -->
+
 							<label for="event-venue">Venue</label>
 							<input type="text" name="event-venue" id="event-venue" placeholder="Venue name">
-							<!-- Street -->
+
 							<label for="event-street">Street Address</label>
 							<input type="text" name="event-street" id="event-street" placeholder="Street Address" required>
-							<!-- City -->
+							
 							<label for="event-city">City</label>
 							<input type="text" name="event-city" id="event-city" placeholder="City" required>
-							<!-- State -->
+							
 							<label for="event-state">State</label>
 							<input type="text" name="event-state" id="event-state" placeholder="State" required>
-							<!-- Zipcode -->
+							
 							<label for="event-zipcode">Zip/Postal</label>
 							<input type="text" name="event-zipcode" id="event-zipcode" placeholder="Zip/Postal Code" required>
 						</fieldset>
-
+						<!-- Date Time -->
 						<fieldset class="form-datetime">
 						<legend>Date & Time</legend>
 							<i class="far fa-calendar-alt"></i>
-							<!-- Event Date -->
+							
 							<div class="date">
 								<label for="event-date">Date</label>
 								<input id="event-date" type="date" name="event-date" required>
 							</div>
-							<!-- Event Time -->
+							
 								<i class="far fa-clock"></i>
 							<div class="time">
 								<label for="event-starttime">Start</label>
@@ -89,61 +138,60 @@
 						</fieldset>
 						<button role="button" id="save-event-button" type="submit">Save Event</button>
 					</form>
-				</div> <!--end modal-content -->
+				</div> <!--end create modal-content -->
 			</section>
 
-
+			<!-- EDIT MODAL -->
 			<section id="editModal" class="modal hidden" role="region">
 				<div class="modal-content">
 					<span class="closeModal">&times;</span>
 					<h2 class="form-heading"></h2>
 					<form id="edit-event-form" class="js-edit-event-form">
-						<!-- Event Name -->
+						
 						<label for="edit-name">Event Name</label>
 						<input type="text" name="edit-name" id="edit-name" placeholder="Event Name" required>
-						<!-- Event Description -->
+						
 						<label for="edit-description">Description</label>
 						<input type="text" name="edit-description" id="edit-description" placeholder="Describe your event..." required>
-						<!-- Prop -->
+						
 						<label for="edit-prop">Prop</label>
 						<select id="edit-prop" name="props" required>
 							<option value="Hoop">Hoop</option>
 							<option value="Poi">Poi</option>
 							<option value="Staff">Staff</option>
 							<option value="Fans">Fans</option>
-							<option value="Ropedart">Rope Dart</option>
 							<option value="Aerial">Aerial</option>
 							<option value="Other">Other</option>
 						</select>
 						<!-- Event Address -->
 						<fieldset class="form-location">
 							<legend>Location</legend>
-							<!-- Venue -->
+							
 							<label for="edit-venue">Venue</label>
 							<input type="text" name="edit-venue" id="edit-venue" placeholder="Venue name">
-							<!-- Street -->
+							
 							<label for="edit-street">Street Address</label>
 							<input type="text" name="edit-street" id="edit-street" placeholder="Street Address" required>
-							<!-- City -->
+							
 							<label for="edit-city">City</label>
 							<input type="text" name="edit-city" id="edit-city" placeholder="City" required>
-							<!-- State -->
+							
 							<label for="edit-state">State</label>
 							<input type="text" name="edit-state" id="edit-state" placeholder="State" required>
-							<!-- Zipcode -->
+							
 							<label for="edit-zipcode">Zip/Postal</label>
 							<input type="text" name="edit-zipcode" id="edit-zipcode" placeholder="Zip/Postal Code" required>
 						</fieldset>
-
+						<!-- Date Time -->
 						<fieldset class="form-datetime">
 						<legend>Date & Time</legend>
 							<i class="far fa-calendar-alt"></i>
-							<!-- Event Date -->
+							
 							<div class="date">
 								<label for="edit-date">Date</label>
 								<input id="edit-date" type="date" name="edit-date" required>
 							</div>
-							<!-- Event Time -->
+							
 								<i class="far fa-clock"></i>
 							<div class="time">
 								<label for="edit-starttime">Start</label>
@@ -154,7 +202,7 @@
 						</fieldset>
 						<button role="button" id="edit-event-button" type="submit">Update Event</button>
 					</form>
-				</div> <!--end modal-content -->
+				</div> <!--end edit modal-content -->
 			</section>
 
 
@@ -163,7 +211,7 @@
 
 			<section role="region" class="event-display">
 				<!-- <button class="js-show-button show-events-button" role="button">Flow Events</button> -->
-				
+
 				<div class="events-all"></div>
 			</section>
 
@@ -175,5 +223,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- javaScript -->
 <script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="../js/login.js"></script>
+
 </body>
 </html>

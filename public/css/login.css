@@ -1,22 +1,66 @@
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+#login, #register {
+	width: 50%;
+	margin: 0 auto;
+	background-color: rgba(256, 256, 256, 0.7);
+	margin-top: 20px;
+	border-radius: 10px;
 }
 
-body {
-	font-family: 'Poppins', sans-serif;
-	background: #42584f;
+#login {
+	height: 400px;
 }
 
-input, button {
+/*LOGIN & REGISTER FORM*/
+.login-form, .register-form {
+	padding: 45px;
+	overflow: hidden;
+}
+
+h2 {
+	font-size: 26px;
+	text-align: center;
+}
+
+.login-form label,
+.register-form label {
+	display: block;
+	width: 70%;
+	margin: 10px auto;
+	text-align: center;
+	color: #30373a;
+	text-transform: uppercase;
+}
+
+
+.login-form input, .login-form button,
+.register-form input, .register-form button {
 	border: none;
 	outline: none;
-	background: none;
-	font-family: 'Poppins', sans-serif;
 }
 
-button {
+.login-form input
+.register-form input {
+	display: block;
+	width: 100%;
+	font-size: 16px;
+	text-align: center;
+}
+
+.login-form input,
+.register-form input {
+	background: none;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.login-form button,
+.register-form button {
+	color: #fff;
+	border-radius: 30px;
+	font-size: 15px;
+	height: 36px;
+	margin: 0 auto;
+}
+/*button {
 	display: block;
 	margin: 0 auto;
 	width: 260px;
@@ -25,59 +69,13 @@ button {
 	color: #fff;
 	font-size: 15px;
 	cursor: pointer;
-	background-color: red;
-}
+}*/
 
-.hidden {
-	display: none;
-}
-
-#signin, #signup {
-	width: 640px;
-	height: 500px;
-	margin: 0 auto;
-	background-color: rgba(256, 256, 256, 0.3);
-	margin-top: 20px;
-	border-radius: 10px;
-}
-
-/*FORM STYLE*/
-form {
-	position: relative;
-	width: 640px;
-	height: 100%;
-	padding: 50px 30px 0;
-	/*border: 2px solid red;*/
-
-}
-
-h2 {
-	font-size: 26px;
-	text-align: center;
-}
-
-label {
-	display: block;
-	width: 260px;
-	margin: 25px auto;
-	text-align: center;
-	font-size: 12px;
-	color: #cfcfcf; /*light grey*/
-	text-transform: uppercase;
-}
-
-input {
-	display: block;
-	width: 100%;
-	font-size: 16px;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-	text-align: center;
-}
 
 .forgot-pass, .create-account, .have-account {
 	text-align: center;
 	font-size: 12px;
-	color: #cfcfcf; /*light grey*/
+	color:  #30373a;
 	cursor: pointer;
 }
 
@@ -92,6 +90,31 @@ input {
 	margin-top: 40px;
     margin-bottom: 20px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
