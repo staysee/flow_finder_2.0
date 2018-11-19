@@ -50,31 +50,23 @@ h2 {
 .register-form input {
 	background: none;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+	text-align: center;
 }
 
 .login-form button,
 .register-form button {
-	color: #fff;
-	border-radius: 30px;
-	font-size: 15px;
-	height: 36px;
-	margin: 0 auto;
-}
-/*button {
 	display: block;
-	margin: 0 auto;
-	width: 260px;
-	height: 36px;
-	border-radius: 30px;
 	color: #fff;
+	border-radius: 30px;
 	font-size: 15px;
-	cursor: pointer;
-}*/
-
+	height: 36px;
+	width: 60%;
+	margin: 20px auto 10px;
+}
 
 .forgot-pass, .create-account, .have-account {
 	text-align: center;
-	font-size: 12px;
+	font-size: 11px;
 	color:  #30373a;
 	cursor: pointer;
 }
@@ -87,8 +79,14 @@ h2 {
 .submit {
 	background-color: #d4af7a; /*gold*/
 	text-transform: uppercase;
-	margin-top: 40px;
-    margin-bottom: 20px;
+}
+
+.message {
+	color: red;
+	font-weight: bolder;
+	margin-top: 25px;
+	text-align: center;
+	text-transform: uppercase;
 }
 
 
