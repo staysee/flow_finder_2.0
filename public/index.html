@@ -25,8 +25,10 @@
 				<ul class="main-nav" id="js-menu">
 					<!-- <li><a href="#" class="nav-links">Home</a></li> -->
 					<!-- <li><a href="#" id="browseLink" class="nav-links">Browse Events</a></li> -->
-					<li><a href="#" id="createLink" class="nav-links">Create Event</a></li>
+					<li><a href="#" id="createLink" class="nav-links hidden">Create Event</a></li>
 					<li><a href="#" id="accountLink" class="nav-links hidden">Account</a></li>
+					<li><a href="#" id="LogOut" class="nav-links hidden">Log Out</a></li>
+
 				</ul>
 			</nav>
 		</header>
@@ -38,16 +40,16 @@
 					<h2>Welcome back,</h2>
 
 					<label for="username">Username
-						<input type="text" id="username" name="username"/>
+						<input type="text" id="username" name="username" required/>
 					</label>
 			    
 					<label>Password
-						<input type="password" id="password" name="password"/>
+						<input type="password" id="password" name="password" required/>
 					</label>
 			    	<button type="submit" class="submit" role="button">Sign In</button>
 					<p class="forgot-pass">Forgot password?</p>
 					<p class="create-account">New here? Create an account</p>
-					<p class="message">ERROR: Invalid username or password</p>
+					<p class="message"></p>
 			    </form>
 			</section>
 			<!-- REGISTER FORM -->
@@ -56,19 +58,19 @@
 					<h2>Find Your Flow,</h2>
 
 					<label for="firstname">First Name
-						<input type="text" id="firstname" name="firstname"/>
+						<input type="text" id="firstname" name="firstname" required/>
 					</label>
 			      
 					<label for="lastname">Last Name
-						<input type="text" id="lastname" name="lastname"/>
+						<input type="text" id="lastname" name="lastname" required/>
 					</label>
 
 					<label for="new-username">Username
-						<input type="text" id="new-username" name="new-username"/>
+						<input type="text" id="new-username" name="new-username" required/>
 					</label>
 
 					<label>Password
-						<input type="password" id="new-password" name="new-password"/>
+						<input type="password" id="new-password" name="new-password" required/>
 					</label>
 
 					<button type="submit" class="submit" role="button">Sign Up</button>

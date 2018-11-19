@@ -19,10 +19,16 @@ function authenticateUser() {
 		const authTokenStr = data.authToken;
 		localStorage.setItem('token', authTokenStr);
 		$('#login').addClass('hidden');
+		$('#createLink').removeClass('hidden');
+		$('#LogOut').removeClass('hidden');
+
 	})
 	.fail(err => {
 		console.error(err);
-		$('.login-message').html('Invalid username or password');
+		$('.message').html('Invalid username or password');
+		//clear fields
+		$('#username').val("");
+		$('#password').val("");
 	})
 }
 
@@ -36,14 +42,21 @@ function createUser(){
 	}
 
 	$.ajax({
-		method: 'POST',
 		url: '/api/users',
+		method: 'POST',
 		data: JSON.stringify(newUser),
-		dataType: 'JSON',
+		dataType: 'json',
 		contentType: 'application/json'
 	})
 	.done(data => {
 		console.log(data);
+		console.log(data.username);
+		$('#register').addClass('hidden');
+		//login
+		$('#username').val(data.username);
+		$('.message').html(`Registration successful. <br> Please sign in!`);
+		$('.message').css('color', 'green');
+		$('#login').removeClass('hidden');
 	})
 	.fail(err => {
 		console.error(err)
@@ -51,7 +64,12 @@ function createUser(){
 }
 
 
-
+function logOutUser(){
+	$('#LogOut').on('click', function(event){
+		event.preventDefault();
+		location.reload();
+	})
+}
 function registerUser(){
 	$('.register-form').on('submit',function(event){
 		event.preventDefault();
@@ -81,6 +99,7 @@ function getLogIn() {
 	})
 }
 
+$(logOutUser);
 $(registerUser);
 $(submitLogin);
 $(getRegister);

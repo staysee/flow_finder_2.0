@@ -7,12 +7,12 @@
 }
 
 #login {
-	height: 400px;
+	height: 356px;
 }
 
 /*LOGIN & REGISTER FORM*/
 .login-form, .register-form {
-	padding: 45px;
+	padding: 30px;
 	overflow: hidden;
 }
 
@@ -84,7 +84,7 @@ h2 {
 .message {
 	color: red;
 	font-weight: bolder;
-	margin-top: 25px;
+	margin-top: 10px;
 	text-align: center;
 	text-transform: uppercase;
 }
