@@ -104,18 +104,8 @@ h1 {
 
 .closeModal, .delete-button {
     color: #aaa;
-    font-size: 28px;
+    font-size: 16px;
     font-weight: bold;
-}
-
-.user-options{
-    float: right;
-    border: 2px solid blue;
-}
-.fa-edit {
-    color: #aaa;
-    font-size: 20px;
-    margin: 9px;
 }
 
 .fa-edit:hover,

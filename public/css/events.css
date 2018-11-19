@@ -8,17 +8,17 @@
 }
 .event-item {
     background-color: #85888cd4;
-    border: 2px solid #a1a2a5eb;
     border-radius: 3px;
-    margin: 0 auto;
+    margin: 2px auto;
     padding: 15px;
     overflow: hidden;
+    /*border: 2px solid #a1a2a5eb;*/
 }
 
 .content {
-    border: 2px solid white;
     clear: right;
     overflow: hidden;
+    /*border: 2px solid white;*/
 }
 .event-image {
     display:inline;
@@ -26,7 +26,7 @@
 
 .event-thumbnail {
     width: 20%;
-    border: 2px solid green;
+    /*border: 2px solid green;*/
 
 }
 
@@ -54,13 +54,23 @@
     margin-top:25px;
 }
 .event-information {
-    border: 2px solid red;
     display: inline-block;
     width: 80%;
     float: right;
+    /*border: 2px solid red;*/
 }
 
 .event-name {
     font-size: 18px;
     font-weight: bold;
+}
+
+.user-options{
+    float: right;
+    /*border: 2px solid blue;*/
+}
+.fa-edit {
+    color: #aaa;
+    font-size: 14px;
+    margin: 9px;
 }

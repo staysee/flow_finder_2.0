@@ -21,6 +21,7 @@ function authenticateUser() {
 		$('#login').addClass('hidden');
 		$('#createLink').removeClass('hidden');
 		$('#LogOut').removeClass('hidden');
+		getEvents();
 
 	})
 	.fail(err => {
