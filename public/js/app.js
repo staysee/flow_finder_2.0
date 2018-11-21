@@ -13,7 +13,6 @@ function getEvents(){
 	.done(function(res){
 		eventData = res.events;
 		console.log(eventData);
-
 		displayEvents(eventData);
 	})
 	.fail(err => {
@@ -154,7 +153,6 @@ function renderEvents(event, index){
 					<div class="info-right column">
 						<div class="event-prop">${event.prop}</div>
 					</div>
-
 				</div>
 			</div>
 		</div>

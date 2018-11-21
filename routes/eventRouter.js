@@ -1,10 +1,11 @@
 const express = require('express')
 const router = express.Router()
-
+const ObjectId = require('mongodb').ObjectID;
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
 const { Event } = require('../models/events');
+const { User } = require('../models/users');
 
 
 //send JSON representation of all events on GET requests to root
@@ -46,6 +47,10 @@ router.post('/', jsonParser, (req, res) => {
 		}
 	}
 
+	let userID;
+	//GET to find userObjectId
+	//Store the ObjectId into a variable thn pass it into user in Event create
+
 	Event
 		.create({
 			name: req.body.name,
@@ -62,7 +67,8 @@ router.post('/', jsonParser, (req, res) => {
 				startTime: req.body.time.startTime,
 				endTime: req.body.time.endTime
 			},
-			prop: req.body.prop
+			prop: req.body.prop,
+			user: currentUser.user.id
 		})
 		.then(event => res.status(201).json(event.serialize()))	//201=Created
 		.catch(err => {

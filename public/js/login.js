@@ -1,6 +1,8 @@
 //--------------------------//
 //	   AUTH- AJAX CALLS		//
 //--------------------------//
+let currentUser;
+
 function authenticateUser() {
 	const user = {
 		username: $('#username').val(),
@@ -18,6 +20,10 @@ function authenticateUser() {
 		console.log(user.username);
 		const authTokenStr = data.authToken;
 		localStorage.setItem('token', authTokenStr);
+		// localStorage.setItem('username', user.username);
+		currentUser = parseJwt(authTokenStr);
+		console.log(currentUser);
+
 		$('#login').addClass('hidden');
 		$('#createLink').removeClass('hidden');
 		$('#LogOut').removeClass('hidden');
@@ -65,6 +71,14 @@ function createUser(){
 		$('.registration-message').html(err.responseJSON.message);
 	})
 }
+
+
+function parseJwt(token){
+	let base64Url = token.split('.')[1];
+	let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+	return JSON.parse(window.atob(base64));
+}
+
 
 
 function logOutUser(){

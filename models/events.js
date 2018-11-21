@@ -43,7 +43,8 @@ eventSchema.methods.serialize = function() {
 		date: this.date,
 		time: this.time,
 		prop: this.prop,
-		user: this.user
+		user: this.user,
+		created: this.created
 	};
 }
 
