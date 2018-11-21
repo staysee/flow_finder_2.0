@@ -18,7 +18,8 @@ const UserSchema = mongoose.Schema({
 		required: true
 	},
 	firstName: {type: String, default: ''},
-	lastName: {type: String, default: ''}
+	lastName: {type: String, default: ''},
+	created: {type: Date, default: Date.now}
 });
 
 //return user item but not password

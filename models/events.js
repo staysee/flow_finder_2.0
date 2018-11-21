@@ -18,7 +18,14 @@ const eventSchema = mongoose.Schema({
 		endTime: String
 	},
 	prop: String,
-	user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+	user: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User'
+	},
+	created: {
+		type: Date,
+		default: Date.now
+	}
 })
 
 //derived properties for clients who only need a human-readable string

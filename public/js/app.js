@@ -44,7 +44,8 @@ function postEvent(newEventData){
 			contentType: 'application/json',
 	})
 	.done((res) => {
-		displayEvents(res);
+		// displayEvents(res);
+		getEvents();
 		$('#createModal').addClass('hidden');
 	})
 	.fail(err => {
@@ -96,6 +97,8 @@ function updateEvent(eventId, event){
 	})
 	.done(() => {
 		console.log('The Event was Updated');
+		$('#editModal').addClass('hidden');
+		getEvents();
 	})
 	.fail(err => {
 		console.error(err);
@@ -172,37 +175,6 @@ function getDate(eventDate) {
 	let date = new Date(eventDate)
 	let fullDate = [date.getMonth()+1, date.getDate(), date.getFullYear()].join('/');
 	return fullDate;
-}
-
-
-
-
-//WORKING ON THIS TO COMBINE POST AND PUT
-function saveEvent(event){
-	$('.js-event-form').submit(function(event) {
-		event.preventDefault();
-		
-		const newEventData = {
-			name: $('#event-name').val(),
-			description:$('#event-description').val(),
-			address: {
-				building: $('#event-venue').val(),
-				street: $('#event-street').val(),
-				city: $('#event-city').val(),
-				state: $('#event-state').val(),
-				zipcode: $('#event-zipcode').val()
-			},
-			date: getDate($('#event-date').val()),
-			time: {
-				startTime: $('#event-starttime').val(),
-				endTime: $('#event-endtime').val()
-			},
-			prop: $('#event-prop').val()
-		}
-		console.log(newEventData);
-	})
-
-	postEvent();
 }
 
 
@@ -330,14 +302,6 @@ function handleUpdateEvent(){
 	})
 }
 
-// LINKS
-function handleAccount(){
-	$('#accountLink').click(function(event) {
-		event.preventDefault()
-		window.location.replace("/views/login.html")
-	})
-}
-
 
 
 // $(getEvents);
@@ -348,7 +312,6 @@ $(watchSubmitEvent);
 $(watchSubmitEditedEvent);
 $(handleDeleteEvents);
 $(handleUpdateEvent);
-$(handleAccount);
 
 
 

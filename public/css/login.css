@@ -10,6 +10,10 @@
 	height: 356px;
 }
 
+#register {
+	height: 460px;
+}
+
 /*LOGIN & REGISTER FORM*/
 .login-form, .register-form {
 	padding: 30px;
@@ -89,34 +93,17 @@ h2 {
 	text-transform: uppercase;
 }
 
+.registration-message {
+	color: red;
+	font-weight: bolder;
+	text-align: center;
+	text-transform: uppercase;
+	margin-top: 10px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.register-form {
+	padding-bottom: 10px;
+}
 
 
 

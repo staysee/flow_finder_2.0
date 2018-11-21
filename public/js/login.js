@@ -15,7 +15,7 @@ function authenticateUser() {
 		contentType: 'application/json'
 	})
 	.done(data => {
-		console.log(user);
+		console.log(user.username);
 		const authTokenStr = data.authToken;
 		localStorage.setItem('token', authTokenStr);
 		$('#login').addClass('hidden');
@@ -61,6 +61,8 @@ function createUser(){
 	})
 	.fail(err => {
 		console.error(err)
+		console.error(err.responseJSON.message);
+		$('.registration-message').html(err.responseJSON.message);
 	})
 }
 
