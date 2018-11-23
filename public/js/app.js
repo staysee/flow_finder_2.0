@@ -12,7 +12,7 @@ function getEvents(){
 	})
 	.done(function(res){
 		eventData = res.events;
-		console.log(eventData);
+		// console.log(eventData);
 		displayEvents(eventData);
 	})
 	.fail(err => {
@@ -73,7 +73,7 @@ function getEventToUpdate(eventId){
 		$('#edit-city').val(res.address.city);
 		$('#edit-state').val(res.address.state);
 		$('#edit-zipcode').val(res.address.zipcode);
-		$('#edit-date').val(res.date);
+		$('#edit-date').val(updateDate(res.date));
 		$('#edit-starttime').val(res.time.startTime);
 		$('#edit-endtime').val(res.time.endTime);
 		$('#edit-prop').val(res.prop);
@@ -175,6 +175,17 @@ function getDate(eventDate) {
 	return fullDate;
 }
 
+function updateDate(eventDate){
+	console.log(eventDate.split('/'));
+	let dateSplit = eventDate.split('/');
+	let month = dateSplit[0];
+	let date = dateSplit[1]
+	let year = dateSplit[2];
+	let inputDate = `${year}-${month}-${date}`;
+
+	return inputDate
+}
+
 
 
 //--------------------------//
@@ -227,7 +238,9 @@ function handleShowAllEvents(){
 function watchSubmitEvent(){
 	$('#create-event-form').submit(function(event) {
 		event.preventDefault();
-		
+		const authTokenStr = localStorage.getItem('token');
+		let currentUser = parseJwt(authTokenStr)
+
 		const EventData = {
 			name: $('#event-name').val(),
 			description:$('#event-description').val(),
@@ -243,11 +256,12 @@ function watchSubmitEvent(){
 				startTime: $('#event-starttime').val(),
 				endTime: $('#event-endtime').val()
 			},
-			prop: $('#event-prop').val()
+			prop: $('#event-prop').val(),
+			user: currentUser.user.id
 		}
 		console.log(EventData);
+		console.log(currentUser.user.id)
 		
-
 		postEvent(EventData);
 		// clearEventForm();
 	})

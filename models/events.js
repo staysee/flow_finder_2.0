@@ -45,7 +45,7 @@ eventSchema.methods.serialize = function() {
 		prop: this.prop,
 		user: this.user,
 		created: this.created
-	};
+	}
 }
 
 const Event = mongoose.model('Event', eventSchema);

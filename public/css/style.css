@@ -185,76 +185,15 @@ fieldset {
     /*margin-bottom: 20px;*/
 }
 
-#save-event-button {
+#save-event-button, #edit-event-button {
     margin-top: 15px; 
     background-color: #76bf96;
     border-color: #76bf96
 }
 
-#save-event-button:hover {
+#save-event-button:hover, #edit-event-button:hover {
     background-color: #1BA64B;
 }
-
-
-
-
-
-/*MEDIA QUERIES*/
-/*small devices (phones, 600px and down)*/
-@media only screen and (max-width: 600px){
-    body {
-        font-size: 11px;
-    }
-    .nav-links {
-        font-size: 12px;
-    }
-    .logo {
-        font-size: 15px;
-    }
-    .event-thumbnail {
-        width: 20%;
-    }
-    .event-name {
-        font-size: 14px;
-    }
-    .event-information {
-        margin-left: 0;
-        width: 80%;
-    }
-
-}
-
-@media only screen and (max-width: 768px){
-    /*.event-item {
-        flex: 0 1 calc(50%-1em);
-    }*/
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

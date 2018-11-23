@@ -1,0 +1,85 @@
+
+/*MEDIA QUERIES*/
+/*small devices (phones, 600px and down)*/
+@media only screen and (max-width: 719px){
+    body {
+        font-size: 11px;
+        min-width: 320px;
+    }
+    .navbar {
+        min-width: 320px;
+    }
+    .nav-links {
+        font-size: 11px;
+    }
+    .logo {
+        font-size: 15px;
+    }
+
+    #login, #register {
+        width: 75%;
+        min-width: 225px;
+    }
+
+    #login {
+        height: 340px;
+    }
+    #register {
+        height: 445px;
+    }
+
+    .login-form label, .register-form label {
+        width: 90%;
+    }
+    h2 {
+        font-size: 21px;
+        margin-bottom: 20px;
+    }
+    .event-thumbnail {
+        width: 20%;
+    }
+    .event-name {
+        font-size: 14px;
+    }
+    .event-information {
+        margin-left: 0;
+        width: 80%;
+    }
+
+
+    .form-location, .form-datetime {
+        float: none;
+    }
+    fieldset {
+        width: 100%;
+    }
+
+    .modal-content {
+        min-width: 256px;
+    }
+
+    #create-event-form input {
+        margin-bottom: 5px;
+    }
+
+    #event-state, #event-zipcode {
+        width: 100%;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

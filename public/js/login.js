@@ -17,12 +17,12 @@ function authenticateUser() {
 		contentType: 'application/json'
 	})
 	.done(data => {
-		console.log(user.username);
+		// console.log(user.username);
 		const authTokenStr = data.authToken;
 		localStorage.setItem('token', authTokenStr);
-		// localStorage.setItem('username', user.username);
-		currentUser = parseJwt(authTokenStr);
-		console.log(currentUser);
+
+		// currentUser = parseJwt(authTokenStr);
+		// console.log(currentUser);
 
 		$('#login').addClass('hidden');
 		$('#createLink').removeClass('hidden');
@@ -85,6 +85,7 @@ function logOutUser(){
 	$('#LogOut').on('click', function(event){
 		event.preventDefault();
 		location.reload();
+		localStorage.clear();
 	})
 }
 function registerUser(){
