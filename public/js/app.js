@@ -257,10 +257,10 @@ function watchSubmitEvent(){
 				endTime: $('#event-endtime').val()
 			},
 			prop: $('#event-prop').val(),
-			user: currentUser.user.id
+			user: currentUser.user.userId
 		}
 		console.log(EventData);
-		console.log(currentUser.user.id)
+		console.log(currentUser.user.userId)
 		
 		postEvent(EventData);
 		// clearEventForm();

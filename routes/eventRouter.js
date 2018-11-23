@@ -46,7 +46,7 @@ router.post('/', jsonParser, (req, res) => {
 			return res.status(400).send(message); //400=Bad Request
 		}
 	}
-	console.log(`user:${req.user.id}`);
+	// console.log(`user:${req.user.id}`);
 
 	// let userID;
 	//GET to find userObjectId
@@ -68,7 +68,7 @@ router.post('/', jsonParser, (req, res) => {
 				endTime: req.body.time.endTime
 			},
 			prop: req.body.prop,
-			user: currentUser.user.id
+			user: req.body.user
 		})
 		.then(event => res.status(201).json(event.serialize()))	//201=Created
 		.catch(err => {
