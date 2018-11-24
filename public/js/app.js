@@ -147,7 +147,7 @@ function renderEvents(event, index){
 
 					<div class="info-middle column">
 						<div class="event-date">${event.date}</div>
-						<div class="event-time">${event.time.startTime} - ${event.time.endTime}</div>
+						<div class="event-time">${formatTimes(event.time.startTime)} - ${formatTimes(event.time.endTime)}</div>
 					</div>
 
 					<div class="info-right column">
@@ -184,6 +184,27 @@ function updateDate(eventDate){
 	let inputDate = `${year}-${month}-${date}`;
 
 	return inputDate
+}
+
+function formatTimes(twentyfourtime){
+	let time = twentyfourtime.split(':');
+	let hours = time[0];
+	let mins = time[1];
+	let formattedTime;
+
+	let hh = hours % 12
+
+	if (hours == 24){
+		formattedTime = `12:${mins} AM`
+	} else if (hours == 12){
+		formattedTime = `12:${mins} PM`
+	} else if (hours > 12){
+		formattedTime = `${hh}:${mins} PM`
+	} else if (hours < 12){
+		formattedTime = `${hh}:${mins} AM`
+	}
+
+	return formattedTime
 }
 
 
