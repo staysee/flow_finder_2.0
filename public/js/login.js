@@ -1,8 +1,6 @@
 //--------------------------//
 //	   AUTH- AJAX CALLS		//
 //--------------------------//
-let currentUser;
-
 function authenticateUser() {
 	const user = {
 		username: $('#username').val(),
@@ -17,12 +15,8 @@ function authenticateUser() {
 		contentType: 'application/json'
 	})
 	.done(data => {
-		// console.log(user.username);
 		const authTokenStr = data.authToken;
 		localStorage.setItem('token', authTokenStr);
-
-		// currentUser = parseJwt(authTokenStr);
-		// console.log(currentUser);
 
 		$('#login').addClass('hidden');
 		$('#createLink').removeClass('hidden');

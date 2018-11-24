@@ -46,11 +46,7 @@ router.post('/', jsonParser, (req, res) => {
 			return res.status(400).send(message); //400=Bad Request
 		}
 	}
-	// console.log(`user:${req.user.id}`);
 
-	// let userID;
-	//GET to find userObjectId
-	//Store the ObjectId into a variable thn pass it into user in Event create
 	Event
 		.create({
 			name: req.body.name,

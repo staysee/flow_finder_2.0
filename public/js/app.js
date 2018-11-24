@@ -12,8 +12,9 @@ function getEvents(){
 	})
 	.done(function(res){
 		eventData = res.events;
-		// console.log(eventData);
 		displayEvents(eventData);
+
+
 	})
 	.fail(err => {
 		console.error(err)
@@ -126,9 +127,21 @@ function deleteEvent(eventId){
 //		APP FUNCTIONS		//
 //--------------------------//
 function renderEvents(event, index){
+	const authTokenStr = localStorage.getItem('token');
+	let currentUser = parseJwt(authTokenStr)
+	let option;
+
+	if (currentUser.user.userId !== event.user){
+		option = "hidden"
+	} else {
+		option = ""
+	}
+
+	console.log(option);
+
 	return `
 		<div class="event-item" data-eventid="${event.id}">
-			<div class="user-options">
+			<div id="options" class="user-options ${option}">
 				<i class="far fa-edit js-fa-edit"></i>
 				<span class="js-delete-button delete-button">&times;</span>
 			</div>
@@ -160,14 +173,11 @@ function renderEvents(event, index){
 }
 
 function displayEvents(data){
-	console.log("from displayEvents function")
 	let eachEvent = $.map(eventData, function (event, index){
 		return renderEvents(event)
 	})
 	$('.events-all').html(eachEvent)
 }
-
-
 
 function getDate(eventDate) {
 	let date = new Date(eventDate)
