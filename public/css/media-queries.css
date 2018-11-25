@@ -1,4 +1,3 @@
-
 /*MEDIA QUERIES*/
 /*small devices (phones, 600px and down)*/
 @media only screen and (max-width: 719px){
@@ -7,7 +6,7 @@
         min-width: 320px;
     }
     .navbar {
-        min-width: 320px;
+        min-width: 385px;
     }
     .nav-links {
         font-size: 11px;
@@ -66,20 +65,8 @@
         width: 100%;
     }
 
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@media only screen and (min-width: 719px) and (max-width: 759px){
 
 }

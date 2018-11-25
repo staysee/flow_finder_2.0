@@ -25,23 +25,15 @@
     width: 100%;
 }
 
-/*.add-event {
-    float: left;
-    width: 40px;
-    height: 20px;
-    border-radius: 5px;
-    background-color: #769885;
-    border: none;
-    padding: 0px;
-    outline: none;
-}
-*/
 .event-name {
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
 }
 
+.event-information {
+    border-top: 2px dotted black;
+}
 .event-description {
     margin-top: 15px;
 }
@@ -50,6 +42,11 @@
     font-style: italic;
     margin-top: 20px;
     text-align: center;
+}
+
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
 }
 
 

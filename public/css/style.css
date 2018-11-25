@@ -23,7 +23,6 @@ h1 {
     display: none;
 }
 
-
 #container {
 	background-image: url('../img/timothy-paul-smith-218074-unsplash.jpg');
 	background-size: cover;
@@ -162,15 +161,6 @@ fieldset {
     padding: 5px;
 }
 
-#event-state {
-    width: 20%;
-    margin-right: 5px; 
-}
-
-#event-zipcode {
-    width: 40%;
-}
-
 .form-location {
     float: left;
 }
@@ -187,10 +177,6 @@ fieldset {
 
 .date, .time {
     clear: right;
-}
-
-#event-endtime {
-    /*margin-bottom: 20px;*/
 }
 
 #save-event-button, #edit-event-button {

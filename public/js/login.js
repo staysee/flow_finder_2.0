@@ -60,6 +60,7 @@ function createUser(){
 		$('.message').html(`Registration successful. <br> Please sign in!`);
 		$('.message').css('color', 'green');
 		$('#login').removeClass('hidden');
+		clearUserForm();
 	})
 	.fail(err => {
 		console.error(err)
@@ -68,6 +69,12 @@ function createUser(){
 	})
 }
 
+function clearUserForm(){
+	$('#firstname').val(""),
+	$('#lastname').val(""),
+	$('#new-username').val(""),
+	$('#new-password').val("")
+}
 
 function parseJwt(token){
 	let base64Url = token.split('.')[1];

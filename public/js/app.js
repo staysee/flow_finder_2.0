@@ -151,8 +151,10 @@ function renderEvents(event, index){
 			<div class="js-event-information event-information hidden row">
 					<div class="event-description">${event.description}</div>
 					<div class="event-address">${event.address.building}<br>${event.address.street}<br>${event.address.city}, ${event.address.state} ${event.address.zipcode}</div>
-					<div class="event-date">Date: ${event.date}</div>
-					<div class="event-time">Time: ${formatTimes(event.time.startTime)} - ${formatTimes(event.time.endTime)}</div>
+					<div class="datetime row">
+						<div class="event-date col-6">Date: ${formatDate(event.date)}</div>
+						<div class="event-time col-6">Time: ${formatTimes(event.time.startTime)} - ${formatTimes(event.time.endTime)}</div>
+					</div>
 			</div>
 		</div>
 	`
@@ -172,7 +174,6 @@ function getDate(eventDate) {
 }
 
 function updateDate(eventDate){
-	console.log(eventDate.split('/'));
 	let dateSplit = eventDate.split('/');
 	let month = dateSplit[0];
 	let date = dateSplit[1]
@@ -180,6 +181,24 @@ function updateDate(eventDate){
 	let inputDate = `${year}-${month}-${date}`;
 
 	return inputDate
+}
+
+function formatDate(eventDate){
+	let months = [
+				'January', 'February', 'March',
+				'April', 'May', 'June',
+				'July', 'August', 'September',
+				'October', 'November', 'December'
+	];
+
+	let dateSplit = eventDate.split('/');
+	let month = dateSplit[0];
+	let date = dateSplit[1]
+	let year = dateSplit[2];
+
+	let stringDate = `${months[month-1]} ${date}, ${year}`;
+
+	return stringDate
 }
 
 function formatTimes(twentyfourtime){
