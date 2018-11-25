@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const { User } = require('../models/users');
+const { Event } = require('../models/events');
 
 const router = express.Router();
 

@@ -140,33 +140,19 @@ function renderEvents(event, index){
 	console.log(option);
 
 	return `
-		<div class="event-item" data-eventid="${event.id}">
+		<div class="js-event-item event-item" data-eventid="${event.id}">
 			<div id="options" class="user-options ${option}">
 				<i class="far fa-edit js-fa-edit"></i>
 				<span class="js-delete-button delete-button">&times;</span>
 			</div>
 
-			<div class="content">
-				<div class="event-image">
-					<img class="event-thumbnail" src="../img/gianni-zanato-461187-unsplash.jpg" alt="rose">
-				</div>
-				<div class="event-information">
-
-					<div class="info-left column">
-						<div class="event-name">${event.name}</div>
-						<div class="event-description">${event.description}</div>
-						<div class="event-address">${event.address.building}<br>${event.address.street}<br>${event.address.city}, ${event.address.state} ${event.address.zipcode}</div>
-					</div>
-
-					<div class="info-middle column">
-						<div class="event-date">${event.date}</div>
-						<div class="event-time">${formatTimes(event.time.startTime)} - ${formatTimes(event.time.endTime)}</div>
-					</div>
-
-					<div class="info-right column">
-						<div class="event-prop">${event.prop}</div>
-					</div>
-				</div>
+			<div class="js-event-name event-name">${event.name}</div>
+			<div class="event-prop">${event.prop}</div>
+			<div class="js-event-information event-information hidden row">
+					<div class="event-description">${event.description}</div>
+					<div class="event-address">${event.address.building}<br>${event.address.street}<br>${event.address.city}, ${event.address.state} ${event.address.zipcode}</div>
+					<div class="event-date">Date: ${event.date}</div>
+					<div class="event-time">Time: ${formatTimes(event.time.startTime)} - ${formatTimes(event.time.endTime)}</div>
 			</div>
 		</div>
 	`
@@ -345,17 +331,18 @@ function handleUpdateEvent(){
 	})
 }
 
+function toggleEvent(){
+	$('.events-all').on('click', '.js-event-item', function(event){
+		console.log('show something')
+		$(this).closest('.event-item').find('.js-event-information').toggleClass('hidden');
+	})
+}
 
 
-// $(getEvents);
+$(toggleEvent);
 $(openModal);
 $(closeModal);
-// $(handleShowAllEvents);
 $(watchSubmitEvent);
 $(watchSubmitEditedEvent);
 $(handleDeleteEvents);
 $(handleUpdateEvent);
-
-
-
-

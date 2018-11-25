@@ -19,8 +19,10 @@ function authenticateUser() {
 		localStorage.setItem('token', authTokenStr);
 
 		$('#login').addClass('hidden');
+		$('#intro').addClass('hidden');
 		$('#createLink').removeClass('hidden');
 		$('#LogOut').removeClass('hidden');
+		$('#myEvents').removeClass('hidden');
 		getEvents();
 
 	})

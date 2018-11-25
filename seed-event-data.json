@@ -2,16 +2,16 @@
 	"name": "Hoop Intensive",
 	"description": "Learn how to hoop. Beginners welcome.",
 	"address": {
-		"building": "Hoop Studio",
-		"street": "123 Hula Drive",
+		"building": "Grand Park LA",
+		"street": "200 N Grand Ave",
 		"city": "Los Angeles",
 		"state": "CA",
-		"zipcode": "91830"
+		"zipcode": "90012"
 	},
-	"date": "December 5, 2018",
+	"date": "2018-12-01",
 	"time": {
-		"startTime": "13",
-		"endTime": "17"
+		"startTime": "12",
+		"endTime": "15"
 	},
 	"prop": "Hoop"
 }
@@ -19,13 +19,13 @@
 	"name": "Beginner Staff",
 	"description": "Find your flow with beginner staff lessons. No experience necessary.",
 	"address": {
-		"building": "Garden Park",
-		"street": "1241 Grand Avenue",
-		"city": "Los Angeles",
+		"building": "Central Park",
+		"street": "275 S Raymond Ave",
+		"city": "Pasadena",
 		"state": "CA",
-		"zipcode": "92634"
+		"zipcode": "91105"
 	},
-	"date": "December 23, 2018",
+	"date": "2018-12-08",
 	"time": {
 		"startTime": "16:30",
 		"endTime": "18:30"
@@ -42,7 +42,7 @@
 		"state": "CA",
 		"zipcode": "91030"
 	},
-	"date": "January 6, 2019",
+	"date": "2019-01-6",
 	"time": {
 		"startTime": "15",
 		"endTime": "17:30"

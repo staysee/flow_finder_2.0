@@ -75,6 +75,14 @@ h1 {
 	color: rgba(255, 255, 255, 0.7);
 }
 
+#intro h3 {
+    text-align: center;
+    font-size: 45px;
+    margin-top: 29px;
+    color: #bb934a;
+    font-family: 'Cookie', cursive;
+    text-shadow: 4px 5px 10px #ffffff, -2px -5px 10px #ffffff, 7px -7px 20px #ffffff, -5px 6px 9px #ffffff;
+}
 
 /*EVENT CREATE & UPDATE MODAL*/
 .modal {

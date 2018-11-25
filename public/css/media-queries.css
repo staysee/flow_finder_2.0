@@ -16,6 +16,11 @@
         font-size: 15px;
     }
 
+    #intro h3 {
+        margin-top: 0px;
+        font-size: 35px;
+    }
+
     #login, #register {
         width: 75%;
         min-width: 225px;
@@ -35,16 +40,11 @@
         font-size: 21px;
         margin-bottom: 20px;
     }
-    .event-thumbnail {
-        width: 20%;
-    }
+
     .event-name {
         font-size: 14px;
     }
-    .event-information {
-        margin-left: 0;
-        width: 80%;
-    }
+
 
 
     .form-location, .form-datetime {
