@@ -35,15 +35,26 @@
     border-top: 2px dotted black;
 }
 .event-description {
-    margin-top: 15px;
-}
-
-.event-address {
-    font-style: italic;
-    margin-top: 20px;
+    margin: 15px auto;
     text-align: center;
 }
 
+.details {
+    display: flex;
+}
+
+.datetime {
+    padding-left: 20px;
+}
+
+.address {
+    padding-right: 20px;
+}
+.datetime, .address {
+    text-transform: uppercase;
+    width: 50%;
+    text-align: center;
+}
 input[type=date]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     display: none;

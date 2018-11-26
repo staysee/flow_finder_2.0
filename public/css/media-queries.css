@@ -61,12 +61,11 @@
         margin-bottom: 5px;
     }
 
-    #event-state, #event-zipcode {
-        width: 100%;
+    .datetime, .address {
+        text-transform: uppercase;
+        width: 50%;
     }
-
 }
 
-@media only screen and (min-width: 719px) and (max-width: 759px){
 
 }

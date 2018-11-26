@@ -148,13 +148,21 @@ function renderEvents(event, index){
 
 			<div class="js-event-name event-name">${event.name}</div>
 			<div class="event-prop">${event.prop}</div>
-			<div class="js-event-information event-information hidden row">
+			<div class="js-event-information event-information hidden">
+
+				<div class="row">
 					<div class="event-description">${event.description}</div>
-					<div class="event-address">${event.address.building}<br>${event.address.street}<br>${event.address.city}, ${event.address.state} ${event.address.zipcode}</div>
-					<div class="datetime row">
-						<div class="event-date col-6">Date: ${formatDate(event.date)}</div>
-						<div class="event-time col-6">Time: ${formatTimes(event.time.startTime)} - ${formatTimes(event.time.endTime)}</div>
+				</div>
+
+				<div class="details">
+					<div class="datetime">
+						<div class="event-date">${formatDate(event.date)}</div>
+						<div class="event-time">${formatTimes(event.time.startTime)} - ${formatTimes(event.time.endTime)}</div>
 					</div>
+					<div class="address">
+						<div class="event-address">${event.address.building}<br>${event.address.street}<br>${event.address.city}, ${event.address.state} ${event.address.zipcode}</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	`
