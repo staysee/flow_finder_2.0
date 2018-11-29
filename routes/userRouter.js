@@ -119,6 +119,20 @@ router.post('/', jsonParser, (req, res) => {
 		});
 })
 
+router.put('/events/:id', jsonParser, (req, res) => {
+	const eventIds = req.body.map(id => {
+		return id;
+	})
+
+	User
+	    .findOneAndUpdate({_id: req.params.id}, {$pull: {events: { $in: eventIds }}}, {new: true})
+	    .then(user => {
+	      res.status(200).json(user.events);
+	    }).catch(err => {
+	        console.error(err);
+	        res.status(500).json({message: 'Internal server error'});
+	    })
+})
 
 // Never expose all your users like below in a prod application
 // we're just doing this so we have a quick way to see
