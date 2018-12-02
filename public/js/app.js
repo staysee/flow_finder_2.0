@@ -16,6 +16,7 @@ function getEvents(){
 			$('.msg').html("There are no events. Create an event to connect with other flow artists!");
 			$('.alert-message').css("display", "inline-block");
 		}
+
 		displayEvents(eventData);
 	})
 	.fail(err => {
@@ -47,6 +48,8 @@ function postEvent(newEventData){
 	.done((res) => {
 		getEvents();
 		$('#createModal').addClass('hidden');
+		$('.msg').html("Thanks for sharing your event!");
+		$('.alert-message').css("display","inline-block");
 	})
 	.fail(err => {
 		console.error(err)
