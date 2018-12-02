@@ -13,8 +13,6 @@ function getEvents(){
 	.done(function(res){
 		eventData = res.events;
 		displayEvents(eventData);
-
-
 	})
 	.fail(err => {
 		console.error(err)
@@ -35,7 +33,6 @@ function getOneEvent(eventId){
 	})
 }
 
-//WORKING ON THIS TO COMBINE POST AND PUT
 function postEvent(newEventData){
 	$.ajax({
 			url: '/api/events',
@@ -44,7 +41,6 @@ function postEvent(newEventData){
 			contentType: 'application/json',
 	})
 	.done((res) => {
-		// displayEvents(res);
 		getEvents();
 		$('#createModal').addClass('hidden');
 	})
@@ -52,7 +48,6 @@ function postEvent(newEventData){
 		console.error(err)
 	})
 }
-
 
 function getEventToUpdate(eventId){
 	$.ajax({
@@ -136,8 +131,6 @@ function renderEvents(event, index){
 	} else {
 		option = ""
 	}
-
-	console.log(option);
 
 	return `
 		<div class="js-event-item event-item" data-eventid="${event.id}">
@@ -303,11 +296,9 @@ function watchSubmitEvent(){
 			prop: $('#event-prop').val(),
 			user: currentUser.user.userId
 		}
-		console.log(EventData);
-		console.log(currentUser.user.userId)
 		
 		postEvent(EventData);
-		// clearEventForm();
+		clearEventForm();
 	})
 }
 
@@ -333,12 +324,10 @@ function watchSubmitEditedEvent(){
 			},
 			prop: $('#edit-prop').val()
 		}
-		console.log('Send Updated Event data');
 		
 		updateEvent(eventID, updatedData);
-
-		// clearEventForm();
-	})
+		clearEventForm();
+	});
 }
 
 function handleDeleteEvents(){
@@ -353,7 +342,6 @@ function handleUpdateEvent(){
 	$('.events-all').on('click', '.js-fa-edit', function(event){
 		let updateEventId = $(this).closest('.event-item').data('eventid');
 		console.log(`Updating Event: ${updateEventId}`);
-
 		getEventToUpdate(updateEventId);
 	})
 }

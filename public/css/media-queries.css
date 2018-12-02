@@ -1,5 +1,4 @@
 /*MEDIA QUERIES*/
-/*small devices (phones, 600px and down)*/
 @media only screen and (max-width: 719px){
     body {
         font-size: 11px;
@@ -44,8 +43,6 @@
         font-size: 14px;
     }
 
-
-
     .form-location, .form-datetime {
         float: none;
     }
@@ -65,7 +62,4 @@
         text-transform: uppercase;
         width: 50%;
     }
-}
-
-
 }

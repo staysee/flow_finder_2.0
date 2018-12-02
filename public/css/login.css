@@ -76,12 +76,12 @@ h2 {
 }
 
 .forgot-pass:hover, .create-account:hover, .have-account:hover {
-	color: #d4af7a; /*gold*/
+	color: #d4af7a;
 }
 
 
 .submit {
-	background-color: #d4af7a; /*gold*/
+	background-color: #d4af7a;
 	text-transform: uppercase;
 }
 

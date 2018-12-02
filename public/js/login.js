@@ -29,7 +29,6 @@ function authenticateUser() {
 	.fail(err => {
 		console.error(err);
 		$('.message').html('Invalid username or password');
-		//clear fields
 		$('#username').val("");
 		$('#password').val("");
 	})
@@ -52,10 +51,8 @@ function createUser(){
 		contentType: 'application/json'
 	})
 	.done(data => {
-		console.log(data);
-		console.log(data.username);
 		$('#register').addClass('hidden');
-		//login
+
 		$('#username').val(data.username);
 		$('.message').html(`Registration successful. <br> Please sign in!`);
 		$('.message').css('color', 'green');
@@ -64,11 +61,13 @@ function createUser(){
 	})
 	.fail(err => {
 		console.error(err)
-		console.error(err.responseJSON.message);
 		$('.registration-message').html(err.responseJSON.message);
 	})
 }
 
+//-------------------------------------------//
+//	   LOGIN/REGISTER/LOGOUT FUNCTIONS	     //
+//-------------------------------------------//
 function clearUserForm(){
 	$('#firstname').val(""),
 	$('#lastname').val(""),
@@ -82,15 +81,6 @@ function parseJwt(token){
 	return JSON.parse(window.atob(base64));
 }
 
-
-
-function logOutUser(){
-	$('#LogOut').on('click', function(event){
-		event.preventDefault();
-		location.reload();
-		localStorage.clear();
-	})
-}
 function registerUser(){
 	$('.register-form').on('submit',function(event){
 		event.preventDefault();
@@ -105,6 +95,13 @@ function submitLogin(){
 	})
 }
 
+function logOutUser(){
+	$('#LogOut').on('click', function(event){
+		event.preventDefault();
+		location.reload();
+		localStorage.clear();
+	})
+}
 
 function getRegister() {
 	$('#login').on('click', '.create-account', function() {
