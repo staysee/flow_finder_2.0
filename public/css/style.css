@@ -109,7 +109,7 @@ h1 {
     float: right;
 }
 
-.closeModal, .delete-button {
+.closeModal, .delete-button, .close-msg {
     color: #aaa;
     font-size: 16px;
     font-weight: bold;
@@ -120,7 +120,9 @@ h1 {
 .closeModal:hover,
 .closeModal:focus,
 .delete-button:hover,
-.delete-button:focus {
+.delete-button:focus,
+.close-msg:hover,
+.close-msg:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
@@ -189,6 +191,24 @@ fieldset {
     background-color: #1BA64B;
 }
 
+.event-display {
+    text-align: center;
+}
+
+.alert-message {
+    background-color: #479c52;
+    margin-bottom: 10px;
+    color: black;
+    font-style: italic;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    display: none;
+}
+
+.msg {
+    display: inline;
+}
 
 
 

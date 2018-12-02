@@ -12,6 +12,10 @@ function getEvents(){
 	})
 	.done(function(res){
 		eventData = res.events;
+		if(eventData.length > 1){
+			$('.msg').html("There are no events. Create an event to connect with other flow artists!");
+			$('.alert-message').css("display", "inline-block");
+		}
 		displayEvents(eventData);
 	})
 	.fail(err => {
@@ -92,8 +96,9 @@ function updateEvent(eventId, event){
 		contentType: 'application/json',
 	})
 	.done(() => {
-		console.log('The Event was Updated');
 		$('#editModal').addClass('hidden');
+		$('.msg').html("Your event was updated successfully!");
+		$('.alert-message').css("display","inline-block");
 		getEvents();
 	})
 	.fail(err => {
@@ -111,6 +116,8 @@ function deleteEvent(eventId){
 		}
 	})
 	.done(() => {
+		$('.msg').html("Your event was deleted successfully!");
+		$('.alert-message').css("display","inline-block");
 		getEvents();
 	})
 	.fail(err => {
@@ -271,12 +278,12 @@ function clearEventForm(){
 //--------------------------//
 //		EVENT HANDLERS		//
 //--------------------------//
-function handleShowAllEvents(){
-	$('.js-show-button').click(function(event) {
-		event.preventDefault();
-		getEvents();
-	})
-}
+// function handleShowAllEvents(){
+// 	$('.js-show-button').click(function(event) {
+// 		event.preventDefault();
+// 		getEvents();
+// 	})
+// }
 
 function watchSubmitEvent(){
 	$('#create-event-form').submit(function(event) {
@@ -339,7 +346,6 @@ function watchSubmitEditedEvent(){
 function handleDeleteEvents(){
 	$('.events-all').on('click', '.js-delete-button', function(events){
 		let deleteEventId = $(this).closest('.event-item').data('eventid');
-		console.log(`Deleting Event: ${deleteEventId}`);
 		deleteEvent(deleteEventId);
 	});
 }
@@ -347,19 +353,25 @@ function handleDeleteEvents(){
 function handleUpdateEvent(){
 	$('.events-all').on('click', '.js-fa-edit', function(event){
 		let updateEventId = $(this).closest('.event-item').data('eventid');
-		console.log(`Updating Event: ${updateEventId}`);
 		getEventToUpdate(updateEventId);
 	});
 }
 
 function toggleEvent(){
 	$('.events-all').on('click', '.js-event-item', function(event){
-		console.log('show something');
 		$(this).closest('.event-item').find('.js-event-information').toggleClass('hidden');
 	});
 }
 
+function handleCloseMsg(){
+	$('.js-close-msg').on('click', function(event){
+		event.preventDefault();
+		$('.alert-message').css("display", "none");
+		$('.msg').html("");
+	});
+}
 
+$(handleCloseMsg);
 $(toggleEvent);
 $(openModal);
 $(closeModal);
@@ -367,3 +379,5 @@ $(watchSubmitEvent);
 $(watchSubmitEditedEvent);
 $(handleDeleteEvents);
 $(handleUpdateEvent);
+
+
