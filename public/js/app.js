@@ -62,6 +62,7 @@ function getEventToUpdate(eventId){
 		console.log(res);
 		eventID = res.id
 		console.log(eventID);
+		console.log(res.date);
 		$('#edit-name').val(res.name);
 		$('#edit-description').val(res.description);
 		$('#edit-venue').val(res.address.building);
@@ -179,6 +180,11 @@ function updateDate(eventDate){
 	let month = dateSplit[0];
 	let date = dateSplit[1]
 	let year = dateSplit[2];
+
+	if (month.length == 1){
+		month = "0" + month;
+	}
+	
 	let inputDate = `${year}-${month}-${date}`;
 
 	return inputDate
@@ -333,9 +339,9 @@ function watchSubmitEditedEvent(){
 function handleDeleteEvents(){
 	$('.events-all').on('click', '.js-delete-button', function(events){
 		let deleteEventId = $(this).closest('.event-item').data('eventid');
-		console.log(`Deleting Event: ${deleteEventId}`)
+		console.log(`Deleting Event: ${deleteEventId}`);
 		deleteEvent(deleteEventId);
-	})
+	});
 }
 
 function handleUpdateEvent(){
@@ -343,14 +349,14 @@ function handleUpdateEvent(){
 		let updateEventId = $(this).closest('.event-item').data('eventid');
 		console.log(`Updating Event: ${updateEventId}`);
 		getEventToUpdate(updateEventId);
-	})
+	});
 }
 
 function toggleEvent(){
 	$('.events-all').on('click', '.js-event-item', function(event){
-		console.log('show something')
+		console.log('show something');
 		$(this).closest('.event-item').find('.js-event-information').toggleClass('hidden');
-	})
+	});
 }
 
 
