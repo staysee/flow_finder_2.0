@@ -12,7 +12,7 @@ function getEvents(){
 	})
 	.done(function(res){
 		eventData = res.events;
-		if(eventData.length > 1){
+		if(eventData.length === 0){
 			$('.msg').html("There are no events. Create an event to connect with other flow artists!");
 			$('.alert-message').css("display", "inline-block");
 		}
@@ -178,7 +178,7 @@ function displayEvents(data){
 
 function getDate(eventDate) {
 	let date = new Date(eventDate)
-	let fullDate = [date.getMonth()+1, date.getDate(), date.getFullYear()].join('/');
+	let fullDate = [date.getUTCMonth()+1, date.getUTCDate(), date.getUTCFullYear()].join('/');
 	return fullDate;
 }
 
@@ -190,6 +190,9 @@ function updateDate(eventDate){
 
 	if (month.length == 1){
 		month = "0" + month;
+	}
+	if (date.length == 1){
+		date = "0" + date;
 	}
 	
 	let inputDate = `${year}-${month}-${date}`;
@@ -278,13 +281,6 @@ function clearEventForm(){
 //--------------------------//
 //		EVENT HANDLERS		//
 //--------------------------//
-// function handleShowAllEvents(){
-// 	$('.js-show-button').click(function(event) {
-// 		event.preventDefault();
-// 		getEvents();
-// 	})
-// }
-
 function watchSubmitEvent(){
 	$('#create-event-form').submit(function(event) {
 		event.preventDefault();
