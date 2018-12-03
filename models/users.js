@@ -1,12 +1,10 @@
 'use strict'
 
-//bcrypt for hashing and validating passwords
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-//define user schema
 const UserSchema = mongoose.Schema({
 	username: {
 		type: String,

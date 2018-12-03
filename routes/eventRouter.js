@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
 	Event
-		.findById(req.params.id)	//looks for single document
+		.findById(req.params.id)
 		.then(event => res.json(event.serialize()))
 		.catch(err => {
 			console.error(err);
@@ -43,7 +43,7 @@ router.post('/', jsonParser, (req, res) => {
 		if(!(field in req.body)){
 			const message = `Missing \`${field}\` in request body`;
 			console.error(message);
-			return res.status(400).send(message); //400=Bad Request
+			return res.status(400).send(message);
 		}
 	}
 
@@ -66,7 +66,7 @@ router.post('/', jsonParser, (req, res) => {
 			prop: req.body.prop,
 			user: req.body.user
 		})
-		.then(event => res.status(201).json(event.serialize()))	//201=Created
+		.then(event => res.status(201).json(event.serialize()))
 		.catch(err => {
 			console.error(err);
 			res.status(500).json({error: `Internal Server Error`})
@@ -78,7 +78,7 @@ router.post('/', jsonParser, (req, res) => {
 router.delete('/:id', jsonParser, (req, res) => {
 	Event
 		.findByIdAndRemove(req.params.id)
-		.then(event=> res.status(204).end())	//204=No Content; server fulfilled request but no content sent back
+		.then(event=> res.status(204).end())
 		.catch(err => res.status(500).json({error: `Internal Server Error`}));
 })
 
@@ -90,10 +90,10 @@ router.put('/:id', jsonParser, (req, res) => {
 		const message = (`Request path id (${req.params.id}) and request body id ` +
 			`${req.body.id}) must match`);
 		console.error(message);
-		//return here to break out of the function
-		return res.status(400).json({message: message});	//400=BadRequest
+
+		return res.status(400).json({message: message});
 	}
-	//generate object of fields to be updated, other fields left untouched
+
 	const toUpdate = {};
 	const updateableFields = ['name', 'description', 'address', 'date', 'time', 'prop'];
 	updateableFields.forEach(field => {
@@ -103,8 +103,8 @@ router.put('/:id', jsonParser, (req, res) => {
 	})
 
 	Event
-		.findByIdAndUpdate(req.params.id, {$set: toUpdate})	//2 args: id, object describing how doc should be updated
-		.then(event => res.status(204).end())	//204=Request fulfilled but no content sent back
+		.findByIdAndUpdate(req.params.id, {$set: toUpdate})
+		.then(event => res.status(204).end())
 		.catch(err => res.status(500).json({message: `Internal Server Error`}))
 })
 

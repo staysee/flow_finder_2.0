@@ -58,7 +58,7 @@ router.post('/', jsonParser, (req, res) => {
 		},
 		password: {
 			min: 10,
-			max: 72 //bcrypt truncates after 72 characters
+			max: 72
 		}
 	};
 
@@ -88,7 +88,7 @@ router.post('/', jsonParser, (req, res) => {
 		.count()
 		.then(count => {
 			if(count > 0){
-				//there is an existing user with same username
+				
 				return Promise.reject({
 					code: 422,
 					reason: 'ValidationError',
@@ -96,7 +96,7 @@ router.post('/', jsonParser, (req, res) => {
 					location: 'username'
 				})
 			}
-			//if there is no existing user, hash the password
+			
 			return User.hashPassword(password);
 		})
 		.then(hash => {
@@ -111,7 +111,7 @@ router.post('/', jsonParser, (req, res) => {
 			return res.status(201).json(user.serialize())
 		})
 		.catch(err => {
-			//forward validation errors on to the client, otherwise give 500 error
+			
 			if (err.reason === 'ValidationError') {
 				return res.status(err.code).json(err);
 			}
@@ -134,19 +134,17 @@ router.put('/events/:id', jsonParser, (req, res) => {
 	    })
 })
 
-// Never expose all your users like below in a prod application
-// we're just doing this so we have a quick way to see
-// if we're creating users. keep in mind, you can also
-// verify this in the Mongo shell.
-router.get('/', (req, res) => {
-  return User
-  	.find()
-    .then(users => {
-    	res.json({
-    		users: users.map(user => user.serialize())
-    	})
-    })
-    .catch(err => res.status(500).json({message: 'Internal server error'}));
-});
+// Never expose all your users in prod.
+//This is so we can check if we are creating users
+// router.get('/', (req, res) => {
+//   return User
+//   	.find()
+//     .then(users => {
+//     	res.json({
+//     		users: users.map(user => user.serialize())
+//     	})
+//     })
+//     .catch(err => res.status(500).json({message: 'Internal server error'}));
+// });
 
 module.exports = router;
