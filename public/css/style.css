@@ -63,6 +63,7 @@ h1 {
 	font-size: 1.5em;
 	margin-top: 5px;
     margin-left: 20px;
+    cursor: none;
 }
 
 .nav-links {
