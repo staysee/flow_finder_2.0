@@ -36,14 +36,14 @@ app.use(function (req, res, next) {
   next();
 });
 
-passport.use(localStrategy);	//register our local auth strategy	
-passport.use(jwtStrategy);		//register our JWT strategy
+passport.use(localStrategy);
+passport.use(jwtStrategy);
 
 app.use('/api/users', userRouter);
 app.use('/api/events', eventRouter);
 app.use('/api/auth', authRouter);
 
-const jwtAuth = passport.authenticate('jwt', { session: false }); 	//stop Passport from adding session cookies
+const jwtAuth = passport.authenticate('jwt', { session: false });
 
 //protected endpoint that needs a valid JWT to access it
 app.get('/api/protected', jwtAuth, (req, res) => {
