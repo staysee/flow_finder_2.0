@@ -25,7 +25,6 @@
 				<a href="#" class="logo">Flow Finder</a>
 				<ul class="main-nav" id="js-menu">
 					<li><a href="#" id="createLink" class="nav-links hidden">Create Event</a></li>
-					<li><a href="#" id="myEvents" class="nav-links hidden">My Events</a></li>
 					<li><a href="#" id="LogOut" class="nav-links hidden">Log Out</a></li>
 
 				</ul>
@@ -49,7 +48,6 @@
 						<input type="password" id="password" name="password" required/>
 					</label>
 			    	<button type="submit" class="submit" role="button">Sign In</button>
-					<p class="forgot-pass">Forgot password?</p>
 					<p class="create-account">New here? Create an account</p>
 					<p class="message"></p>
 			    </form>
@@ -117,7 +115,7 @@
 							<label for="event-city">City</label>
 							<input type="text" name="event-city" id="event-city" placeholder="City" required>
 							
-							<div class="row">
+							<div class="row statezip">
 								<div class="col-6">
 									<label for="event-state">State</label>
 									<input type="text" name="event-state" id="event-state" placeholder="State" required>
@@ -186,11 +184,16 @@
 							<label for="edit-city">City</label>
 							<input type="text" name="edit-city" id="edit-city" placeholder="City" required>
 							
-							<label for="edit-state">State</label>
-							<input type="text" name="edit-state" id="edit-state" placeholder="State" required>
-							
-							<label for="edit-zipcode">Zip/Postal</label>
-							<input type="text" name="edit-zipcode" id="edit-zipcode" placeholder="Zip/Postal Code" required>
+							<div class="row statezip">
+								<div class="col-6">
+									<label for="edit-state">State</label>
+									<input type="text" name="edit-state" id="edit-state" placeholder="State" required>
+								</div>
+								<div class="col-6">
+									<label for="edit-zipcode">Zip/Postal</label>
+									<input type="text" name="edit-zipcode" id="edit-zipcode" placeholder="Zip/Postal Code" required>
+								</div>
+							</div>
 						</fieldset>
 						<!-- Date Time -->
 						<fieldset class="form-datetime">

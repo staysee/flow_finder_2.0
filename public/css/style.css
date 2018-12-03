@@ -181,8 +181,15 @@ fieldset {
     clear: right;
 }
 
+.row.statezip {
+    padding-left: 0px;
+    padding-right: 0px;
+
+}
+
 #save-event-button, #edit-event-button {
-    margin-top: 15px; 
+    margin-top: 15px;
+    padding-top: 1px;
     background-color: #76bf96;
     border-color: #76bf96
 }
