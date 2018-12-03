@@ -24,8 +24,7 @@
 			<nav role="navigation" class="navbar">
 				<a href="#" class="logo">Flow Finder</a>
 				<ul class="main-nav" id="js-menu">
-					<li><a href="#" id="createLink" class="nav-links hidden">Create Event</a></li>
-					<li><a href="#" id="myEvents" class="nav-links hidden">My Events</a></li>
+					<li><a href="#" id="createLink" class="nav-links hidden" aria-haspopup="true">Create Event</a></li>
 					<li><a href="#" id="LogOut" class="nav-links hidden">Log Out</a></li>
 
 				</ul>
@@ -219,7 +218,7 @@
 
 			<!-- DISPLAY EVENTS -->
 
-			<section role="region" class="event-display">
+			<section role="region" class="event-display" aria-live="assertive">
 				<div class="alert-message">
 					<p class="msg"></p> <span class="js-close-msg close-msg">&times;</span>
 				</div>

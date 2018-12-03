@@ -146,7 +146,7 @@ function renderEvents(event, index){
 	return `
 		<div class="js-event-item event-item" data-eventid="${event.id}">
 			<div id="options" class="user-options ${option}">
-				<i class="far fa-edit js-fa-edit"></i>
+				<i class="far fa-edit js-fa-edit" aria-haspopup="true"></i>
 				<span class="js-delete-button delete-button">&times;</span>
 			</div>
 

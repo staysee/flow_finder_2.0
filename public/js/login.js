@@ -22,7 +22,6 @@ function authenticateUser() {
 		$('#intro').addClass('hidden');
 		$('#createLink').removeClass('hidden');
 		$('#LogOut').removeClass('hidden');
-		$('#myEvents').removeClass('hidden');
 		getEvents();
 
 	})
