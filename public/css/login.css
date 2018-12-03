@@ -68,14 +68,15 @@ h2 {
 	margin: 20px auto 10px;
 }
 
-.forgot-pass, .create-account, .have-account {
+.create-account, .have-account {
 	text-align: center;
 	font-size: 11px;
 	color:  #30373a;
 	cursor: pointer;
+	padding-top: 10px;
 }
 
-.forgot-pass:hover, .create-account:hover, .have-account:hover {
+.create-account:hover, .have-account:hover {
 	color: #d4af7a;
 }
 
