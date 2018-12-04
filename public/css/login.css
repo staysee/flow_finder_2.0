@@ -1,9 +1,9 @@
 #login, #register {
-	width: 50%;
-	margin: 0 auto;
 	background-color: rgba(256, 256, 256, 0.7);
-	margin-top: 20px;
 	border-radius: 10px;
+	margin: 0 auto;
+	margin-top: 20px;
+	width: 50%;
 }
 
 #login {
@@ -16,8 +16,8 @@
 
 /*LOGIN & REGISTER FORM*/
 .login-form, .register-form {
-	padding: 30px;
 	overflow: hidden;
+	padding: 30px;
 }
 
 h2 {
@@ -27,12 +27,12 @@ h2 {
 
 .login-form label,
 .register-form label {
+	color: #30373a;
 	display: block;
-	width: 70%;
 	margin: 10px auto;
 	text-align: center;
-	color: #30373a;
 	text-transform: uppercase;
+	width: 70%;
 }
 
 
@@ -45,9 +45,9 @@ h2 {
 .login-form input
 .register-form input {
 	display: block;
-	width: 100%;
 	font-size: 16px;
 	text-align: center;
+	width: 100%;
 }
 
 .login-form input,
@@ -59,21 +59,21 @@ h2 {
 
 .login-form button,
 .register-form button {
-	display: block;
 	color: #4e412e;
 	border-radius: 30px;
+	display: block;
 	font-size: 15px;
+	margin: 20px auto 10px;
 	height: 36px;
 	width: 60%;
-	margin: 20px auto 10px;
 }
 
 .create-account, .have-account {
-	text-align: center;
-	font-size: 11px;
 	color:  #30373a;
 	cursor: pointer;
+	font-size: 11px;
 	padding-top: 10px;
+	text-align: center;
 }
 
 .create-account:hover, .have-account:hover {

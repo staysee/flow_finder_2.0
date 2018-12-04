@@ -5,10 +5,10 @@
 }
 
 body {
-	font-family: 'Poppins', sans-serif;
     background-color: black;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
 }
-
 
 main {
     padding-top: 50px;
@@ -33,22 +33,22 @@ h1 {
 
 /*NAVIGATION BAR*/
 .navbar {
-	position: fixed;
-	top: 0;
-	right: 0;
-	left:0;
-	font-size: 16px;
-    background: black;
+    background: #000000;
     display: flex;
+    position: fixed;
+    font-size: 16px;
+    height: 60px;
+    top: 0;
+    right: 0;
+    left:0;
     justify-content: space-between;
     align-items: center;
-    height: 60px;
 }
 
 .main-nav {
-    list-style: none;
     display: flex;
     flex-direction: row;
+    list-style: none;
     justify-content: flex-end;
     margin-right: 30px;
 }
@@ -58,12 +58,12 @@ h1 {
 }
 
 .logo {
-	display: inline-block;
-	font-family: 'Bungee Inline', cursive;
-	font-size: 1.5em;
-	margin-top: 5px;
-    margin-left: 20px;
     cursor: none;
+    display: inline-block;
+    font-family: 'Bungee Inline', cursive;
+    font-size: 1.5em;
+    margin-top: 5px;
+    margin-left: 20px;
 }
 
 .nav-links {
@@ -71,38 +71,38 @@ h1 {
 }
 
 .nav-links, .logo {
-	text-decoration: none;
 	color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
 }
 
 #intro h1 {
-    text-align: center;
-    font-size: 45px;
-    margin-top: 29px;
     color: #bb934a;
     font-family: 'Cookie', cursive;
+    font-size: 45px;
+    margin-top: 29px;
+    text-align: center;
     text-shadow: 4px 5px 10px #ffffff, -2px -5px 10px #ffffff, 7px -7px 20px #ffffff, -5px 6px 9px #ffffff;
 }
 
 /*EVENT CREATE & UPDATE MODAL*/
 .modal {
     position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.6);
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    overflow: auto;
+    z-index: 1;
 }
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
     border: 1px solid #888;
     border-radius: 15px;
+    margin: 15% auto;
+    padding: 20px;
     width: 80%;
 }
 
@@ -111,7 +111,7 @@ h1 {
 }
 
 .closeModal, .delete-button, .close-msg {
-    color: #aaa;
+    color: #407356;
     font-size: 16px;
     font-weight: bold;
 }
@@ -173,9 +173,9 @@ fieldset {
 }
 
 .fa-calendar-alt, .fa-clock {
+    color: #407356;
     float: right;
     font-size: 18px;
-    color: gray;
 }
 
 .date, .time {
@@ -189,10 +189,10 @@ fieldset {
 }
 
 #save-event-button, #edit-event-button {
-    margin-top: 15px;
-    padding-top: 1px;
+    border-color: #76bf96;
     background-color: #76bf96;
-    border-color: #76bf96
+    padding-top: 1px;
+    margin-top: 15px;
 }
 
 #save-event-button:hover, #edit-event-button:hover {
@@ -205,12 +205,12 @@ fieldset {
 
 .alert-message {
     background-color: #479c52;
-    margin-bottom: 10px;
-    color: black;
-    font-style: italic;
-    padding: 5px;
     border-radius: 5px;
+    color: black;
     font-size: 14px;
+    font-style: italic;
+    margin-bottom: 10px;
+    padding: 5px;
     display: none;
 }
 

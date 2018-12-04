@@ -4,12 +4,15 @@
         font-size: 11px;
         min-width: 320px;
     }
+    
     .navbar {
         min-width: 385px;
     }
+
     .nav-links {
         font-size: 11px;
     }
+
     .logo {
         font-size: 15px;
     }
@@ -27,6 +30,7 @@
     #login {
         height: 340px;
     }
+
     #register {
         height: 445px;
     }
@@ -34,6 +38,7 @@
     .login-form label, .register-form label {
         width: 90%;
     }
+
     h2 {
         font-size: 21px;
         margin-bottom: 20px;
@@ -46,6 +51,7 @@
     .form-location, .form-datetime {
         float: none;
     }
+
     fieldset {
         width: 100%;
     }

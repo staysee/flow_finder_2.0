@@ -2,8 +2,9 @@
 .user-options{
     float: right;
 }
+
 .fa-edit {
-    color: #aaa;
+    color: #407356;
     font-size: 14px;
     margin: 0px;
 }
@@ -12,9 +13,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    width: 60%;
     margin: 0 auto;
+    width: 60%;
 }
+
 .event-item {
     background-color: rgba(256, 256, 256, 0.7);
     border-radius: 3px;
@@ -26,17 +28,18 @@
 }
 
 .event-name {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     cursor: pointer;
 }
 
 .event-information {
-    border-top: 2px dotted black;
+    border-top: 2px dotted #000000;
 }
+
 .event-description {
-    margin: 15px auto;
     text-align: center;
+    margin: 15px auto;
 }
 
 .details {
@@ -50,15 +53,15 @@
 .address {
     padding-right: 20px;
 }
+
 .datetime, .address {
+    text-align: center;
     text-transform: uppercase;
     width: 50%;
-    text-align: center;
 }
+
 input[type=date]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     display: none;
 }
-
-
 
