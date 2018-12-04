@@ -12,9 +12,9 @@
 ## Introduction
 
 
-![Flow Finder Screenshot](public/img/screenshot1.jpg)
-![Flow Finder Screenshot](public/img/screenshot2.jpg)
-![Flow Finder Screenshot](public/img/screenshot3.jpg)
+![Flow Finder Screenshot](./public/img/screenshot1.JPG)
+![Flow Finder Screenshot](./public/img/screenshot2.JPG)
+![Flow Finder Screenshot](./public/img/screenshot3.JPG)
 
 ## How to Use
 
